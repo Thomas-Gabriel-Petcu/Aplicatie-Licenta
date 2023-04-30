@@ -25,10 +25,11 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
         /// </summary>
         private DatabaseManager()
         {
+            //DeleteDatabase(); //REMOVE LATER!!!!!!!!!!!!!
             CreateDatabase(dataBaseFile);
             conString = GetConnectionString(dataBaseFile);
-            string queryAnimals = "CREATE TABLE Animale ( IDAnimal INTEGER PRIMARY KEY, Specie TEXT, Rasa TEXT, Nume TEXT, Varsta INTEGER, Sex TEXT, Greutate REAL, Vaccinat INTEGER, Sterilizat INTEGER, PathPoza TEXT);";
-            string queryAppointments = "CREATE TABLE Programari (IDProgramare INTEGER PRIMARY KEY, IDAnimal INTEGER, DataProgramarii DATETIME, Detalii TEXT, FOREIGN KEY (IDAnimal) REFERENCES Animale(IDAnimal));";
+            string queryAnimals = "CREATE TABLE Animale ( IDAnimal INTEGER PRIMARY KEY AUTOINCREMENT, Specie TEXT, Rasa TEXT, Nume TEXT, Varsta INTEGER, Sex TEXT, Greutate REAL, Vaccinat TEXT, Sterilizat TEXT, PathPoza TEXT);";
+            string queryAppointments = "CREATE TABLE Programari (IDProgramare INTEGER PRIMARY KEY AUTOINCREMENT, IDAnimal INTEGER, DataProgramarii DATETIME, Detalii TEXT, FOREIGN KEY (IDAnimal) REFERENCES Animale(IDAnimal));";
             using (SQLiteConnection con = new SQLiteConnection(conString))
             using (SQLiteCommand command = new SQLiteCommand(queryAnimals, con))   
             using (SQLiteCommand appointmentsCommand = new SQLiteCommand(queryAppointments, con))
@@ -81,11 +82,29 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
             string con;
             return con = "Data Source=" + db + ";Version=3;";
         }
-
+        /// <summary>
+        /// Gets SQLiteConnection type object
+        /// </summary>
+        /// <returns></returns>
         public SQLiteConnection GetConnection()
         {
             SQLiteConnection connection = new SQLiteConnection(conString);
             return connection;
+        }
+
+        public void DeleteDatabase()
+        {
+            try
+            {
+                if (File.Exists(dataBaseFile))
+                {
+                    File.Delete(dataBaseFile);
+                }
+            }
+            catch (Exception)
+            {
+                //doesn't exist
+            }
         }
     }
 }

@@ -28,65 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            radioButtonCaine = new RadioButton();
-            radioButtonPisica = new RadioButton();
+            dataGridViewAnimale = new DataGridView();
             textBoxRasa = new TextBox();
             labelRasa = new Label();
-            radioButtonVarstaMaiMic = new RadioButton();
-            radioButtonVarstaMaiMare = new RadioButton();
             textBoxVarsta = new TextBox();
             labelVarsta = new Label();
-            radioButtonSexM = new RadioButton();
-            radioButtonSexF = new RadioButton();
             textBoxGreutate = new TextBox();
             labelGreutate = new Label();
-            radioButtonGrMaiMica = new RadioButton();
-            radioButtonGrMaiMare = new RadioButton();
             labelVaccinat = new Label();
-            radioButtonVaccinatDa = new RadioButton();
-            radioButtonVaccinatNu = new RadioButton();
             labelSterilizat = new Label();
-            radioButtonSterDa = new RadioButton();
-            radioButtonSterNu = new RadioButton();
             labelFiltre = new Label();
             labelAnimale = new Label();
             buttonAdauga = new Button();
             buttonSterge = new Button();
             buttonModifica = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            comboBoxSpecie = new ComboBox();
+            labelSpecie = new Label();
+            checkBoxSexM = new CheckBox();
+            checkBoxSexF = new CheckBox();
+            checkBoxVaccinatNu = new CheckBox();
+            checkBoxVaccinatDa = new CheckBox();
+            checkBoxSterNu = new CheckBox();
+            checkBoxSterDa = new CheckBox();
+            textBoxNume = new TextBox();
+            labelNume = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewAnimale
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 34);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(776, 162);
-            dataGridView1.TabIndex = 0;
-            // 
-            // radioButtonCaine
-            // 
-            radioButtonCaine.AutoSize = true;
-            radioButtonCaine.Location = new Point(39, 365);
-            radioButtonCaine.Name = "radioButtonCaine";
-            radioButtonCaine.Size = new Size(55, 19);
-            radioButtonCaine.TabIndex = 3;
-            radioButtonCaine.TabStop = true;
-            radioButtonCaine.Text = "Caine";
-            radioButtonCaine.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonPisica
-            // 
-            radioButtonPisica.AutoSize = true;
-            radioButtonPisica.Location = new Point(41, 396);
-            radioButtonPisica.Name = "radioButtonPisica";
-            radioButtonPisica.Size = new Size(55, 19);
-            radioButtonPisica.TabIndex = 4;
-            radioButtonPisica.TabStop = true;
-            radioButtonPisica.Text = "Pisica";
-            radioButtonPisica.UseVisualStyleBackColor = true;
+            dataGridViewAnimale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewAnimale.Location = new Point(12, 34);
+            dataGridViewAnimale.Name = "dataGridViewAnimale";
+            dataGridViewAnimale.RowTemplate.Height = 25;
+            dataGridViewAnimale.Size = new Size(776, 249);
+            dataGridViewAnimale.TabIndex = 0;
+            dataGridViewAnimale.SelectionChanged += dataGridViewAnimale_SelectionChanged;
             // 
             // textBoxRasa
             // 
@@ -98,37 +75,15 @@
             // labelRasa
             // 
             labelRasa.AutoSize = true;
-            labelRasa.Location = new Point(138, 365);
+            labelRasa.Location = new Point(129, 365);
             labelRasa.Name = "labelRasa";
             labelRasa.Size = new Size(31, 15);
             labelRasa.TabIndex = 6;
             labelRasa.Text = "Rasa";
             // 
-            // radioButtonVarstaMaiMic
-            // 
-            radioButtonVarstaMaiMic.AutoSize = true;
-            radioButtonVarstaMaiMic.Location = new Point(206, 365);
-            radioButtonVarstaMaiMic.Name = "radioButtonVarstaMaiMic";
-            radioButtonVarstaMaiMic.Size = new Size(33, 19);
-            radioButtonVarstaMaiMic.TabIndex = 8;
-            radioButtonVarstaMaiMic.TabStop = true;
-            radioButtonVarstaMaiMic.Text = "<";
-            radioButtonVarstaMaiMic.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonVarstaMaiMare
-            // 
-            radioButtonVarstaMaiMare.AutoSize = true;
-            radioButtonVarstaMaiMare.Location = new Point(206, 396);
-            radioButtonVarstaMaiMare.Name = "radioButtonVarstaMaiMare";
-            radioButtonVarstaMaiMare.Size = new Size(33, 19);
-            radioButtonVarstaMaiMare.TabIndex = 9;
-            radioButtonVarstaMaiMare.TabStop = true;
-            radioButtonVarstaMaiMare.Text = ">";
-            radioButtonVarstaMaiMare.UseVisualStyleBackColor = true;
-            // 
             // textBoxVarsta
             // 
-            textBoxVarsta.Location = new Point(245, 392);
+            textBoxVarsta.Location = new Point(187, 392);
             textBoxVarsta.Name = "textBoxVarsta";
             textBoxVarsta.Size = new Size(57, 23);
             textBoxVarsta.TabIndex = 10;
@@ -136,37 +91,15 @@
             // labelVarsta
             // 
             labelVarsta.AutoSize = true;
-            labelVarsta.Location = new Point(259, 365);
+            labelVarsta.Location = new Point(196, 365);
             labelVarsta.Name = "labelVarsta";
             labelVarsta.Size = new Size(38, 15);
             labelVarsta.TabIndex = 11;
             labelVarsta.Text = "Varsta";
             // 
-            // radioButtonSexM
-            // 
-            radioButtonSexM.AutoSize = true;
-            radioButtonSexM.Location = new Point(322, 365);
-            radioButtonSexM.Name = "radioButtonSexM";
-            radioButtonSexM.Size = new Size(36, 19);
-            radioButtonSexM.TabIndex = 12;
-            radioButtonSexM.TabStop = true;
-            radioButtonSexM.Text = "M";
-            radioButtonSexM.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSexF
-            // 
-            radioButtonSexF.AutoSize = true;
-            radioButtonSexF.Location = new Point(322, 396);
-            radioButtonSexF.Name = "radioButtonSexF";
-            radioButtonSexF.Size = new Size(31, 19);
-            radioButtonSexF.TabIndex = 13;
-            radioButtonSexF.TabStop = true;
-            radioButtonSexF.Text = "F";
-            radioButtonSexF.UseVisualStyleBackColor = true;
-            // 
             // textBoxGreutate
             // 
-            textBoxGreutate.Location = new Point(398, 392);
+            textBoxGreutate.Location = new Point(288, 392);
             textBoxGreutate.Name = "textBoxGreutate";
             textBoxGreutate.Size = new Size(57, 23);
             textBoxGreutate.TabIndex = 14;
@@ -174,105 +107,38 @@
             // labelGreutate
             // 
             labelGreutate.AutoSize = true;
-            labelGreutate.Location = new Point(398, 365);
+            labelGreutate.Location = new Point(288, 367);
             labelGreutate.Name = "labelGreutate";
             labelGreutate.Size = new Size(52, 15);
             labelGreutate.TabIndex = 15;
             labelGreutate.Text = "Greutate";
             // 
-            // radioButtonGrMaiMica
-            // 
-            radioButtonGrMaiMica.AutoSize = true;
-            radioButtonGrMaiMica.Location = new Point(359, 365);
-            radioButtonGrMaiMica.Name = "radioButtonGrMaiMica";
-            radioButtonGrMaiMica.Size = new Size(33, 19);
-            radioButtonGrMaiMica.TabIndex = 16;
-            radioButtonGrMaiMica.TabStop = true;
-            radioButtonGrMaiMica.Text = "<";
-            radioButtonGrMaiMica.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonGrMaiMare
-            // 
-            radioButtonGrMaiMare.AutoSize = true;
-            radioButtonGrMaiMare.Location = new Point(359, 393);
-            radioButtonGrMaiMare.Name = "radioButtonGrMaiMare";
-            radioButtonGrMaiMare.Size = new Size(33, 19);
-            radioButtonGrMaiMare.TabIndex = 17;
-            radioButtonGrMaiMare.TabStop = true;
-            radioButtonGrMaiMare.Text = ">";
-            radioButtonGrMaiMare.UseVisualStyleBackColor = true;
-            // 
             // labelVaccinat
             // 
             labelVaccinat.AutoSize = true;
-            labelVaccinat.Location = new Point(510, 365);
+            labelVaccinat.Location = new Point(359, 363);
             labelVaccinat.Name = "labelVaccinat";
             labelVaccinat.Size = new Size(51, 15);
             labelVaccinat.TabIndex = 18;
             labelVaccinat.Text = "Vaccinat";
-            labelVaccinat.Click += labelVaccinat_Click;
-            // 
-            // radioButtonVaccinatDa
-            // 
-            radioButtonVaccinatDa.AutoSize = true;
-            radioButtonVaccinatDa.Location = new Point(466, 365);
-            radioButtonVaccinatDa.Name = "radioButtonVaccinatDa";
-            radioButtonVaccinatDa.Size = new Size(38, 19);
-            radioButtonVaccinatDa.TabIndex = 19;
-            radioButtonVaccinatDa.TabStop = true;
-            radioButtonVaccinatDa.Text = "da";
-            radioButtonVaccinatDa.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonVaccinatNu
-            // 
-            radioButtonVaccinatNu.AutoSize = true;
-            radioButtonVaccinatNu.Location = new Point(466, 396);
-            radioButtonVaccinatNu.Name = "radioButtonVaccinatNu";
-            radioButtonVaccinatNu.Size = new Size(39, 19);
-            radioButtonVaccinatNu.TabIndex = 20;
-            radioButtonVaccinatNu.TabStop = true;
-            radioButtonVaccinatNu.Text = "nu";
-            radioButtonVaccinatNu.UseVisualStyleBackColor = true;
             // 
             // labelSterilizat
             // 
             labelSterilizat.AutoSize = true;
-            labelSterilizat.Location = new Point(611, 365);
+            labelSterilizat.Location = new Point(416, 363);
             labelSterilizat.Name = "labelSterilizat";
             labelSterilizat.Size = new Size(51, 15);
             labelSterilizat.TabIndex = 21;
             labelSterilizat.Text = "Sterilizat";
             // 
-            // radioButtonSterDa
-            // 
-            radioButtonSterDa.AutoSize = true;
-            radioButtonSterDa.Location = new Point(567, 363);
-            radioButtonSterDa.Name = "radioButtonSterDa";
-            radioButtonSterDa.Size = new Size(38, 19);
-            radioButtonSterDa.TabIndex = 22;
-            radioButtonSterDa.TabStop = true;
-            radioButtonSterDa.Text = "da";
-            radioButtonSterDa.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonSterNu
-            // 
-            radioButtonSterNu.AutoSize = true;
-            radioButtonSterNu.Location = new Point(566, 393);
-            radioButtonSterNu.Name = "radioButtonSterNu";
-            radioButtonSterNu.Size = new Size(39, 19);
-            radioButtonSterNu.TabIndex = 23;
-            radioButtonSterNu.TabStop = true;
-            radioButtonSterNu.Text = "nu";
-            radioButtonSterNu.UseVisualStyleBackColor = true;
-            // 
             // labelFiltre
             // 
             labelFiltre.AutoSize = true;
-            labelFiltre.Location = new Point(359, 304);
+            labelFiltre.Location = new Point(336, 324);
             labelFiltre.Name = "labelFiltre";
-            labelFiltre.Size = new Size(33, 15);
+            labelFiltre.Size = new Size(119, 15);
             labelFiltre.TabIndex = 24;
-            labelFiltre.Text = "Filtre";
+            labelFiltre.Text = "Optiuni de prelucrare";
             // 
             // labelAnimale
             // 
@@ -285,96 +151,189 @@
             // 
             // buttonAdauga
             // 
-            buttonAdauga.Location = new Point(703, 316);
+            buttonAdauga.Location = new Point(713, 355);
             buttonAdauga.Name = "buttonAdauga";
             buttonAdauga.Size = new Size(75, 23);
             buttonAdauga.TabIndex = 26;
             buttonAdauga.Text = "Adauga";
             buttonAdauga.UseVisualStyleBackColor = true;
+            buttonAdauga.Click += buttonAdauga_Click;
             // 
             // buttonSterge
             // 
-            buttonSterge.Location = new Point(703, 357);
+            buttonSterge.Location = new Point(713, 384);
             buttonSterge.Name = "buttonSterge";
             buttonSterge.Size = new Size(75, 23);
             buttonSterge.TabIndex = 27;
             buttonSterge.Text = "Sterge";
             buttonSterge.UseVisualStyleBackColor = true;
+            buttonSterge.Click += buttonSterge_Click;
             // 
             // buttonModifica
             // 
-            buttonModifica.Location = new Point(703, 396);
+            buttonModifica.Location = new Point(713, 413);
             buttonModifica.Name = "buttonModifica";
             buttonModifica.Size = new Size(75, 23);
             buttonModifica.TabIndex = 28;
             buttonModifica.Text = "Modifica";
             buttonModifica.UseVisualStyleBackColor = true;
+            buttonModifica.Click += buttonModifica_Click;
+            // 
+            // comboBoxSpecie
+            // 
+            comboBoxSpecie.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSpecie.FormattingEnabled = true;
+            comboBoxSpecie.Location = new Point(30, 392);
+            comboBoxSpecie.Name = "comboBoxSpecie";
+            comboBoxSpecie.Size = new Size(65, 23);
+            comboBoxSpecie.TabIndex = 29;
+            // 
+            // labelSpecie
+            // 
+            labelSpecie.AutoSize = true;
+            labelSpecie.Location = new Point(39, 363);
+            labelSpecie.Name = "labelSpecie";
+            labelSpecie.Size = new Size(41, 15);
+            labelSpecie.TabIndex = 30;
+            labelSpecie.Text = "Specie";
+            // 
+            // checkBoxSexM
+            // 
+            checkBoxSexM.AutoSize = true;
+            checkBoxSexM.Location = new Point(249, 381);
+            checkBoxSexM.Name = "checkBoxSexM";
+            checkBoxSexM.Size = new Size(37, 19);
+            checkBoxSexM.TabIndex = 37;
+            checkBoxSexM.Text = "M";
+            checkBoxSexM.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSexF
+            // 
+            checkBoxSexF.AutoSize = true;
+            checkBoxSexF.Location = new Point(250, 397);
+            checkBoxSexF.Name = "checkBoxSexF";
+            checkBoxSexF.Size = new Size(32, 19);
+            checkBoxSexF.TabIndex = 38;
+            checkBoxSexF.Text = "F";
+            checkBoxSexF.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxVaccinatNu
+            // 
+            checkBoxVaccinatNu.AutoSize = true;
+            checkBoxVaccinatNu.Location = new Point(359, 397);
+            checkBoxVaccinatNu.Name = "checkBoxVaccinatNu";
+            checkBoxVaccinatNu.Size = new Size(43, 19);
+            checkBoxVaccinatNu.TabIndex = 42;
+            checkBoxVaccinatNu.Text = "NU";
+            checkBoxVaccinatNu.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxVaccinatDa
+            // 
+            checkBoxVaccinatDa.AutoSize = true;
+            checkBoxVaccinatDa.Location = new Point(359, 381);
+            checkBoxVaccinatDa.Name = "checkBoxVaccinatDa";
+            checkBoxVaccinatDa.Size = new Size(42, 19);
+            checkBoxVaccinatDa.TabIndex = 41;
+            checkBoxVaccinatDa.Text = "DA";
+            checkBoxVaccinatDa.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSterNu
+            // 
+            checkBoxSterNu.AutoSize = true;
+            checkBoxSterNu.Location = new Point(424, 397);
+            checkBoxSterNu.Name = "checkBoxSterNu";
+            checkBoxSterNu.Size = new Size(43, 19);
+            checkBoxSterNu.TabIndex = 44;
+            checkBoxSterNu.Text = "NU";
+            checkBoxSterNu.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSterDa
+            // 
+            checkBoxSterDa.AutoSize = true;
+            checkBoxSterDa.Location = new Point(423, 380);
+            checkBoxSterDa.Name = "checkBoxSterDa";
+            checkBoxSterDa.Size = new Size(42, 19);
+            checkBoxSterDa.TabIndex = 43;
+            checkBoxSterDa.Text = "DA";
+            checkBoxSterDa.UseVisualStyleBackColor = true;
+            // 
+            // textBoxNume
+            // 
+            textBoxNume.Location = new Point(473, 392);
+            textBoxNume.Name = "textBoxNume";
+            textBoxNume.Size = new Size(57, 23);
+            textBoxNume.TabIndex = 45;
+            // 
+            // labelNume
+            // 
+            labelNume.AutoSize = true;
+            labelNume.Location = new Point(473, 363);
+            labelNume.Name = "labelNume";
+            labelNume.Size = new Size(40, 15);
+            labelNume.TabIndex = 46;
+            labelNume.Text = "Nume";
             // 
             // FormEditareCatalog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelNume);
+            Controls.Add(textBoxNume);
+            Controls.Add(checkBoxSterNu);
+            Controls.Add(checkBoxSterDa);
+            Controls.Add(checkBoxVaccinatNu);
+            Controls.Add(checkBoxVaccinatDa);
+            Controls.Add(checkBoxSexF);
+            Controls.Add(checkBoxSexM);
+            Controls.Add(labelSpecie);
+            Controls.Add(comboBoxSpecie);
             Controls.Add(buttonModifica);
             Controls.Add(buttonSterge);
             Controls.Add(buttonAdauga);
             Controls.Add(labelAnimale);
             Controls.Add(labelFiltre);
-            Controls.Add(radioButtonSterNu);
-            Controls.Add(radioButtonSterDa);
             Controls.Add(labelSterilizat);
-            Controls.Add(radioButtonVaccinatNu);
-            Controls.Add(radioButtonVaccinatDa);
             Controls.Add(labelVaccinat);
-            Controls.Add(radioButtonGrMaiMare);
-            Controls.Add(radioButtonGrMaiMica);
             Controls.Add(labelGreutate);
             Controls.Add(textBoxGreutate);
-            Controls.Add(radioButtonSexF);
-            Controls.Add(radioButtonSexM);
             Controls.Add(labelVarsta);
             Controls.Add(textBoxVarsta);
-            Controls.Add(radioButtonVarstaMaiMare);
-            Controls.Add(radioButtonVarstaMaiMic);
             Controls.Add(labelRasa);
             Controls.Add(textBoxRasa);
-            Controls.Add(radioButtonPisica);
-            Controls.Add(radioButtonCaine);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewAnimale);
             Name = "FormEditareCatalog";
             Text = "FormEditareCatalog";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
-        private RadioButton radioButtonCaine;
-        private RadioButton radioButtonPisica;
+        private DataGridView dataGridViewAnimale;
         private TextBox textBoxRasa;
         private Label labelRasa;
-        private RadioButton radioButtonVarstaMaiMic;
-        private RadioButton radioButtonVarstaMaiMare;
         private TextBox textBoxVarsta;
         private Label labelVarsta;
-        private RadioButton radioButtonSexM;
-        private RadioButton radioButtonSexF;
         private TextBox textBoxGreutate;
         private Label labelGreutate;
-        private RadioButton radioButtonGrMaiMica;
-        private RadioButton radioButtonGrMaiMare;
         private Label labelVaccinat;
-        private RadioButton radioButtonVaccinatDa;
-        private RadioButton radioButtonVaccinatNu;
         private Label labelSterilizat;
-        private RadioButton radioButtonSterDa;
-        private RadioButton radioButtonSterNu;
         private Label labelFiltre;
         private Label labelAnimale;
         private Button buttonAdauga;
         private Button buttonSterge;
         private Button buttonModifica;
+        private ComboBox comboBoxSpecie;
+        private Label labelSpecie;
+        private CheckBox checkBoxSexM;
+        private CheckBox checkBoxSexF;
+        private CheckBox checkBoxVaccinatNu;
+        private CheckBox checkBoxVaccinatDa;
+        private CheckBox checkBoxSterNu;
+        private CheckBox checkBoxSterDa;
+        private TextBox textBoxNume;
+        private Label labelNume;
     }
 }

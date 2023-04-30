@@ -1,6 +1,7 @@
 namespace Aplicatie_de_gestiune_a_animalelor
 {
     using Aplicatie_de_gestiune_a_animalelor.Classes;
+    using System.Diagnostics;
     public partial class MainMenuForm : Form
     {
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
@@ -13,7 +14,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             TopMost = true;
             //WindowState = FormWindowState.Maximized;
             NewButton(Screen.PrimaryScreen.Bounds);
-
+            
         }
         public void NewButton(Rectangle bounds)
         {
