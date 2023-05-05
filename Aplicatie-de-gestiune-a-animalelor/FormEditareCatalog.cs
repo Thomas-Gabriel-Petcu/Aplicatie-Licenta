@@ -15,16 +15,19 @@ namespace Aplicatie_de_gestiune_a_animalelor
 {
     public partial class FormEditareCatalog : Form
     {
+        string imagePath = "";
+        MainMenuForm menu;
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
-        AnimalSettings animalSettings = new AnimalSettings();
-        public FormEditareCatalog()
+        public FormEditareCatalog(MainMenuForm menu)
         {
+            this.menu = menu;
             InitializeComponent();
             foreach (var item in AnimalTypes.Types)
             {
                 comboBoxSpecie.Items.Add(item.Key);
             }
-            RefreshDataGridView();
+            RefreshDataGridViewAnimale();
+            RefreshDataGridViewProgramari();
         }
         private bool ValidateInputs()
         {
@@ -33,7 +36,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati selectat specia!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (textBoxRasa.Text == "")
+            if (textBoxRasa.Text == "" || textBoxRasa.Text == " ")
             {
                 MessageBox.Show("Nu ati specificat rasa!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -68,6 +71,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati specificat numele!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            if (imagePath == "")
+            {
+                MessageBox.Show("Nu ati specificat poza!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             if (!int.TryParse(textBoxVarsta.Text, out int l_age) || l_age <= 0)
             {
                 MessageBox.Show($"Varsta nu poate fi \"{textBoxVarsta.Text}\". Doar numere intregi!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -97,20 +105,20 @@ namespace Aplicatie_de_gestiune_a_animalelor
             double weight = double.Parse(textBoxGreutate.Text);
             string vaccinated = checkBoxVaccinatDa.Checked ? "DA" : "NU";
             string ster = checkBoxSterDa.Checked ? "DA" : "NU";
-            string pathPicture = "default";
-            string query = $"INSERT into Animale (Specie,Rasa,Nume,Varsta,Sex,Greutate,Vaccinat,Sterilizat,PathPoza) VALUES ('{species}','{race}','{name}','{age}','{sex}','{weight}','{vaccinated}','{ster}','{pathPicture}');";
+
+            string query = $"INSERT into Animale (Specie,Rasa,Nume,Varsta,Sex,Greutate,Vaccinat,Sterilizat,PathPoza) VALUES ('{species}','{race}','{name}','{age}','{sex}','{weight}','{vaccinated}','{ster}','{imagePath}');";
             using (SQLiteConnection con = databaseManager.GetConnection())
             using (SQLiteCommand command = new SQLiteCommand(query, con))
             {
                 con.Open();
                 command.ExecuteNonQuery();
             }
-            RefreshDataGridView();
+            RefreshDataGridViewAnimale();
 
             MessageBox.Show("S-a adaugat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            ClearBoxes();
         }
-        private void RefreshDataGridView()
+        private void RefreshDataGridViewAnimale()
         {
             string query = "SELECT * FROM Animale";
             using (SQLiteConnection con = databaseManager.GetConnection())
@@ -126,9 +134,25 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
             }
         }
+        private void RefreshDataGridViewProgramari()
+        {
+            string query = "SELECT * FROM Programari";
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(query, con))
+            {
+                con.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
+
+                    dataGridViewProgramari.DataSource = dataTable;
+                }
+            }
+        }
         private void dataGridViewAnimale_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridViewAnimale.SelectedRows.Count > 0)
+            if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index != dataGridViewAnimale.Rows.Count - 1)
             {
                 DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
                 string species = row.Cells["Specie"].Value.ToString();
@@ -139,6 +163,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 string vacc = row.Cells["Vaccinat"].Value.ToString();
                 string ster = row.Cells["Sterilizat"].Value.ToString();
                 string name = row.Cells["Nume"].Value.ToString();
+                string imgPath = row.Cells["PathPoza"].Value.ToString();
 
                 comboBoxSpecie.SelectedItem = species;
                 textBoxRasa.Text = race;
@@ -151,6 +176,13 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 checkBoxSterDa.Checked = ster == "DA";
                 checkBoxSterNu.Checked = ster == "NU";
                 textBoxNume.Text = name;
+                if (!File.Exists(imgPath))
+                {
+                    pictureBox1.Image = null;
+                    return;
+                }
+                pictureBox1.Image = Image.FromFile(imgPath);
+                imagePath = imgPath;
             }
         }
         private void buttonSterge_Click(object sender, EventArgs e)
@@ -172,7 +204,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
-            RefreshDataGridView();
+            RefreshDataGridViewAnimale();
+            ClearBoxes();
         }
         private void buttonModifica_Click(object sender, EventArgs e)
         {
@@ -184,21 +217,87 @@ namespace Aplicatie_de_gestiune_a_animalelor
             if (!ValidateInputs())
                 return;
             DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
-            int id =Convert.ToInt32(row.Cells["IDAnimal"].Value);
+            int id = Convert.ToInt32(row.Cells["IDAnimal"].Value);
             string sex = checkBoxSexM.Checked ? "M" : "F";
             string vacc = checkBoxVaccinatDa.Checked ? "DA" : "NU";
             string ster = checkBoxSterDa.Checked ? "DA" : "NU";
             double greutate = double.Parse(textBoxGreutate.Text);
-            string path = "default";
+            string path = imagePath;
             string query = $"UPDATE Animale SET Specie = '{comboBoxSpecie.SelectedItem}',Rasa = '{textBoxRasa.Text}', Nume = '{textBoxNume.Text}', Varsta = '{textBoxVarsta.Text}', Sex = '{sex}', Greutate = '{greutate}', Vaccinat = '{vacc}', Sterilizat = '{ster}', PathPoza = '{path}' WHERE IDAnimal = {id}";
 
-            using(SQLiteConnection con = databaseManager.GetConnection())
-            using(SQLiteCommand command = new SQLiteCommand(query, con))
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(query, con))
             {
                 con.Open();
                 command.ExecuteNonQuery();
             }
-            RefreshDataGridView();
+            RefreshDataGridViewAnimale();
+        }
+        private void buttonPoza_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog picturePicker = new OpenFileDialog();
+            picturePicker.Filter = "Image Files (*.jpg; *.jpeg; *.png; *.gif) | *.jpg; *.jpeg; *.png; *.gif";
+            if (picturePicker.ShowDialog() == DialogResult.OK)
+            {
+                imagePath = picturePicker.FileName;
+                // Display the selected image in a PictureBox (optional)
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
+        }
+        private void ClearBoxes()
+        {
+            comboBoxSpecie.SelectedItem = null;
+            textBoxRasa.Text = "";
+            textBoxVarsta.Text = "";
+            checkBoxSexM.Checked = false;
+            checkBoxSexF.Checked = false;
+            textBoxGreutate.Text = "";
+            checkBoxVaccinatDa.Checked = false;
+            checkBoxVaccinatNu.Checked = false;
+            checkBoxSterDa.Checked = false;
+            checkBoxSterNu.Checked = false;
+            textBoxNume.Text = "";
+            imagePath = "";
+            pictureBox1.Image = null;
+        }
+
+        private void buttonMeniu_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            menu.Show();
+        }
+
+        private void dateTimePickerProgramare_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAdaugaProg_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAnimale.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Nu ati selectat niciun animal pentru programare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (textBoxDetaliiProg.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat detalii pentru programare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            DateTime selectedDate = dateTimePickerData.Value.Date;  // Get the selected date without the time
+            TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;  // Get the selected time
+            DateTime dateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds);
+            int IDAnimal = Convert.ToInt32(dataGridViewAnimale.SelectedRows[0].Cells["IDAnimal"].Value);
+            string query = $"INSERT into Programari (IDAnimal,DataProgramarii,Detalii) VALUES ('{IDAnimal}','{dateTime}','{textBoxDetaliiProg.Text}')";
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand com = new SQLiteCommand(query, con))
+            {
+                con.Open();
+                com.ExecuteNonQuery();
+            }
+            RefreshDataGridViewProgramari();
         }
     }
 }

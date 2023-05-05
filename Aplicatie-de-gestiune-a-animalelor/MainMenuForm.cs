@@ -5,7 +5,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
     public partial class MainMenuForm : Form
     {
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
-        FormEditareCatalog formEditareCatalog = new FormEditareCatalog();
+        FormEditareCatalog formEditareCatalog;
         FormVizualizareCatalog formVizualizareCatalog = new FormVizualizareCatalog();
         public MainMenuForm()
         {
@@ -14,7 +14,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             TopMost = true;
             //WindowState = FormWindowState.Maximized;
             NewButton(Screen.PrimaryScreen.Bounds);
-            
+            formEditareCatalog = new FormEditareCatalog(this);
         }
         public void NewButton(Rectangle bounds)
         {
