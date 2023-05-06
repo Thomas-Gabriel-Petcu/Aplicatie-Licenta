@@ -242,10 +242,12 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 if (!File.Exists(imgPath))
                 {
                     pictureBox1.Image = null;
-                    return;
                 }
-                pictureBox1.Image = Image.FromFile(imgPath);
-                imagePath = imgPath;
+                else
+                {
+                    pictureBox1.Image = Image.FromFile(imgPath);
+                    imagePath = imgPath;
+                }
                 string s = $" WHERE IDAnimal = '{id}'";
                 RefreshDataGridViewProgramari(s);
             }
@@ -525,6 +527,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
         private void FormEditareCatalog_ResizeBegin(object sender, EventArgs e)
         {
             panel1.Location = new Point((this.ClientSize.Width - panel1.Width) / 2, panel1.Location.Y);
+        }
+
+        private void FormEditareCatalog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

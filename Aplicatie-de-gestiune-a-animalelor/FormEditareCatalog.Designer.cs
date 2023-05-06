@@ -501,6 +501,7 @@
             MinimumSize = new Size(1325, 832);
             Name = "FormEditareCatalog";
             Text = "FormEditareCatalog";
+            Load += FormEditareCatalog_Load;
             ResizeBegin += FormEditareCatalog_ResizeBegin;
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
