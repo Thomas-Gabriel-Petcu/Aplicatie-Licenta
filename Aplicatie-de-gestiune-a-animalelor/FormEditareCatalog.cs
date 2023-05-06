@@ -86,9 +86,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show($"Varsta nu poate fi \"{textBoxVarsta.Text}\". Doar numere intregi!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (!double.TryParse(textBoxGreutate.Text, out double l_weight) || l_weight <= 0)
+            if (!float.TryParse(textBoxGreutate.Text, out float l_weight) || l_weight <= 0)
             {
-                MessageBox.Show($"Greutatea nu poate fi \"{textBoxGreutate.Text}\". Doar valori numerice!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Greutatea nu poate fi \"{textBoxGreutate.Text}\". Doar valori numerice pozitive!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -107,7 +107,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             string name = textBoxNume.Text;
             int age = int.Parse(textBoxVarsta.Text);
             string sex = checkBoxSexM.Checked ? "M" : "F";
-            double weight = double.Parse(textBoxGreutate.Text);
+            float weight = float.Parse(textBoxGreutate.Text);
             string vaccinated = checkBoxVaccinatDa.Checked ? "DA" : "NU";
             string ster = checkBoxSterDa.Checked ? "DA" : "NU";
 
@@ -134,7 +134,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 {
                     DataTable dataTable = new DataTable();
                     dataTable.Load(reader);
-
                     dataGridViewAnimale.DataSource = dataTable;
                 }
             }
@@ -216,13 +215,14 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index != dataGridViewAnimale.Rows.Count - 1)
             {
+                
                 DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
                 int id = Convert.ToInt32(row.Cells["IDAnimal"].Value);
                 string species = row.Cells["Specie"].Value.ToString();
                 string race = row.Cells["Rasa"].Value.ToString();
                 int age = Convert.ToInt32(row.Cells["Varsta"].Value);
                 string sex = row.Cells["Sex"].Value.ToString();
-                int weight = Convert.ToInt32(row.Cells["Greutate"].Value);
+                float.TryParse(row.Cells["Greutate"].Value.ToString(), out float weight);
                 string vacc = row.Cells["Vaccinat"].Value.ToString();
                 string ster = row.Cells["Sterilizat"].Value.ToString();
                 string name = row.Cells["Nume"].Value.ToString();
@@ -269,6 +269,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
+            MessageBox.Show("S-a sters cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshDataGridViewAnimale();
             ClearBoxes();
         }
@@ -286,7 +287,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
             string sex = checkBoxSexM.Checked ? "M" : "F";
             string vacc = checkBoxVaccinatDa.Checked ? "DA" : "NU";
             string ster = checkBoxSterDa.Checked ? "DA" : "NU";
-            double greutate = double.Parse(textBoxGreutate.Text);
+            float greutate = float.Parse(textBoxGreutate.Text);
+            Debug.WriteLine(greutate);
             string path = imagePath;
             string query = $"UPDATE Animale SET Specie = '{comboBoxSpecie.SelectedItem}',Rasa = '{textBoxRasa.Text}', Nume = '{textBoxNume.Text}', Varsta = '{textBoxVarsta.Text}', Sex = '{sex}', Greutate = '{greutate}', Vaccinat = '{vacc}', Sterilizat = '{ster}', PathPoza = '{path}' WHERE IDAnimal = {id}";
 
@@ -296,6 +298,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 con.Open();
                 command.ExecuteNonQuery();
             }
+            MessageBox.Show("S-a modificat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshDataGridViewAnimale();
         }
         private void buttonPoza_Click(object sender, EventArgs e)
@@ -347,7 +350,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
             DateTime selectedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, 0);
             var overlaps = GetOverlappingAppointments(selectedDateTime);
-            Debug.WriteLine(overlaps.Count);
             switch (overlaps.Count)
             {
                 case 1:
@@ -441,6 +443,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati selectat programarea de modificat!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            DialogResult result = MessageBox.Show("Suneti sigur ca vreti sa stergeti?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
             DataGridViewRow row = dataGridViewProgramari.SelectedRows[0];
             int id = Convert.ToInt32(row.Cells["IDProgramare"].Value);
             string query = $"DELETE FROM PRogramari WHERE IDProgramare = {id}";
@@ -450,13 +455,13 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 con.Open();
                 command.ExecuteNonQuery();
             }
+            MessageBox.Show("S-a sters cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshDataGridViewProgramari();
         }
         private void buttonAfisareToateProg_Click(object sender, EventArgs e)
         {
             RefreshDataGridViewProgramari();
         }
-
         private void checkBoxSexM_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSexM.Checked)
@@ -471,7 +476,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 checkBoxSexM.Checked = false;
             }
         }
-
         private void checkBoxVaccinatDa_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxVaccinatDa.Checked)
@@ -479,7 +483,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 checkBoxVaccinatNu.Checked = false;
             }
         }
-
         private void checkBoxVaccinatNu_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxVaccinatNu.Checked)
@@ -487,7 +490,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 checkBoxVaccinatDa.Checked = false;
             }
         }
-
         private void checkBoxSterDa_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSterDa.Checked)
@@ -495,7 +497,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 checkBoxSterNu.Checked = false;
             }
         }
-
         private void checkBoxSterNu_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSterNu.Checked)
