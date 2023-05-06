@@ -56,7 +56,6 @@
             pictureBox1 = new PictureBox();
             dataGridViewProgramari = new DataGridView();
             panel1 = new Panel();
-            panel2 = new Panel();
             buttonMeniu = new Button();
             buttonAdaugaProg = new Button();
             dateTimePickerData = new DateTimePicker();
@@ -70,7 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProgramari).BeginInit();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -92,7 +90,7 @@
             // textBoxRasa
             // 
             textBoxRasa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxRasa.Location = new Point(89, 101);
+            textBoxRasa.Location = new Point(262, 105);
             textBoxRasa.Name = "textBoxRasa";
             textBoxRasa.Size = new Size(70, 23);
             textBoxRasa.TabIndex = 5;
@@ -101,7 +99,7 @@
             // 
             labelRasa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelRasa.AutoSize = true;
-            labelRasa.Location = new Point(107, 74);
+            labelRasa.Location = new Point(280, 78);
             labelRasa.Name = "labelRasa";
             labelRasa.Size = new Size(31, 15);
             labelRasa.TabIndex = 6;
@@ -110,7 +108,7 @@
             // textBoxVarsta
             // 
             textBoxVarsta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxVarsta.Location = new Point(165, 101);
+            textBoxVarsta.Location = new Point(338, 105);
             textBoxVarsta.Name = "textBoxVarsta";
             textBoxVarsta.Size = new Size(57, 23);
             textBoxVarsta.TabIndex = 10;
@@ -119,7 +117,7 @@
             // 
             labelVarsta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelVarsta.AutoSize = true;
-            labelVarsta.Location = new Point(174, 74);
+            labelVarsta.Location = new Point(347, 78);
             labelVarsta.Name = "labelVarsta";
             labelVarsta.Size = new Size(38, 15);
             labelVarsta.TabIndex = 11;
@@ -128,7 +126,7 @@
             // textBoxGreutate
             // 
             textBoxGreutate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxGreutate.Location = new Point(266, 101);
+            textBoxGreutate.Location = new Point(439, 105);
             textBoxGreutate.Name = "textBoxGreutate";
             textBoxGreutate.Size = new Size(57, 23);
             textBoxGreutate.TabIndex = 14;
@@ -137,7 +135,7 @@
             // 
             labelGreutate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelGreutate.AutoSize = true;
-            labelGreutate.Location = new Point(266, 76);
+            labelGreutate.Location = new Point(439, 80);
             labelGreutate.Name = "labelGreutate";
             labelGreutate.Size = new Size(52, 15);
             labelGreutate.TabIndex = 15;
@@ -147,7 +145,7 @@
             // 
             labelVaccinat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelVaccinat.AutoSize = true;
-            labelVaccinat.Location = new Point(337, 72);
+            labelVaccinat.Location = new Point(510, 76);
             labelVaccinat.Name = "labelVaccinat";
             labelVaccinat.Size = new Size(51, 15);
             labelVaccinat.TabIndex = 18;
@@ -157,7 +155,7 @@
             // 
             labelSterilizat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelSterilizat.AutoSize = true;
-            labelSterilizat.Location = new Point(394, 72);
+            labelSterilizat.Location = new Point(567, 76);
             labelSterilizat.Name = "labelSterilizat";
             labelSterilizat.Size = new Size(51, 15);
             labelSterilizat.TabIndex = 21;
@@ -167,7 +165,7 @@
             // 
             labelFiltre.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelFiltre.AutoSize = true;
-            labelFiltre.Location = new Point(314, 33);
+            labelFiltre.Location = new Point(575, 31);
             labelFiltre.Name = "labelFiltre";
             labelFiltre.Size = new Size(119, 15);
             labelFiltre.TabIndex = 24;
@@ -186,33 +184,33 @@
             // buttonAdauga
             // 
             buttonAdauga.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonAdauga.Location = new Point(634, 101);
+            buttonAdauga.Location = new Point(786, 82);
             buttonAdauga.Name = "buttonAdauga";
-            buttonAdauga.Size = new Size(75, 23);
+            buttonAdauga.Size = new Size(75, 45);
             buttonAdauga.TabIndex = 26;
-            buttonAdauga.Text = "Adauga";
+            buttonAdauga.Text = "Adauga animal";
             buttonAdauga.UseVisualStyleBackColor = true;
             buttonAdauga.Click += buttonAdauga_Click;
             // 
             // buttonSterge
             // 
             buttonSterge.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonSterge.Location = new Point(796, 100);
+            buttonSterge.Location = new Point(948, 84);
             buttonSterge.Name = "buttonSterge";
-            buttonSterge.Size = new Size(75, 23);
+            buttonSterge.Size = new Size(75, 44);
             buttonSterge.TabIndex = 27;
-            buttonSterge.Text = "Sterge";
+            buttonSterge.Text = "Sterge animal";
             buttonSterge.UseVisualStyleBackColor = true;
             buttonSterge.Click += buttonSterge_Click;
             // 
             // buttonModifica
             // 
             buttonModifica.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonModifica.Location = new Point(715, 100);
+            buttonModifica.Location = new Point(867, 83);
             buttonModifica.Name = "buttonModifica";
-            buttonModifica.Size = new Size(75, 23);
+            buttonModifica.Size = new Size(75, 45);
             buttonModifica.TabIndex = 28;
-            buttonModifica.Text = "Modifica";
+            buttonModifica.Text = "Modifica animal";
             buttonModifica.UseVisualStyleBackColor = true;
             buttonModifica.Click += buttonModifica_Click;
             // 
@@ -221,7 +219,7 @@
             comboBoxSpecie.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             comboBoxSpecie.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSpecie.FormattingEnabled = true;
-            comboBoxSpecie.Location = new Point(8, 101);
+            comboBoxSpecie.Location = new Point(181, 105);
             comboBoxSpecie.Name = "comboBoxSpecie";
             comboBoxSpecie.Size = new Size(65, 23);
             comboBoxSpecie.TabIndex = 29;
@@ -230,7 +228,7 @@
             // 
             labelSpecie.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelSpecie.AutoSize = true;
-            labelSpecie.Location = new Point(17, 72);
+            labelSpecie.Location = new Point(190, 76);
             labelSpecie.Name = "labelSpecie";
             labelSpecie.Size = new Size(41, 15);
             labelSpecie.TabIndex = 30;
@@ -240,7 +238,7 @@
             // 
             checkBoxSexM.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSexM.AutoSize = true;
-            checkBoxSexM.Location = new Point(227, 90);
+            checkBoxSexM.Location = new Point(400, 94);
             checkBoxSexM.Name = "checkBoxSexM";
             checkBoxSexM.Size = new Size(37, 19);
             checkBoxSexM.TabIndex = 37;
@@ -252,7 +250,7 @@
             // 
             checkBoxSexF.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSexF.AutoSize = true;
-            checkBoxSexF.Location = new Point(228, 106);
+            checkBoxSexF.Location = new Point(401, 110);
             checkBoxSexF.Name = "checkBoxSexF";
             checkBoxSexF.Size = new Size(32, 19);
             checkBoxSexF.TabIndex = 38;
@@ -264,7 +262,7 @@
             // 
             checkBoxVaccinatNu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxVaccinatNu.AutoSize = true;
-            checkBoxVaccinatNu.Location = new Point(337, 106);
+            checkBoxVaccinatNu.Location = new Point(510, 110);
             checkBoxVaccinatNu.Name = "checkBoxVaccinatNu";
             checkBoxVaccinatNu.Size = new Size(43, 19);
             checkBoxVaccinatNu.TabIndex = 42;
@@ -276,7 +274,7 @@
             // 
             checkBoxVaccinatDa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxVaccinatDa.AutoSize = true;
-            checkBoxVaccinatDa.Location = new Point(337, 90);
+            checkBoxVaccinatDa.Location = new Point(510, 94);
             checkBoxVaccinatDa.Name = "checkBoxVaccinatDa";
             checkBoxVaccinatDa.Size = new Size(42, 19);
             checkBoxVaccinatDa.TabIndex = 41;
@@ -288,7 +286,7 @@
             // 
             checkBoxSterNu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSterNu.AutoSize = true;
-            checkBoxSterNu.Location = new Point(402, 106);
+            checkBoxSterNu.Location = new Point(575, 110);
             checkBoxSterNu.Name = "checkBoxSterNu";
             checkBoxSterNu.Size = new Size(43, 19);
             checkBoxSterNu.TabIndex = 44;
@@ -300,7 +298,7 @@
             // 
             checkBoxSterDa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSterDa.AutoSize = true;
-            checkBoxSterDa.Location = new Point(401, 89);
+            checkBoxSterDa.Location = new Point(574, 93);
             checkBoxSterDa.Name = "checkBoxSterDa";
             checkBoxSterDa.Size = new Size(42, 19);
             checkBoxSterDa.TabIndex = 43;
@@ -311,7 +309,7 @@
             // textBoxNume
             // 
             textBoxNume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxNume.Location = new Point(451, 101);
+            textBoxNume.Location = new Point(624, 105);
             textBoxNume.Name = "textBoxNume";
             textBoxNume.Size = new Size(57, 23);
             textBoxNume.TabIndex = 45;
@@ -320,7 +318,7 @@
             // 
             labelNume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelNume.AutoSize = true;
-            labelNume.Location = new Point(451, 72);
+            labelNume.Location = new Point(624, 76);
             labelNume.Name = "labelNume";
             labelNume.Size = new Size(40, 15);
             labelNume.TabIndex = 46;
@@ -329,9 +327,9 @@
             // buttonPoza
             // 
             buttonPoza.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonPoza.Location = new Point(526, 101);
+            buttonPoza.Location = new Point(699, 82);
             buttonPoza.Name = "buttonPoza";
-            buttonPoza.Size = new Size(100, 22);
+            buttonPoza.Size = new Size(71, 47);
             buttonPoza.TabIndex = 47;
             buttonPoza.Text = "Cauta poza";
             buttonPoza.UseVisualStyleBackColor = true;
@@ -352,7 +350,7 @@
             // 
             dataGridViewProgramari.AllowUserToAddRows = false;
             dataGridViewProgramari.AllowUserToDeleteRows = false;
-            dataGridViewProgramari.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            dataGridViewProgramari.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProgramari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProgramari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProgramari.Location = new Point(646, 309);
@@ -367,7 +365,8 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel1.Anchor = AnchorStyles.Bottom;
+            panel1.Controls.Add(buttonMeniu);
             panel1.Controls.Add(labelFiltre);
             panel1.Controls.Add(textBoxRasa);
             panel1.Controls.Add(labelRasa);
@@ -394,23 +393,14 @@
             panel1.Location = new Point(12, 621);
             panel1.MinimumSize = new Size(768, 160);
             panel1.Name = "panel1";
-            panel1.Size = new Size(895, 160);
+            panel1.Size = new Size(1285, 160);
             panel1.TabIndex = 50;
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panel2.Controls.Add(buttonMeniu);
-            panel2.Location = new Point(940, 621);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(357, 160);
-            panel2.TabIndex = 51;
             // 
             // buttonMeniu
             // 
-            buttonMeniu.Location = new Point(265, 58);
+            buttonMeniu.Location = new Point(1029, 82);
             buttonMeniu.Name = "buttonMeniu";
-            buttonMeniu.Size = new Size(75, 67);
+            buttonMeniu.Size = new Size(73, 45);
             buttonMeniu.TabIndex = 0;
             buttonMeniu.Text = "Meniu";
             buttonMeniu.UseVisualStyleBackColor = true;
@@ -463,7 +453,7 @@
             // 
             // panel3
             // 
-            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel3.Controls.Add(buttonAfisareToateProg);
             panel3.Controls.Add(buttonAdaugaProg);
             panel3.Controls.Add(dateTimePickerData);
@@ -503,7 +493,6 @@
             ClientSize = new Size(1309, 793);
             Controls.Add(textBoxDetaliiProg);
             Controls.Add(panel3);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(dataGridViewProgramari);
             Controls.Add(pictureBox1);
@@ -512,12 +501,12 @@
             MinimumSize = new Size(1325, 832);
             Name = "FormEditareCatalog";
             Text = "FormEditareCatalog";
+            ResizeBegin += FormEditareCatalog_ResizeBegin;
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProgramari).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -553,7 +542,6 @@
         private PictureBox pictureBox1;
         private DataGridView dataGridViewProgramari;
         private Panel panel1;
-        private Panel panel2;
         private Button buttonMeniu;
         private Button buttonAdaugaProg;
         private DateTimePicker dateTimePickerData;

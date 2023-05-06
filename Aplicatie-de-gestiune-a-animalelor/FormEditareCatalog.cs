@@ -215,7 +215,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index != dataGridViewAnimale.Rows.Count - 1)
             {
-                
+
                 DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
                 int id = Convert.ToInt32(row.Cells["IDAnimal"].Value);
                 string species = row.Cells["Specie"].Value.ToString();
@@ -421,11 +421,28 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati selectat programarea de modificat!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+
             DataGridViewRow row = dataGridViewProgramari.SelectedRows[0];
             int id = Convert.ToInt32(row.Cells["IDProgramare"].Value);
             DateTime selectedDate = dateTimePickerData.Value.Date;
             TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
             DateTime dateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds);
+            var overlaps = GetOverlappingAppointments(dateTime);
+            switch (overlaps.Count)
+            {
+                case 1:
+                    MessageBox.Show($"Aceasta ora se suprapune cu programarea de la ora {overlaps[0]}. Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                case 2:
+                    MessageBox.Show($"Aceasta ora se suprapune cu programarile de la orele: {overlaps[0]} si {overlaps[1]}. Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                case 0:
+                    goto modify;
+                default:
+                    break;
+            }
+        modify:
             string query = $"UPDATE Programari SET DataProgramarii = '{dateTime}', Detalii = '{textBoxDetaliiProg.Text}' WHERE IDProgramare = '{id}'";
             using SQLiteConnection con = databaseManager.GetConnection();
             using SQLiteCommand command = new SQLiteCommand(query, con);
@@ -503,6 +520,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 checkBoxSterDa.Checked = false;
             }
+        }
+
+        private void FormEditareCatalog_ResizeBegin(object sender, EventArgs e)
+        {
+            panel1.Location = new Point((this.ClientSize.Width - panel1.Width) / 2, panel1.Location.Y);
         }
     }
 }
