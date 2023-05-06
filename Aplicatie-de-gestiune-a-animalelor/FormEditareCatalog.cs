@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
     public partial class FormEditareCatalog : Form
     {
         string imagePath = "";
+        int timeStep = 10;
         MainMenuForm menu;
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
         public FormEditareCatalog(MainMenuForm menu)
@@ -323,13 +325,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
             imagePath = "";
             pictureBox1.Image = null;
         }
-
         private void buttonMeniu_Click(object sender, EventArgs e)
         {
             this.Hide();
             menu.Show();
         }
-
         private void buttonAdaugaProg_Click(object sender, EventArgs e)
         {
             if (dataGridViewAnimale.SelectedRows.Count <= 0)
@@ -343,21 +343,62 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 return;
             }
 
-
-            DateTime selectedDate = dateTimePickerData.Value.Date;  // Get the selected date without the time
-            TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;  // Get the selected time
-            DateTime dateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds);
+            DateTime selectedDate = dateTimePickerData.Value.Date;
+            TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
+            DateTime selectedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, 0);
+            var overlaps = GetOverlappingAppointments(selectedDateTime);
+            Debug.WriteLine(overlaps.Count);
+            switch (overlaps.Count)
+            {
+                case 1:
+                    MessageBox.Show($"Aceasta ora se suprapune cu programarea de la ora {overlaps[0]}. Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                case 2:
+                    MessageBox.Show($"Aceasta ora se suprapune cu programarile de la orele: {overlaps[0]} si {overlaps[1]}. Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                case 0:
+                    goto skip;
+                default:
+                    break;
+            }
+        skip:
             int IDAnimal = Convert.ToInt32(dataGridViewAnimale.SelectedRows[0].Cells["IDAnimal"].Value);
-            string query = $"INSERT into Programari (IDAnimal,DataProgramarii,Detalii) VALUES ('{IDAnimal}','{dateTime}','{textBoxDetaliiProg.Text}')";
+            string query = $"INSERT into Programari (IDAnimal,DataProgramarii,Detalii) VALUES ('{IDAnimal}','{selectedDateTime}','{textBoxDetaliiProg.Text}')";
             using (SQLiteConnection con = databaseManager.GetConnection())
             using (SQLiteCommand com = new SQLiteCommand(query, con))
             {
                 con.Open();
                 com.ExecuteNonQuery();
             }
+            MessageBox.Show("S-a adaugat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshDataGridViewProgramari();
         }
+        private List<DateTime> GetOverlappingAppointments(DateTime selectedDateTime)
+        {
+            List<DateTime> overlappingAppointments = new List<DateTime>();
+            DateTime startDateTime = selectedDateTime.AddMinutes(-timeStep);
+            DateTime endDateTime = selectedDateTime.AddMinutes(timeStep);
 
+            string query = $"SELECT DataProgramarii FROM Programari WHERE DataProgramarii >= '{startDateTime}' AND DataProgramarii <= '{endDateTime}'";
+
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(query, con))
+            {
+                con.Open();
+
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string dateTimeStr = reader.GetString(reader.GetOrdinal("DataProgramarii"));
+                        DateTime appointmentDateTime = DateTime.ParseExact(dateTimeStr, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        overlappingAppointments.Add(appointmentDateTime);
+                    }
+                }
+            }
+
+            return overlappingAppointments;
+        }
         private void dataGridViewProgramari_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridViewProgramari.SelectedRows.Count > 0 && dataGridViewProgramari.SelectedRows[0].Index != dataGridViewProgramari.Rows.Count - 1)
@@ -371,7 +412,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 textBoxDetaliiProg.Text = details;
             }
         }
-
         private void buttonModifProg_Click(object sender, EventArgs e)
         {
             if (dataGridViewProgramari.SelectedRows.Count <= 0)
@@ -412,10 +452,56 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             RefreshDataGridViewProgramari();
         }
-
         private void buttonAfisareToateProg_Click(object sender, EventArgs e)
         {
             RefreshDataGridViewProgramari();
+        }
+
+        private void checkBoxSexM_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSexM.Checked)
+            {
+                checkBoxSexF.Checked = false;
+            }
+        }
+        private void checkBoxSexF_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSexF.Checked)
+            {
+                checkBoxSexM.Checked = false;
+            }
+        }
+
+        private void checkBoxVaccinatDa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxVaccinatDa.Checked)
+            {
+                checkBoxVaccinatNu.Checked = false;
+            }
+        }
+
+        private void checkBoxVaccinatNu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxVaccinatNu.Checked)
+            {
+                checkBoxVaccinatDa.Checked = false;
+            }
+        }
+
+        private void checkBoxSterDa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSterDa.Checked)
+            {
+                checkBoxSterNu.Checked = false;
+            }
+        }
+
+        private void checkBoxSterNu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSterNu.Checked)
+            {
+                checkBoxSterDa.Checked = false;
+            }
         }
     }
 }

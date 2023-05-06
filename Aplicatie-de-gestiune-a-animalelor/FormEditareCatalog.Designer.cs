@@ -65,8 +65,8 @@
             buttonStergeProg = new Button();
             buttonVerificareOre = new Button();
             panel3 = new Panel();
-            textBoxDetaliiProg = new TextBox();
             buttonAfisareToateProg = new Button();
+            textBoxDetaliiProg = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProgramari).BeginInit();
@@ -245,6 +245,7 @@
             checkBoxSexM.TabIndex = 37;
             checkBoxSexM.Text = "M";
             checkBoxSexM.UseVisualStyleBackColor = true;
+            checkBoxSexM.CheckedChanged += checkBoxSexM_CheckedChanged;
             // 
             // checkBoxSexF
             // 
@@ -256,6 +257,7 @@
             checkBoxSexF.TabIndex = 38;
             checkBoxSexF.Text = "F";
             checkBoxSexF.UseVisualStyleBackColor = true;
+            checkBoxSexF.CheckedChanged += checkBoxSexF_CheckedChanged;
             // 
             // checkBoxVaccinatNu
             // 
@@ -267,6 +269,7 @@
             checkBoxVaccinatNu.TabIndex = 42;
             checkBoxVaccinatNu.Text = "NU";
             checkBoxVaccinatNu.UseVisualStyleBackColor = true;
+            checkBoxVaccinatNu.CheckedChanged += checkBoxVaccinatNu_CheckedChanged;
             // 
             // checkBoxVaccinatDa
             // 
@@ -278,6 +281,7 @@
             checkBoxVaccinatDa.TabIndex = 41;
             checkBoxVaccinatDa.Text = "DA";
             checkBoxVaccinatDa.UseVisualStyleBackColor = true;
+            checkBoxVaccinatDa.CheckedChanged += checkBoxVaccinatDa_CheckedChanged;
             // 
             // checkBoxSterNu
             // 
@@ -289,6 +293,7 @@
             checkBoxSterNu.TabIndex = 44;
             checkBoxSterNu.Text = "NU";
             checkBoxSterNu.UseVisualStyleBackColor = true;
+            checkBoxSterNu.CheckedChanged += checkBoxSterNu_CheckedChanged;
             // 
             // checkBoxSterDa
             // 
@@ -300,6 +305,7 @@
             checkBoxSterDa.TabIndex = 43;
             checkBoxSterDa.Text = "DA";
             checkBoxSterDa.UseVisualStyleBackColor = true;
+            checkBoxSterDa.CheckedChanged += checkBoxSterDa_CheckedChanged;
             // 
             // textBoxNume
             // 
@@ -473,6 +479,16 @@
             panel3.Size = new Size(218, 306);
             panel3.TabIndex = 58;
             // 
+            // buttonAfisareToateProg
+            // 
+            buttonAfisareToateProg.Location = new Point(20, 188);
+            buttonAfisareToateProg.Name = "buttonAfisareToateProg";
+            buttonAfisareToateProg.Size = new Size(145, 46);
+            buttonAfisareToateProg.TabIndex = 58;
+            buttonAfisareToateProg.Text = "Afiseaza toate programarile";
+            buttonAfisareToateProg.UseVisualStyleBackColor = true;
+            buttonAfisareToateProg.Click += buttonAfisareToateProg_Click;
+            // 
             // textBoxDetaliiProg
             // 
             textBoxDetaliiProg.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -483,16 +499,6 @@
             textBoxDetaliiProg.ScrollBars = ScrollBars.Vertical;
             textBoxDetaliiProg.Size = new Size(597, 75);
             textBoxDetaliiProg.TabIndex = 59;
-            // 
-            // buttonAfisareToateProg
-            // 
-            buttonAfisareToateProg.Location = new Point(20, 188);
-            buttonAfisareToateProg.Name = "buttonAfisareToateProg";
-            buttonAfisareToateProg.Size = new Size(145, 46);
-            buttonAfisareToateProg.TabIndex = 58;
-            buttonAfisareToateProg.Text = "Afiseaza toate programarile";
-            buttonAfisareToateProg.UseVisualStyleBackColor = true;
-            buttonAfisareToateProg.Click += buttonAfisareToateProg_Click;
             // 
             // FormEditareCatalog
             // 
