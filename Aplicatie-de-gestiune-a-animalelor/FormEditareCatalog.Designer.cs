@@ -61,11 +61,12 @@
             buttonAdaugaProg = new Button();
             dateTimePickerData = new DateTimePicker();
             dateTimePickerOra = new DateTimePicker();
-            button1 = new Button();
+            buttonModifProg = new Button();
             buttonStergeProg = new Button();
             buttonVerificareOre = new Button();
             panel3 = new Panel();
             textBoxDetaliiProg = new TextBox();
+            buttonAfisareToateProg = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProgramari).BeginInit();
@@ -350,6 +351,7 @@
             dataGridViewProgramari.RowTemplate.Height = 25;
             dataGridViewProgramari.Size = new Size(597, 182);
             dataGridViewProgramari.TabIndex = 49;
+            dataGridViewProgramari.SelectionChanged += dataGridViewProgramari_SelectionChanged;
             // 
             // panel1
             // 
@@ -414,28 +416,28 @@
             // 
             // dateTimePickerData
             // 
-            dateTimePickerData.Location = new Point(20, 188);
+            dateTimePickerData.Location = new Point(20, 240);
             dateTimePickerData.Name = "dateTimePickerData";
             dateTimePickerData.Size = new Size(183, 23);
             dateTimePickerData.TabIndex = 53;
-            dateTimePickerData.ValueChanged += dateTimePickerProgramare_ValueChanged;
             // 
             // dateTimePickerOra
             // 
             dateTimePickerOra.Format = DateTimePickerFormat.Time;
-            dateTimePickerOra.Location = new Point(20, 217);
+            dateTimePickerOra.Location = new Point(20, 269);
             dateTimePickerOra.Name = "dateTimePickerOra";
             dateTimePickerOra.Size = new Size(183, 23);
             dateTimePickerOra.TabIndex = 54;
             // 
-            // button1
+            // buttonModifProg
             // 
-            button1.Location = new Point(20, 62);
-            button1.Name = "button1";
-            button1.Size = new Size(145, 36);
-            button1.TabIndex = 55;
-            button1.Text = "Modifica programare";
-            button1.UseVisualStyleBackColor = true;
+            buttonModifProg.Location = new Point(20, 62);
+            buttonModifProg.Name = "buttonModifProg";
+            buttonModifProg.Size = new Size(145, 36);
+            buttonModifProg.TabIndex = 55;
+            buttonModifProg.Text = "Modifica programare";
+            buttonModifProg.UseVisualStyleBackColor = true;
+            buttonModifProg.Click += buttonModifProg_Click;
             // 
             // buttonStergeProg
             // 
@@ -445,6 +447,7 @@
             buttonStergeProg.TabIndex = 56;
             buttonStergeProg.Text = "Sterge programare";
             buttonStergeProg.UseVisualStyleBackColor = true;
+            buttonStergeProg.Click += buttonStergeProg_Click;
             // 
             // buttonVerificareOre
             // 
@@ -458,15 +461,16 @@
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.Controls.Add(buttonAfisareToateProg);
             panel3.Controls.Add(buttonAdaugaProg);
             panel3.Controls.Add(buttonVerificareOre);
             panel3.Controls.Add(dateTimePickerData);
             panel3.Controls.Add(buttonStergeProg);
             panel3.Controls.Add(dateTimePickerOra);
-            panel3.Controls.Add(button1);
+            panel3.Controls.Add(buttonModifProg);
             panel3.Location = new Point(463, 309);
             panel3.Name = "panel3";
-            panel3.Size = new Size(218, 263);
+            panel3.Size = new Size(218, 306);
             panel3.TabIndex = 58;
             // 
             // textBoxDetaliiProg
@@ -479,6 +483,16 @@
             textBoxDetaliiProg.ScrollBars = ScrollBars.Vertical;
             textBoxDetaliiProg.Size = new Size(597, 75);
             textBoxDetaliiProg.TabIndex = 59;
+            // 
+            // buttonAfisareToateProg
+            // 
+            buttonAfisareToateProg.Location = new Point(20, 188);
+            buttonAfisareToateProg.Name = "buttonAfisareToateProg";
+            buttonAfisareToateProg.Size = new Size(145, 46);
+            buttonAfisareToateProg.TabIndex = 58;
+            buttonAfisareToateProg.Text = "Afiseaza toate programarile";
+            buttonAfisareToateProg.UseVisualStyleBackColor = true;
+            buttonAfisareToateProg.Click += buttonAfisareToateProg_Click;
             // 
             // FormEditareCatalog
             // 
@@ -542,10 +556,11 @@
         private Button buttonAdaugaProg;
         private DateTimePicker dateTimePickerData;
         private DateTimePicker dateTimePickerOra;
-        private Button button1;
+        private Button buttonModifProg;
         private Button buttonStergeProg;
         private Button buttonVerificareOre;
         private Panel panel3;
         private TextBox textBoxDetaliiProg;
+        private Button buttonAfisareToateProg;
     }
 }

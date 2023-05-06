@@ -3,13 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Aplicatie_de_gestiune_a_animalelor
 {
@@ -96,7 +99,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             textBoxNume.Text = textBoxNume.Text.Replace(" ", "");
             if (!ValidateInputs())
                 return;
-            //passed guard clauses
+
             string species = comboBoxSpecie.SelectedItem.ToString();
             string race = textBoxRasa.Text;
             string name = textBoxNume.Text;
@@ -134,9 +137,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
             }
         }
-        private void RefreshDataGridViewProgramari()
+        private void RefreshDataGridViewProgramari(string s)
         {
-            string query = "SELECT * FROM Programari";
+            string query = "SELECT strftime('%dd.%MM.%yyyy %HH:%mm:%ss', DataProgramarii) AS FormattedDataProgramarii, * FROM Programari" + s;
             using (SQLiteConnection con = databaseManager.GetConnection())
             using (SQLiteCommand command = new SQLiteCommand(query, con))
             {
@@ -144,9 +147,66 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 using (var reader = command.ExecuteReader())
                 {
                     DataTable dataTable = new DataTable();
-                    dataTable.Load(reader);
 
+                    dataTable.Columns.Add("IDProgramare");
+                    dataTable.Columns.Add("IDAnimal");
+                    dataTable.Columns.Add("DataProgramarii");
+                    dataTable.Columns.Add("Detalii");
+                    while (reader.Read())
+                    {
+                        int idAnimal = reader.GetInt32(reader.GetOrdinal("IDAnimal"));
+                        string dateTimeStr = reader.GetString(reader.GetOrdinal("DataProgramarii"));
+                        string details = reader.GetString(reader.GetOrdinal("Detalii"));
+                        DateTime dateTime = DateTime.ParseExact(dateTimeStr, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        dataTable.Rows.Add(reader["IDProgramare"], idAnimal, dateTime, details);
+                    }
                     dataGridViewProgramari.DataSource = dataTable;
+                }
+            }
+        }
+        private void RefreshDataGridViewProgramari()
+        {
+            string query = "SELECT strftime('%dd.%MM.%yyyy %HH:%mm:%ss', DataProgramarii) AS FormattedDataProgramarii, *FROM Programari";
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(query, con))
+            {
+                con.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+
+                    dataTable.Columns.Add("IDProgramare");
+                    dataTable.Columns.Add("IDAnimal");
+                    dataTable.Columns.Add("DataProgramarii");
+                    dataTable.Columns.Add("Detalii");
+                    while (reader.Read())
+                    {
+                        int idAnimal = reader.GetInt32(reader.GetOrdinal("IDAnimal"));
+                        string dateTimeStr = reader.GetString(reader.GetOrdinal("DataProgramarii"));
+                        string details = reader.GetString(reader.GetOrdinal("Detalii"));
+                        DateTime dateTime = DateTime.ParseExact(dateTimeStr, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        dataTable.Rows.Add(reader["IDProgramare"], idAnimal, dateTime, details);
+                    }
+                    dataGridViewProgramari.DataSource = dataTable;
+                    dataGridViewProgramari.CellFormatting += DataGridViewProgramari_CellFormatting;
+                }
+            }
+        }
+        private void DataGridViewProgramari_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewProgramari.Columns["DataProgramarii"].Index)
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    string dateTimeStr = e.Value.ToString();
+                    DateTime appointmentDateTime;
+                    if (DateTime.TryParseExact(dateTimeStr, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out appointmentDateTime))
+                    {
+                        if (appointmentDateTime < DateTime.Now)
+                        {
+                            e.CellStyle.BackColor = Color.Crimson;
+                        }
+                    }
                 }
             }
         }
@@ -155,6 +215,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index != dataGridViewAnimale.Rows.Count - 1)
             {
                 DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
+                int id = Convert.ToInt32(row.Cells["IDAnimal"].Value);
                 string species = row.Cells["Specie"].Value.ToString();
                 string race = row.Cells["Rasa"].Value.ToString();
                 int age = Convert.ToInt32(row.Cells["Varsta"].Value);
@@ -183,6 +244,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
                 pictureBox1.Image = Image.FromFile(imgPath);
                 imagePath = imgPath;
+                string s = $" WHERE IDAnimal = '{id}'";
+                RefreshDataGridViewProgramari(s);
             }
         }
         private void buttonSterge_Click(object sender, EventArgs e)
@@ -267,11 +330,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             menu.Show();
         }
 
-        private void dateTimePickerProgramare_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAdaugaProg_Click(object sender, EventArgs e)
         {
             if (dataGridViewAnimale.SelectedRows.Count <= 0)
@@ -297,6 +355,66 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 con.Open();
                 com.ExecuteNonQuery();
             }
+            RefreshDataGridViewProgramari();
+        }
+
+        private void dataGridViewProgramari_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewProgramari.SelectedRows.Count > 0 && dataGridViewProgramari.SelectedRows[0].Index != dataGridViewProgramari.Rows.Count - 1)
+            {
+                DataGridViewRow row = dataGridViewProgramari.SelectedRows[0];
+                string details = row.Cells["Detalii"].Value.ToString();
+                DateTime.TryParse(row.Cells["DataProgramarii"].Value.ToString(), out DateTime datetime);
+
+                dateTimePickerData.Text = datetime.Date.ToString();
+                dateTimePickerOra.Text = datetime.TimeOfDay.ToString();
+                textBoxDetaliiProg.Text = details;
+            }
+        }
+
+        private void buttonModifProg_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProgramari.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Nu ati selectat programarea de modificat!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataGridViewRow row = dataGridViewProgramari.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["IDProgramare"].Value);
+            DateTime selectedDate = dateTimePickerData.Value.Date;
+            TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
+            DateTime dateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds);
+            string query = $"UPDATE Programari SET DataProgramarii = '{dateTime}', Detalii = '{textBoxDetaliiProg.Text}' WHERE IDProgramare = '{id}'";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a modificat cu succes", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshDataGridViewProgramari();
+        }
+        private void buttonStergeProg_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProgramari.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Nu ati selectat programarea de modificat!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataGridViewRow row = dataGridViewProgramari.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["IDProgramare"].Value);
+            string query = $"DELETE FROM PRogramari WHERE IDProgramare = {id}";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            RefreshDataGridViewProgramari();
+        }
+
+        private void buttonAfisareToateProg_Click(object sender, EventArgs e)
+        {
             RefreshDataGridViewProgramari();
         }
     }
