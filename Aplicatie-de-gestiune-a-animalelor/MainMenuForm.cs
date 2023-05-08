@@ -2,11 +2,15 @@ namespace Aplicatie_de_gestiune_a_animalelor
 {
     using Aplicatie_de_gestiune_a_animalelor.Classes;
     using System.Diagnostics;
+    using System.Drawing.Text;
+
     public partial class MainMenuForm : Form
     {
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
         FormEditareCatalog formEditareCatalog;
         FormVizualizareCatalog formVizualizareCatalog;
+        DateStatistice dateStatistice;
+        //bool hasReset;
         public MainMenuForm()
         {
             InitializeComponent();
@@ -16,6 +20,18 @@ namespace Aplicatie_de_gestiune_a_animalelor
             NewButton(Screen.PrimaryScreen.Bounds);
             formEditareCatalog = new FormEditareCatalog(this);
             formVizualizareCatalog = new FormVizualizareCatalog(this);
+            dateStatistice = new DateStatistice(this);
+            Statistics.GetRegisteredAnimals();
+            //if (System.DateTime.Now.Day == 2)//second day of month
+            //{
+            //    hasReset = false;
+            //}
+            //if (System.DateTime.Now.Day == 1 && hasReset == false)//first day of month
+            //{
+            //    Statistics.WipeData();
+            //    hasReset = true;
+            //}
+
         }
         public void NewButton(Rectangle bounds)
         {
@@ -48,11 +64,10 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         }
 
-        private void dateStatistice_Click(object sender, EventArgs e)
+        private void buttonDateStatistice_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            dateStatistice.Show();
         }
-
-        
     }
 }

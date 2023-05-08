@@ -30,8 +30,8 @@
         {
             vizualizareCatalog = new Button();
             editareCatalog = new Button();
-            dateStatistice = new Button();
             iesire = new Button();
+            buttonDateStatistice = new Button();
             SuspendLayout();
             // 
             // vizualizareCatalog
@@ -46,7 +46,7 @@
             // 
             // editareCatalog
             // 
-            editareCatalog.Location = new Point(242, 103);
+            editareCatalog.Location = new Point(242, 97);
             editareCatalog.Name = "editareCatalog";
             editareCatalog.Size = new Size(255, 46);
             editareCatalog.TabIndex = 0;
@@ -54,19 +54,9 @@
             editareCatalog.UseVisualStyleBackColor = true;
             editareCatalog.Click += editareCatalog_Click;
             // 
-            // dateStatistice
-            // 
-            dateStatistice.Location = new Point(242, 178);
-            dateStatistice.Name = "dateStatistice";
-            dateStatistice.Size = new Size(255, 41);
-            dateStatistice.TabIndex = 0;
-            dateStatistice.Text = "Date Statistice";
-            dateStatistice.UseVisualStyleBackColor = true;
-            dateStatistice.Click += dateStatistice_Click;
-            // 
             // iesire
             // 
-            iesire.Location = new Point(242, 356);
+            iesire.Location = new Point(242, 347);
             iesire.Name = "iesire";
             iesire.Size = new Size(255, 41);
             iesire.TabIndex = 1;
@@ -74,13 +64,23 @@
             iesire.UseVisualStyleBackColor = true;
             iesire.Click += iesire_Click;
             // 
+            // buttonDateStatistice
+            // 
+            buttonDateStatistice.Location = new Point(242, 169);
+            buttonDateStatistice.Name = "buttonDateStatistice";
+            buttonDateStatistice.Size = new Size(255, 46);
+            buttonDateStatistice.TabIndex = 2;
+            buttonDateStatistice.Text = "Date Statistice";
+            buttonDateStatistice.UseVisualStyleBackColor = true;
+            buttonDateStatistice.Click += buttonDateStatistice_Click;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonDateStatistice);
             Controls.Add(iesire);
-            Controls.Add(dateStatistice);
             Controls.Add(editareCatalog);
             Controls.Add(vizualizareCatalog);
             Name = "MainMenuForm";
@@ -94,7 +94,7 @@
 
         private Button vizualizareCatalog;
         private Button editareCatalog;
-        private Button dateStatistice;
         private Button iesire;
+        private Button buttonDateStatistice;
     }
 }
