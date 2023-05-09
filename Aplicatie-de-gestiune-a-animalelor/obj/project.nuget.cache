@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GuC+1IVLmElVs00P1SjtNWDAvhE/x2+HekoZ/USO4keM1qBbTelLxLV51ucd8ioKbmCamxLcsXkeCWJevF2uDA==",
+  "dgSpecHash": "H5ATgAmswkZpJDFsbx7g9jrqeB9dlq0a2U00p3VO5lXJTKonAyJ3jX2wzrdckPx9ObRqfEcUdyl9yUQh23CCxQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\thoma\\Documents\\GitHub\\Aplicatie-Licenta\\Aplicatie-de-gestiune-a-animalelor\\Aplicatie-de-gestiune-a-animalelor.csproj",
   "expectedPackageFiles": [
@@ -26,7 +26,8 @@
     "C:\\Users\\thoma\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
     "C:\\Users\\thoma\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\thoma\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\thoma\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+    "C:\\Users\\thoma\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\thoma\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512"
   ],
   "logs": []
 }

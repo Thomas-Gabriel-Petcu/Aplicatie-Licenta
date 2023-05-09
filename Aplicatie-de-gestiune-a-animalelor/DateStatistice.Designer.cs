@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             btnPrint = new Button();
+            btnMenu = new Button();
             SuspendLayout();
             // 
             // btnPrint
@@ -41,11 +42,22 @@
             btnPrint.UseVisualStyleBackColor = true;
             btnPrint.Click += btnPrint_Click;
             // 
+            // btnMenu
+            // 
+            btnMenu.Location = new Point(122, 12);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(75, 23);
+            btnMenu.TabIndex = 1;
+            btnMenu.Text = "Meniu";
+            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click;
+            // 
             // DateStatistice
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 771);
+            Controls.Add(btnMenu);
             Controls.Add(btnPrint);
             Name = "DateStatistice";
             Text = "DateStatistice";
@@ -56,5 +68,6 @@
         #endregion
 
         private Button btnPrint;
+        private Button btnMenu;
     }
 }

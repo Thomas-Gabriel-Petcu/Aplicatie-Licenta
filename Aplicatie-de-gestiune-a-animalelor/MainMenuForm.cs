@@ -61,7 +61,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void iesire_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
         private void buttonDateStatistice_Click(object sender, EventArgs e)
