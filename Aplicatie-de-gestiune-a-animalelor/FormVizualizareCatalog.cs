@@ -116,7 +116,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 conditions.Add($"Sterilizat = 'DA'");
             }
-            if (checkBoxSterDa.Checked)
+            if (checkBoxSterNu.Checked)
             {
                 conditions.Add($"Sterilizat = 'NU'");
             }
