@@ -34,9 +34,11 @@
             // 
             // btnPrint
             // 
+            btnPrint.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPrint.Image = Properties.Resources.button;
             btnPrint.Location = new Point(12, 12);
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(75, 23);
+            btnPrint.Size = new Size(202, 42);
             btnPrint.TabIndex = 0;
             btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
@@ -44,9 +46,11 @@
             // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(122, 12);
+            btnMenu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMenu.Image = Properties.Resources.button;
+            btnMenu.Location = new Point(236, 12);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(75, 23);
+            btnMenu.Size = new Size(202, 42);
             btnMenu.TabIndex = 1;
             btnMenu.Text = "Meniu";
             btnMenu.UseVisualStyleBackColor = true;
@@ -56,6 +60,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 255, 214);
             ClientSize = new Size(765, 771);
             Controls.Add(btnMenu);
             Controls.Add(btnPrint);

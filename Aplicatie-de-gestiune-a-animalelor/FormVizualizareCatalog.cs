@@ -62,13 +62,15 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             //int padding = -70;
             //panel1.Location = new Point((this.ClientSize.Width - panel1.Width - padding) / 2, panel1.Location.Y);
-            //labelFiltre.Location = new Point((this.ClientSize.Width - labelFiltre.Width - padding) / 2, labelFiltre.Location.Y);
+            labelFiltre.Location = new Point((this.ClientSize.Width - labelFiltre.Width) / 2, labelFiltre.Location.Y);
 
         }
 
         private void buttonCautare_Click(object sender, EventArgs e)
         {
             textBoxRasa.Text = textBoxRasa.Text.Replace(" ", "");
+
+
 
             List<string> conditions = new List<string>();
             string query = "";
@@ -82,11 +84,27 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             if (checkBoxVarstaMaiMic.Checked)
             {
-                conditions.Add($"Varsta < {textBoxVarsta.Text}");
+                if (float.TryParse(textBoxVarsta.Text, out float ageParsed) && ageParsed >= 0)
+                {
+                    conditions.Add($"Varsta < {textBoxVarsta.Text}");
+                }
+                else
+                {
+                    MessageBox.Show($"Varsta nu poate fi {textBoxVarsta.Text}. Doar numere pozitive!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             if (checkBoxVarstaMaiMare.Checked)
             {
-                conditions.Add($"Varsta > {textBoxVarsta.Text}");
+                if (float.TryParse(textBoxVarsta.Text, out float ageParsed) && ageParsed >= 0)
+                {
+                    conditions.Add($"Varsta > {textBoxVarsta.Text}");
+                }
+                else
+                {
+                    MessageBox.Show($"Varsta nu poate fi {textBoxVarsta.Text}. Doar numere pozitive!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             if (checkBoxSexM.Checked)
             {
@@ -98,11 +116,27 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             if (checkBoxGreutateMaiMic.Checked)
             {
-                conditions.Add($"Greutate < {textBoxGreutate.Text}");
+                if (float.TryParse(textBoxGreutate.Text, out float weightParsed) && weightParsed != 0)
+                {
+                    conditions.Add($"Greutate < {textBoxGreutate.Text}");
+                }
+                else
+                {
+                    MessageBox.Show($"Greutatea nu poate fi {textBoxGreutate.Text}. Doar numere pozitive nenule!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             if (checkBoxGreutateMaiMare.Checked)
             {
-                conditions.Add($"Greutate > {textBoxGreutate.Text}");
+                if (float.TryParse(textBoxGreutate.Text, out float weightParsed) && weightParsed != 0)
+                {
+                    conditions.Add($"Greutate > {textBoxGreutate.Text}");
+                }
+                else
+                {
+                    MessageBox.Show($"Greutatea nu poate fi {textBoxGreutate.Text}. Doar numere pozitive nenule!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             if (checkBoxVaccinatDa.Checked)
             {
@@ -256,6 +290,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             menu.Show();
             this.Hide();
+        }
+
+        private void FormVizualizareCatalog_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

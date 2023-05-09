@@ -347,10 +347,21 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati specificat detalii pentru programare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            
 
             DateTime selectedDate = dateTimePickerData.Value.Date;
             TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
             DateTime selectedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, 0);
+            if (selectedDate < DateTime.Now.Date)
+            {
+                MessageBox.Show("Data selectata a trecut, nu s-a inregistrat!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (selectedDate == DateTime.Now.Date && selectedTime < DateTime.Now.TimeOfDay)
+            {
+                MessageBox.Show("Ora selectata a trecut, nu s-a inregistrat!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var overlaps = GetOverlappingAppointments(selectedDateTime);
             switch (overlaps.Count)
             {
@@ -527,11 +538,12 @@ namespace Aplicatie_de_gestiune_a_animalelor
         private void FormEditareCatalog_ResizeBegin(object sender, EventArgs e)
         {
             panel1.Location = new Point((this.ClientSize.Width - panel1.Width) / 2, panel1.Location.Y);
+            labelFiltre.Location = new Point((this.ClientSize.Width - labelFiltre.Width) / 2, labelFiltre.Location.Y);
+            labelAnimale.Location = new Point((this.ClientSize.Width) / 2, labelAnimale.Location.Y);
         }
-
         private void FormEditareCatalog_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

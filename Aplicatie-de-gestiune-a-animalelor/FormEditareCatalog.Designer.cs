@@ -65,11 +65,15 @@
             panel3 = new Panel();
             buttonAfisareToateProg = new Button();
             textBoxDetaliiProg = new TextBox();
+            panel2 = new Panel();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProgramari).BeginInit();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            panel2.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewAnimale
@@ -77,38 +81,40 @@
             dataGridViewAnimale.AllowUserToDeleteRows = false;
             dataGridViewAnimale.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewAnimale.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewAnimale.Location = new Point(12, 34);
+            dataGridViewAnimale.BackgroundColor = SystemColors.Control;
+            dataGridViewAnimale.Location = new Point(-1, 34);
             dataGridViewAnimale.MultiSelect = false;
             dataGridViewAnimale.Name = "dataGridViewAnimale";
             dataGridViewAnimale.ReadOnly = true;
             dataGridViewAnimale.RowTemplate.Height = 25;
             dataGridViewAnimale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewAnimale.Size = new Size(1285, 249);
+            dataGridViewAnimale.Size = new Size(1310, 259);
             dataGridViewAnimale.TabIndex = 0;
             dataGridViewAnimale.SelectionChanged += dataGridViewAnimale_SelectionChanged;
             // 
             // textBoxRasa
             // 
             textBoxRasa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxRasa.Location = new Point(262, 105);
+            textBoxRasa.Location = new Point(98, 54);
             textBoxRasa.Name = "textBoxRasa";
-            textBoxRasa.Size = new Size(70, 23);
+            textBoxRasa.Size = new Size(96, 23);
             textBoxRasa.TabIndex = 5;
             // 
             // labelRasa
             // 
             labelRasa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelRasa.AutoSize = true;
-            labelRasa.Location = new Point(280, 78);
+            labelRasa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelRasa.Location = new Point(117, 23);
             labelRasa.Name = "labelRasa";
-            labelRasa.Size = new Size(31, 15);
+            labelRasa.Size = new Size(51, 25);
             labelRasa.TabIndex = 6;
             labelRasa.Text = "Rasa";
             // 
             // textBoxVarsta
             // 
             textBoxVarsta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxVarsta.Location = new Point(338, 105);
+            textBoxVarsta.Location = new Point(225, 54);
             textBoxVarsta.Name = "textBoxVarsta";
             textBoxVarsta.Size = new Size(57, 23);
             textBoxVarsta.TabIndex = 10;
@@ -117,16 +123,17 @@
             // 
             labelVarsta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelVarsta.AutoSize = true;
-            labelVarsta.Location = new Point(347, 78);
+            labelVarsta.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelVarsta.Location = new Point(225, 23);
             labelVarsta.Name = "labelVarsta";
-            labelVarsta.Size = new Size(38, 15);
+            labelVarsta.Size = new Size(64, 25);
             labelVarsta.TabIndex = 11;
             labelVarsta.Text = "Varsta";
             // 
             // textBoxGreutate
             // 
             textBoxGreutate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxGreutate.Location = new Point(439, 105);
+            textBoxGreutate.Location = new Point(314, 54);
             textBoxGreutate.Name = "textBoxGreutate";
             textBoxGreutate.Size = new Size(57, 23);
             textBoxGreutate.TabIndex = 14;
@@ -135,9 +142,10 @@
             // 
             labelGreutate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelGreutate.AutoSize = true;
-            labelGreutate.Location = new Point(439, 80);
+            labelGreutate.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelGreutate.Location = new Point(304, 23);
             labelGreutate.Name = "labelGreutate";
-            labelGreutate.Size = new Size(52, 15);
+            labelGreutate.Size = new Size(85, 25);
             labelGreutate.TabIndex = 15;
             labelGreutate.Text = "Greutate";
             // 
@@ -145,9 +153,10 @@
             // 
             labelVaccinat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelVaccinat.AutoSize = true;
-            labelVaccinat.Location = new Point(510, 76);
+            labelVaccinat.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelVaccinat.Location = new Point(411, 23);
             labelVaccinat.Name = "labelVaccinat";
-            labelVaccinat.Size = new Size(51, 15);
+            labelVaccinat.Size = new Size(83, 25);
             labelVaccinat.TabIndex = 18;
             labelVaccinat.Text = "Vaccinat";
             // 
@@ -155,38 +164,43 @@
             // 
             labelSterilizat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelSterilizat.AutoSize = true;
-            labelSterilizat.Location = new Point(567, 76);
+            labelSterilizat.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSterilizat.Location = new Point(536, 23);
             labelSterilizat.Name = "labelSterilizat";
-            labelSterilizat.Size = new Size(51, 15);
+            labelSterilizat.Size = new Size(84, 25);
             labelSterilizat.TabIndex = 21;
             labelSterilizat.Text = "Sterilizat";
             // 
             // labelFiltre
             // 
-            labelFiltre.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelFiltre.Anchor = AnchorStyles.Bottom;
             labelFiltre.AutoSize = true;
-            labelFiltre.Location = new Point(575, 31);
+            labelFiltre.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            labelFiltre.Location = new Point(522, 10);
             labelFiltre.Name = "labelFiltre";
-            labelFiltre.Size = new Size(119, 15);
+            labelFiltre.Size = new Size(220, 30);
             labelFiltre.TabIndex = 24;
             labelFiltre.Text = "Optiuni de prelucrare";
             // 
             // labelAnimale
             // 
-            labelAnimale.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            labelAnimale.Anchor = AnchorStyles.None;
             labelAnimale.AutoSize = true;
-            labelAnimale.Location = new Point(587, 9);
+            labelAnimale.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelAnimale.Location = new Point(539, 7);
             labelAnimale.Name = "labelAnimale";
-            labelAnimale.Size = new Size(51, 15);
+            labelAnimale.Size = new Size(81, 25);
             labelAnimale.TabIndex = 25;
             labelAnimale.Text = "Animale";
             // 
             // buttonAdauga
             // 
             buttonAdauga.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonAdauga.Location = new Point(786, 82);
+            buttonAdauga.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAdauga.Image = Properties.Resources.button;
+            buttonAdauga.Location = new Point(906, 5);
             buttonAdauga.Name = "buttonAdauga";
-            buttonAdauga.Size = new Size(75, 45);
+            buttonAdauga.Size = new Size(179, 43);
             buttonAdauga.TabIndex = 26;
             buttonAdauga.Text = "Adauga animal";
             buttonAdauga.UseVisualStyleBackColor = true;
@@ -195,9 +209,11 @@
             // buttonSterge
             // 
             buttonSterge.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonSterge.Location = new Point(948, 84);
+            buttonSterge.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonSterge.Image = Properties.Resources.button;
+            buttonSterge.Location = new Point(1091, 4);
             buttonSterge.Name = "buttonSterge";
-            buttonSterge.Size = new Size(75, 44);
+            buttonSterge.Size = new Size(179, 44);
             buttonSterge.TabIndex = 27;
             buttonSterge.Text = "Sterge animal";
             buttonSterge.UseVisualStyleBackColor = true;
@@ -206,9 +222,11 @@
             // buttonModifica
             // 
             buttonModifica.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonModifica.Location = new Point(867, 83);
+            buttonModifica.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonModifica.Image = Properties.Resources.button;
+            buttonModifica.Location = new Point(1091, 54);
             buttonModifica.Name = "buttonModifica";
-            buttonModifica.Size = new Size(75, 45);
+            buttonModifica.Size = new Size(179, 43);
             buttonModifica.TabIndex = 28;
             buttonModifica.Text = "Modifica animal";
             buttonModifica.UseVisualStyleBackColor = true;
@@ -219,7 +237,7 @@
             comboBoxSpecie.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             comboBoxSpecie.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSpecie.FormattingEnabled = true;
-            comboBoxSpecie.Location = new Point(181, 105);
+            comboBoxSpecie.Location = new Point(19, 54);
             comboBoxSpecie.Name = "comboBoxSpecie";
             comboBoxSpecie.Size = new Size(65, 23);
             comboBoxSpecie.TabIndex = 29;
@@ -228,9 +246,10 @@
             // 
             labelSpecie.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelSpecie.AutoSize = true;
-            labelSpecie.Location = new Point(190, 76);
+            labelSpecie.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSpecie.Location = new Point(17, 23);
             labelSpecie.Name = "labelSpecie";
-            labelSpecie.Size = new Size(41, 15);
+            labelSpecie.Size = new Size(67, 25);
             labelSpecie.TabIndex = 30;
             labelSpecie.Text = "Specie";
             // 
@@ -238,9 +257,10 @@
             // 
             checkBoxSexM.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSexM.AutoSize = true;
-            checkBoxSexM.Location = new Point(400, 94);
+            checkBoxSexM.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSexM.Location = new Point(771, 22);
             checkBoxSexM.Name = "checkBoxSexM";
-            checkBoxSexM.Size = new Size(37, 19);
+            checkBoxSexM.Size = new Size(48, 29);
             checkBoxSexM.TabIndex = 37;
             checkBoxSexM.Text = "M";
             checkBoxSexM.UseVisualStyleBackColor = true;
@@ -250,9 +270,10 @@
             // 
             checkBoxSexF.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSexF.AutoSize = true;
-            checkBoxSexF.Location = new Point(401, 110);
+            checkBoxSexF.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSexF.Location = new Point(771, 51);
             checkBoxSexF.Name = "checkBoxSexF";
-            checkBoxSexF.Size = new Size(32, 19);
+            checkBoxSexF.Size = new Size(40, 29);
             checkBoxSexF.TabIndex = 38;
             checkBoxSexF.Text = "F";
             checkBoxSexF.UseVisualStyleBackColor = true;
@@ -262,9 +283,10 @@
             // 
             checkBoxVaccinatNu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxVaccinatNu.AutoSize = true;
-            checkBoxVaccinatNu.Location = new Point(510, 110);
+            checkBoxVaccinatNu.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxVaccinatNu.Location = new Point(457, 46);
             checkBoxVaccinatNu.Name = "checkBoxVaccinatNu";
-            checkBoxVaccinatNu.Size = new Size(43, 19);
+            checkBoxVaccinatNu.Size = new Size(58, 29);
             checkBoxVaccinatNu.TabIndex = 42;
             checkBoxVaccinatNu.Text = "NU";
             checkBoxVaccinatNu.UseVisualStyleBackColor = true;
@@ -274,9 +296,10 @@
             // 
             checkBoxVaccinatDa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxVaccinatDa.AutoSize = true;
-            checkBoxVaccinatDa.Location = new Point(510, 94);
+            checkBoxVaccinatDa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxVaccinatDa.Location = new Point(395, 46);
             checkBoxVaccinatDa.Name = "checkBoxVaccinatDa";
-            checkBoxVaccinatDa.Size = new Size(42, 19);
+            checkBoxVaccinatDa.Size = new Size(56, 29);
             checkBoxVaccinatDa.TabIndex = 41;
             checkBoxVaccinatDa.Text = "DA";
             checkBoxVaccinatDa.UseVisualStyleBackColor = true;
@@ -286,9 +309,10 @@
             // 
             checkBoxSterNu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSterNu.AutoSize = true;
-            checkBoxSterNu.Location = new Point(575, 110);
+            checkBoxSterNu.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSterNu.Location = new Point(588, 48);
             checkBoxSterNu.Name = "checkBoxSterNu";
-            checkBoxSterNu.Size = new Size(43, 19);
+            checkBoxSterNu.Size = new Size(58, 29);
             checkBoxSterNu.TabIndex = 44;
             checkBoxSterNu.Text = "NU";
             checkBoxSterNu.UseVisualStyleBackColor = true;
@@ -298,9 +322,10 @@
             // 
             checkBoxSterDa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSterDa.AutoSize = true;
-            checkBoxSterDa.Location = new Point(574, 93);
+            checkBoxSterDa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSterDa.Location = new Point(526, 48);
             checkBoxSterDa.Name = "checkBoxSterDa";
-            checkBoxSterDa.Size = new Size(42, 19);
+            checkBoxSterDa.Size = new Size(56, 29);
             checkBoxSterDa.TabIndex = 43;
             checkBoxSterDa.Text = "DA";
             checkBoxSterDa.UseVisualStyleBackColor = true;
@@ -309,27 +334,30 @@
             // textBoxNume
             // 
             textBoxNume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxNume.Location = new Point(624, 105);
+            textBoxNume.Location = new Point(657, 51);
             textBoxNume.Name = "textBoxNume";
-            textBoxNume.Size = new Size(57, 23);
+            textBoxNume.Size = new Size(98, 23);
             textBoxNume.TabIndex = 45;
             // 
             // labelNume
             // 
             labelNume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelNume.AutoSize = true;
-            labelNume.Location = new Point(624, 76);
+            labelNume.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelNume.Location = new Point(670, 23);
             labelNume.Name = "labelNume";
-            labelNume.Size = new Size(40, 15);
+            labelNume.Size = new Size(63, 25);
             labelNume.TabIndex = 46;
             labelNume.Text = "Nume";
             // 
             // buttonPoza
             // 
             buttonPoza.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonPoza.Location = new Point(699, 82);
+            buttonPoza.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonPoza.Image = Properties.Resources.button;
+            buttonPoza.Location = new Point(906, 105);
             buttonPoza.Name = "buttonPoza";
-            buttonPoza.Size = new Size(71, 47);
+            buttonPoza.Size = new Size(179, 43);
             buttonPoza.TabIndex = 47;
             buttonPoza.Text = "Cauta poza";
             buttonPoza.UseVisualStyleBackColor = true;
@@ -338,11 +366,11 @@
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            pictureBox1.BackColor = SystemColors.ControlDark;
+            pictureBox1.BackColor = Color.FromArgb(240, 240, 200);
             pictureBox1.Location = new Point(12, 309);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(426, 240);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 48;
             pictureBox1.TabStop = false;
             // 
@@ -352,6 +380,7 @@
             dataGridViewProgramari.AllowUserToDeleteRows = false;
             dataGridViewProgramari.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProgramari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewProgramari.BackgroundColor = SystemColors.Control;
             dataGridViewProgramari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProgramari.Location = new Point(646, 309);
             dataGridViewProgramari.MultiSelect = false;
@@ -367,7 +396,6 @@
             // 
             panel1.Anchor = AnchorStyles.Bottom;
             panel1.Controls.Add(buttonMeniu);
-            panel1.Controls.Add(labelFiltre);
             panel1.Controls.Add(textBoxRasa);
             panel1.Controls.Add(labelRasa);
             panel1.Controls.Add(buttonPoza);
@@ -398,9 +426,11 @@
             // 
             // buttonMeniu
             // 
-            buttonMeniu.Location = new Point(1029, 82);
+            buttonMeniu.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonMeniu.Image = Properties.Resources.button;
+            buttonMeniu.Location = new Point(1091, 103);
             buttonMeniu.Name = "buttonMeniu";
-            buttonMeniu.Size = new Size(73, 45);
+            buttonMeniu.Size = new Size(179, 45);
             buttonMeniu.TabIndex = 0;
             buttonMeniu.Text = "Meniu";
             buttonMeniu.UseVisualStyleBackColor = true;
@@ -408,9 +438,11 @@
             // 
             // buttonAdaugaProg
             // 
-            buttonAdaugaProg.Location = new Point(3, 3);
+            buttonAdaugaProg.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAdaugaProg.Image = Properties.Resources.button;
+            buttonAdaugaProg.Location = new Point(3, 13);
             buttonAdaugaProg.Name = "buttonAdaugaProg";
-            buttonAdaugaProg.Size = new Size(145, 36);
+            buttonAdaugaProg.Size = new Size(183, 41);
             buttonAdaugaProg.TabIndex = 52;
             buttonAdaugaProg.Text = "Adauga programare";
             buttonAdaugaProg.UseVisualStyleBackColor = true;
@@ -418,7 +450,7 @@
             // 
             // dateTimePickerData
             // 
-            dateTimePickerData.Location = new Point(3, 181);
+            dateTimePickerData.Location = new Point(6, 201);
             dateTimePickerData.Name = "dateTimePickerData";
             dateTimePickerData.Size = new Size(183, 23);
             dateTimePickerData.TabIndex = 53;
@@ -426,16 +458,18 @@
             // dateTimePickerOra
             // 
             dateTimePickerOra.Format = DateTimePickerFormat.Time;
-            dateTimePickerOra.Location = new Point(3, 210);
+            dateTimePickerOra.Location = new Point(6, 230);
             dateTimePickerOra.Name = "dateTimePickerOra";
             dateTimePickerOra.Size = new Size(183, 23);
             dateTimePickerOra.TabIndex = 54;
             // 
             // buttonModifProg
             // 
-            buttonModifProg.Location = new Point(3, 45);
+            buttonModifProg.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonModifProg.Image = Properties.Resources.button;
+            buttonModifProg.Location = new Point(3, 60);
             buttonModifProg.Name = "buttonModifProg";
-            buttonModifProg.Size = new Size(145, 36);
+            buttonModifProg.Size = new Size(183, 41);
             buttonModifProg.TabIndex = 55;
             buttonModifProg.Text = "Modifica programare";
             buttonModifProg.UseVisualStyleBackColor = true;
@@ -443,9 +477,11 @@
             // 
             // buttonStergeProg
             // 
-            buttonStergeProg.Location = new Point(3, 87);
+            buttonStergeProg.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonStergeProg.Image = Properties.Resources.button;
+            buttonStergeProg.Location = new Point(3, 107);
             buttonStergeProg.Name = "buttonStergeProg";
-            buttonStergeProg.Size = new Size(145, 36);
+            buttonStergeProg.Size = new Size(183, 41);
             buttonStergeProg.TabIndex = 56;
             buttonStergeProg.Text = "Sterge programare";
             buttonStergeProg.UseVisualStyleBackColor = true;
@@ -462,14 +498,16 @@
             panel3.Controls.Add(buttonModifProg);
             panel3.Location = new Point(446, 309);
             panel3.Name = "panel3";
-            panel3.Size = new Size(192, 306);
+            panel3.Size = new Size(192, 263);
             panel3.TabIndex = 58;
             // 
             // buttonAfisareToateProg
             // 
-            buttonAfisareToateProg.Location = new Point(3, 129);
+            buttonAfisareToateProg.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAfisareToateProg.Image = Properties.Resources.button;
+            buttonAfisareToateProg.Location = new Point(3, 154);
             buttonAfisareToateProg.Name = "buttonAfisareToateProg";
-            buttonAfisareToateProg.Size = new Size(145, 46);
+            buttonAfisareToateProg.Size = new Size(183, 41);
             buttonAfisareToateProg.TabIndex = 58;
             buttonAfisareToateProg.Text = "Afiseaza toate programarile";
             buttonAfisareToateProg.UseVisualStyleBackColor = true;
@@ -478,6 +516,7 @@
             // textBoxDetaliiProg
             // 
             textBoxDetaliiProg.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxDetaliiProg.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxDetaliiProg.Location = new Point(646, 497);
             textBoxDetaliiProg.Multiline = true;
             textBoxDetaliiProg.Name = "textBoxDetaliiProg";
@@ -486,17 +525,39 @@
             textBoxDetaliiProg.Size = new Size(651, 75);
             textBoxDetaliiProg.TabIndex = 59;
             // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.FromArgb(153, 229, 80);
+            panel2.Controls.Add(labelFiltre);
+            panel2.Location = new Point(-10, 578);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1328, 46);
+            panel2.TabIndex = 60;
+            // 
+            // panel4
+            // 
+            panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel4.BackColor = Color.FromArgb(153, 229, 80);
+            panel4.Controls.Add(labelAnimale);
+            panel4.Location = new Point(-1, -1);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1310, 37);
+            panel4.TabIndex = 61;
+            // 
             // FormEditareCatalog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 255, 214);
             ClientSize = new Size(1309, 793);
+            Controls.Add(panel4);
+            Controls.Add(panel2);
             Controls.Add(textBoxDetaliiProg);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(dataGridViewProgramari);
             Controls.Add(pictureBox1);
-            Controls.Add(labelAnimale);
             Controls.Add(dataGridViewAnimale);
             MinimumSize = new Size(1325, 832);
             Name = "FormEditareCatalog";
@@ -509,6 +570,10 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -552,5 +617,7 @@
         private Panel panel3;
         private TextBox textBoxDetaliiProg;
         private Button buttonAfisareToateProg;
+        private Panel panel2;
+        private Panel panel4;
     }
 }

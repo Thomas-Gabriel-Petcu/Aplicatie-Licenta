@@ -61,6 +61,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void DateStatistice_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             string query = "SELECT * from Animale";
             int totalAnimals = 0;
             float ageSum = 0;
@@ -137,7 +138,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             distLegend.Docking = Docking.Bottom;
             distChart.Legends.Add(distLegend);
             TextAnnotation totalAnimalsAnnotation = new TextAnnotation();
-            totalAnimalsAnnotation.Text = $"Total animals: {totalAnimals}";
+            totalAnimalsAnnotation.Text = $"Total animale: {totalAnimals}";
             totalAnimalsAnnotation.Font = new Font("Arial", 12);
             totalAnimalsAnnotation.ForeColor = Color.Black;
             totalAnimalsAnnotation.X = 50;

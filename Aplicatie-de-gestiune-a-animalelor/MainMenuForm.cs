@@ -3,6 +3,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
     using Aplicatie_de_gestiune_a_animalelor.Classes;
     using System.Diagnostics;
     using System.Drawing.Text;
+    using System.Windows.Forms;
 
     public partial class MainMenuForm : Form
     {
@@ -17,7 +18,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             FormBorderStyle = FormBorderStyle.Sizable;
             TopMost = true;
             //WindowState = FormWindowState.Maximized;
-            NewButton(Screen.PrimaryScreen.Bounds);
+            //NewButton(Screen.PrimaryScreen.Bounds);
             formEditareCatalog = new FormEditareCatalog(this);
             formVizualizareCatalog = new FormVizualizareCatalog(this);
             dateStatistice = new DateStatistice(this);
@@ -56,11 +57,14 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void iesire_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Suneti sigur ca vreti sa iesiti", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
             Application.Exit();
         }
 
@@ -68,6 +72,17 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             this.Hide();
             dateStatistice.Show();
+        }
+        private void MainMenuForm_ResizeBegin(object sender, EventArgs e)
+        {
+            //vizualizareCatalog.Location = new Point((this.ClientSize.Width - this.ClientSize.Width / 2) / 2, vizualizareCatalog.Location.Y);
+        }
+
+        private void MainMenuForm_Resize(object sender, EventArgs e)
+        {
+            vizualizareCatalog.Location = new Point((this.ClientSize.Width - vizualizareCatalog.Width) / 2, vizualizareCatalog.Location.Y);
+            editareCatalog.Location = new Point((this.ClientSize.Width - editareCatalog.Width) / 2, editareCatalog.Location.Y);
+
         }
     }
 }
