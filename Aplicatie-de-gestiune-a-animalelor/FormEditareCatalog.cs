@@ -119,7 +119,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 command.ExecuteNonQuery();
             }
             RefreshDataGridViewAnimale();
-
             MessageBox.Show("S-a adaugat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearBoxes();
         }

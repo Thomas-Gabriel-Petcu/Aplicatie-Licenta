@@ -17,7 +17,6 @@ using System.Globalization;
 using System.Timers;
 using System.Windows.Forms.DataVisualization.Charting;
 
-
 namespace Aplicatie_de_gestiune_a_animalelor
 {
     public partial class DateStatistice : Form
@@ -34,7 +33,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             InitializeComponent();
             this.menu = menu;
             float dpiX, dpiY;
-            yStep = fontSize * 2;
+            yStep = fontSize * 2 + 10;
             xPos = (int)(0.1f * this.Size.Width);
             using (Graphics graphics = this.CreateGraphics())
             {
@@ -99,6 +98,14 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
                 }
             }
+            int startY = 100;
+            
+            Label title = new Label();
+            title.AutoSize = true;
+            title.Text = $"Raport privind animalele gestionate";
+            title.Location = new Point(this.Size.Width/2 - 300, startY);
+            title.Font = new Font(title.Font.FontFamily, fontSize * 1.5f);
+            panel1.Controls.Add(title);
 
             Label labelDate = new Label();
             labelDate.AutoSize = true;
@@ -107,17 +114,16 @@ namespace Aplicatie_de_gestiune_a_animalelor
             labelDate.Font = new Font(labelDate.Font.FontFamily, fontSize);
             panel1.Controls.Add(labelDate);
 
-
+            startY += 100;
             Label generalData = new Label();
             generalData.AutoSize = true;
             generalData.Text = $"STATISTICI GENERALE";
-            generalData.Location = new Point(40, 50);
+            generalData.Location = new Point(this.Size.Width / 2 - 150, startY);
             generalData.Font = new Font(generalData.Font.FontFamily, fontSize);
             panel1.Controls.Add(generalData);
 
-            int startY = 100;
             #region AnimalDistributionPieChart
-            startY += yStep;
+            startY += 50;
             Chart distChart = new Chart();
             distChart.Location = new Point(xPos, startY);
             ChartArea distArea = new ChartArea();
@@ -150,10 +156,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
             #endregion
 
             #region Vacc/SterDistribution
-            startY += yStep;
             Chart chart1 = new Chart();
             chart1.ChartAreas.Add(new ChartArea());
-            chart1.Location = new Point(xPos * 5, 100 + yStep);
+            chart1.Location = new Point(xPos * 5, startY);
             chart1.Size = new Size(chart1.Width, chart1.Height);
 
             chart1.Series.Clear();
@@ -176,7 +181,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 item.Font = new Font("Arial", 12);
             }
 
-            chart1.Titles.Add("Rezumat animale");
+            chart1.Titles.Add("Grafic vaccinare/sterilizare");
             chart1.ChartAreas[0].AxisX.MajorTickMark.Enabled = true;
             chart1.ChartAreas[0].AxisX.LabelStyle.Enabled = true;
             chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 0.5;
@@ -186,7 +191,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             chart1.Series["Sterilizate"].Color = Color.Red;
             panel1.Controls.Add(chart1);
             #endregion
-            startY += 300;
+            startY += 320;
             foreach (var item in counters)
             {
                 Label label3 = new Label();
@@ -249,40 +254,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             label9.Location = new Point(xPos, startY);
             label9.Font = new Font(label9.Font.FontFamily, fontSize);
             panel1.Controls.Add(label9);
-
-
-
-            startY += yStep * 2;
-            Label monthlyData = new Label();
-            monthlyData.AutoSize = true;
-            monthlyData.Text = $"DATE INCEPAND CU PRIMA ZI A LUNII";
-            monthlyData.Location = new Point(40, startY);
-            monthlyData.Font = new Font(monthlyData.Font.FontFamily, fontSize);
-            panel1.Controls.Add(monthlyData);
-
-            startY += 50;
-            Label label10 = new Label();
-            label10.AutoSize = true;
-            label10.Text = $"Numarul de animale inregistrate luna aceasta este {Statistics.GetRegisteredAnimals()}";
-            label10.Location = new Point(xPos, startY);
-            label10.Font = new Font(label10.Font.FontFamily, fontSize);
-            panel1.Controls.Add(label10);
-
-            startY += yStep;
-            Label label11 = new Label();
-            label11.AutoSize = true;
-            label11.Text = $"Numarul de animale iesite din sistem luna aceasta este {Statistics.GetUnregisteredAnimals()}";
-            label11.Location = new Point(xPos, startY);
-            label11.Font = new Font(label11.Font.FontFamily, fontSize);
-            panel1.Controls.Add(label11);
-
-            startY += yStep;
-            Label label12 = new Label();
-            label12.AutoSize = true;
-            label12.Text = $"Numarul de programari inregistrate luna aceasta este {Statistics.GetRegisteredAppointments()}";
-            label12.Location = new Point(xPos, startY);
-            label12.Font = new Font(label12.Font.FontFamily, fontSize);
-            panel1.Controls.Add(label12);
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {

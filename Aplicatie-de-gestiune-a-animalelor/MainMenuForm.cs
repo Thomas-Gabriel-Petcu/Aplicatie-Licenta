@@ -17,22 +17,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.Sizable;
             TopMost = true;
-            //WindowState = FormWindowState.Maximized;
-            //NewButton(Screen.PrimaryScreen.Bounds);
             formEditareCatalog = new FormEditareCatalog(this);
             formVizualizareCatalog = new FormVizualizareCatalog(this);
             dateStatistice = new DateStatistice(this);
-            Statistics.GetRegisteredAnimals();
-            //if (System.DateTime.Now.Day == 2)//second day of month
-            //{
-            //    hasReset = false;
-            //}
-            //if (System.DateTime.Now.Day == 1 && hasReset == false)//first day of month
-            //{
-            //    Statistics.WipeData();
-            //    hasReset = true;
-            //}
-
         }
         public void NewButton(Rectangle bounds)
         {
@@ -41,7 +28,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             button.Size = new Size(200, 50);
             button.Anchor = AnchorStyles.None;
             button.Dock = DockStyle.Fill;
-            //button.Location = new Point(bounds.Height/2,bounds.Width/2);
             Controls.Add(button);
         }
 
