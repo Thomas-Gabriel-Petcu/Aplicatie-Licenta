@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Update="DateStatistice.cs">
       <SubType>Form</SubType>

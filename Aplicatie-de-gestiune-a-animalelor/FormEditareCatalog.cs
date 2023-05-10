@@ -346,7 +346,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati specificat detalii pentru programare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
 
             DateTime selectedDate = dateTimePickerData.Value.Date;
             TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
@@ -384,6 +384,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 con.Open();
                 com.ExecuteNonQuery();
             }
+            dataGridViewProgramari.ClearSelection();
             MessageBox.Show("S-a adaugat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshDataGridViewProgramari();
         }
@@ -543,6 +544,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
         private void FormEditareCatalog_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void FormEditareCatalog_Shown(object sender, EventArgs e)
+        {
+            dataGridViewAnimale.ClearSelection();
         }
     }
 }

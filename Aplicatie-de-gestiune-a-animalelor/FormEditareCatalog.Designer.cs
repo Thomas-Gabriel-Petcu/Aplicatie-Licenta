@@ -563,6 +563,7 @@
             Name = "FormEditareCatalog";
             Text = "FormEditareCatalog";
             Load += FormEditareCatalog_Load;
+            Shown += FormEditareCatalog_Shown;
             ResizeBegin += FormEditareCatalog_ResizeBegin;
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
