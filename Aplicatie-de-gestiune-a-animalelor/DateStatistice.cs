@@ -134,7 +134,10 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
             foreach (var item in counters)
             {
-                distSeries.Points.AddXY(AnimalTypes.PluralTypes[item.Key], item.Value);
+                if (item.Value != 0)
+                {
+                    distSeries.Points.AddXY(AnimalTypes.PluralTypes[item.Key], item.Value);
+                }
             }
             distChart.Series[0].IsValueShownAsLabel = true;
             distChart.Series[0].Palette = ChartColorPalette.BrightPastel;

@@ -19,7 +19,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             TopMost = true;
             formEditareCatalog = new FormEditareCatalog(this);
             formVizualizareCatalog = new FormVizualizareCatalog(this);
-            dateStatistice = new DateStatistice(this);
+            
         }
         public void NewButton(Rectangle bounds)
         {
@@ -57,6 +57,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
         private void buttonDateStatistice_Click(object sender, EventArgs e)
         {
             this.Hide();
+            dateStatistice = new DateStatistice(this);
             dateStatistice.Show();
         }
         private void MainMenuForm_ResizeBegin(object sender, EventArgs e)
