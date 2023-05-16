@@ -41,11 +41,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             formEditareCatalog.Show();
             this.Hide();//hide main menu
         }
-        private void MainMenuForm_Load(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
-        }
-
         private void iesire_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Suneti sigur ca vreti sa iesiti", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -53,13 +48,19 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 return;
             Application.Exit();
         }
-
         private void buttonDateStatistice_Click(object sender, EventArgs e)
         {
             this.Hide();
             dateStatistice = new DateStatistice(this);
             dateStatistice.Show();
         }
+
+
+        private void MainMenuForm_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+        
         private void MainMenuForm_ResizeBegin(object sender, EventArgs e)
         {
             //vizualizareCatalog.Location = new Point((this.ClientSize.Width - this.ClientSize.Width / 2) / 2, vizualizareCatalog.Location.Y);

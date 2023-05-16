@@ -70,8 +70,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             textBoxRasa.Text = textBoxRasa.Text.Replace(" ", "");
 
-
-
             List<string> conditions = new List<string>();
             string query = "";
             if (comboBoxSpecie.SelectedIndex != -1)
@@ -90,7 +88,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
                 else
                 {
-                    MessageBox.Show($"Varsta nu poate fi {textBoxVarsta.Text}. Doar numere pozitive!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Varsta nu poate fi {textBoxVarsta.Text}. Doar numere pozitive!",
+                    "Avertisment",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -102,7 +102,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
                 else
                 {
-                    MessageBox.Show($"Varsta nu poate fi {textBoxVarsta.Text}. Doar numere pozitive!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Varsta nu poate fi {textBoxVarsta.Text}. Doar numere pozitive!",
+                    "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -122,7 +123,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
                 else
                 {
-                    MessageBox.Show($"Greutatea nu poate fi {textBoxGreutate.Text}. Doar numere pozitive nenule!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Greutatea nu poate fi {textBoxGreutate.Text}. Doar numere" +
+                    $" pozitive nenule!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -134,7 +136,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
                 else
                 {
-                    MessageBox.Show($"Greutatea nu poate fi {textBoxGreutate.Text}. Doar numere pozitive nenule!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Greutatea nu poate fi {textBoxGreutate.Text}. Doar numere pozitive nenule!",
+                    "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -247,7 +250,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
         private void buttonResetareFiltre_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Sigur vreti sa resetati filtrele?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Sigur vreti sa resetati filtrele?", "Confirmare",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes)
                 return;
             comboBoxSpecie.SelectedItem = null;

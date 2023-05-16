@@ -111,7 +111,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
             string vaccinated = checkBoxVaccinatDa.Checked ? "DA" : "NU";
             string ster = checkBoxSterDa.Checked ? "DA" : "NU";
 
-            string query = $"INSERT into Animale (Specie,Rasa,Nume,Varsta,Sex,Greutate,Vaccinat,Sterilizat,PathPoza) VALUES ('{species}','{race}','{name}','{age}','{sex}','{weight}','{vaccinated}','{ster}','{imagePath}');";
+            string query = $"INSERT into Animale (Specie,Rasa,Nume,Varsta,Sex,Greutate,Vaccinat,Sterilizat,PathPoza) VALUES" +
+            $" ('{species}','{race}','{name}','{age}','{sex}','{weight}','{vaccinated}','{ster}','{imagePath}');";
             using (SQLiteConnection con = databaseManager.GetConnection())
             using (SQLiteCommand command = new SQLiteCommand(query, con))
             {
@@ -291,7 +292,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
             float greutate = float.Parse(textBoxGreutate.Text);
             Debug.WriteLine(greutate);
             string path = imagePath;
-            string query = $"UPDATE Animale SET Specie = '{comboBoxSpecie.SelectedItem}',Rasa = '{textBoxRasa.Text}', Nume = '{textBoxNume.Text}', Varsta = '{textBoxVarsta.Text}', Sex = '{sex}', Greutate = '{greutate}', Vaccinat = '{vacc}', Sterilizat = '{ster}', PathPoza = '{path}' WHERE IDAnimal = {id}";
+            string query = $"UPDATE Animale SET Specie = '{comboBoxSpecie.SelectedItem}',Rasa = '{textBoxRasa.Text}', Nume = '{textBoxNume.Text}'," +
+            $" Varsta = '{textBoxVarsta.Text}', Sex = '{sex}', Greutate = '{greutate}', Vaccinat = '{vacc}', Sterilizat = '{ster}', PathPoza = '{path}'" +
+            $" WHERE IDAnimal = {id}";
 
             using (SQLiteConnection con = databaseManager.GetConnection())
             using (SQLiteCommand command = new SQLiteCommand(query, con))
@@ -445,10 +448,12 @@ namespace Aplicatie_de_gestiune_a_animalelor
             switch (overlaps.Count)
             {
                 case 1:
-                    MessageBox.Show($"Aceasta ora se suprapune cu programarea de la ora {overlaps[0]}. Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Aceasta ora se suprapune cu programarea de la ora {overlaps[0]}." +
+                    $" Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 case 2:
-                    MessageBox.Show($"Aceasta ora se suprapune cu programarile de la orele: {overlaps[0]} si {overlaps[1]}. Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Aceasta ora se suprapune cu programarile de la orele: {overlaps[0]} si {overlaps[1]}." +
+                    $" Pasul orar este de {timeStep} minute.", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 case 0:
                     goto modify;
