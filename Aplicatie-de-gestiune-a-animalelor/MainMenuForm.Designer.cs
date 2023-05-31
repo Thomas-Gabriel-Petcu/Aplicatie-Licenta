@@ -33,6 +33,8 @@
             iesire = new Button();
             buttonDateStatistice = new Button();
             panel1 = new Panel();
+            buttonGestiuneMedicala = new Button();
+            buttonGestiuneAprovizionare = new Button();
             SuspendLayout();
             // 
             // vizualizareCatalog
@@ -40,7 +42,7 @@
             vizualizareCatalog.Anchor = AnchorStyles.Top;
             vizualizareCatalog.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             vizualizareCatalog.Image = Properties.Resources.button;
-            vizualizareCatalog.Location = new Point(364, 106);
+            vizualizareCatalog.Location = new Point(364, 78);
             vizualizareCatalog.Name = "vizualizareCatalog";
             vizualizareCatalog.Size = new Size(545, 78);
             vizualizareCatalog.TabIndex = 0;
@@ -53,7 +55,7 @@
             editareCatalog.Anchor = AnchorStyles.Top;
             editareCatalog.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             editareCatalog.Image = Properties.Resources.button;
-            editareCatalog.Location = new Point(364, 220);
+            editareCatalog.Location = new Point(364, 192);
             editareCatalog.Name = "editareCatalog";
             editareCatalog.Size = new Size(545, 78);
             editareCatalog.TabIndex = 0;
@@ -66,7 +68,7 @@
             iesire.Anchor = AnchorStyles.Top;
             iesire.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             iesire.Image = Properties.Resources.button;
-            iesire.Location = new Point(364, 625);
+            iesire.Location = new Point(364, 697);
             iesire.Name = "iesire";
             iesire.Size = new Size(545, 78);
             iesire.TabIndex = 1;
@@ -79,7 +81,7 @@
             buttonDateStatistice.Anchor = AnchorStyles.Top;
             buttonDateStatistice.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             buttonDateStatistice.Image = Properties.Resources.button;
-            buttonDateStatistice.Location = new Point(364, 344);
+            buttonDateStatistice.Location = new Point(364, 551);
             buttonDateStatistice.Name = "buttonDateStatistice";
             buttonDateStatistice.Size = new Size(545, 78);
             buttonDateStatistice.TabIndex = 2;
@@ -96,12 +98,40 @@
             panel1.Size = new Size(1294, 52);
             panel1.TabIndex = 3;
             // 
+            // buttonGestiuneMedicala
+            // 
+            buttonGestiuneMedicala.Anchor = AnchorStyles.Top;
+            buttonGestiuneMedicala.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonGestiuneMedicala.Image = Properties.Resources.button;
+            buttonGestiuneMedicala.Location = new Point(364, 295);
+            buttonGestiuneMedicala.Name = "buttonGestiuneMedicala";
+            buttonGestiuneMedicala.Size = new Size(545, 78);
+            buttonGestiuneMedicala.TabIndex = 4;
+            buttonGestiuneMedicala.Text = "Gestiune Medicala";
+            buttonGestiuneMedicala.UseVisualStyleBackColor = true;
+            buttonGestiuneMedicala.Click += buttonGestiuneMedicala_Click;
+            // 
+            // buttonGestiuneAprovizionare
+            // 
+            buttonGestiuneAprovizionare.Anchor = AnchorStyles.Top;
+            buttonGestiuneAprovizionare.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonGestiuneAprovizionare.Image = Properties.Resources.button;
+            buttonGestiuneAprovizionare.Location = new Point(364, 401);
+            buttonGestiuneAprovizionare.Name = "buttonGestiuneAprovizionare";
+            buttonGestiuneAprovizionare.Size = new Size(545, 78);
+            buttonGestiuneAprovizionare.TabIndex = 5;
+            buttonGestiuneAprovizionare.Text = "Gestiune Aprovizionare";
+            buttonGestiuneAprovizionare.UseVisualStyleBackColor = true;
+            buttonGestiuneAprovizionare.Click += buttonGestiuneHrana_Click;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 214);
             ClientSize = new Size(1279, 787);
+            Controls.Add(buttonGestiuneAprovizionare);
+            Controls.Add(buttonGestiuneMedicala);
             Controls.Add(panel1);
             Controls.Add(buttonDateStatistice);
             Controls.Add(iesire);
@@ -124,5 +154,7 @@
         private Button iesire;
         private Button buttonDateStatistice;
         private Panel panel1;
+        private Button buttonGestiuneMedicala;
+        private Button buttonGestiuneAprovizionare;
     }
 }

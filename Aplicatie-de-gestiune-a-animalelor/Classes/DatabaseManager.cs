@@ -30,15 +30,28 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
             conString = GetConnectionString(dataBaseFile);
             string queryAnimals = "CREATE TABLE Animale ( IDAnimal INTEGER PRIMARY KEY AUTOINCREMENT, Specie TEXT, Rasa TEXT, Nume TEXT, Varsta INTEGER, Sex TEXT, Greutate REAL, Vaccinat TEXT, Sterilizat TEXT, PathPoza TEXT);";
             string queryAppointments = "CREATE TABLE Programari (IDProgramare INTEGER PRIMARY KEY AUTOINCREMENT, IDAnimal INTEGER, DataProgramarii DATETIME, Detalii TEXT, FOREIGN KEY (IDAnimal) REFERENCES Animale(IDAnimal) ON DELETE CASCADE);";
+            string querySupplier = "CREATE TABLE Furnizori (IDFurnizor INTEGER PRIMARY KEY AUTOINCREMENT, NumeFurnizor TEXT, CUI TEXT, Adresa TEXT, NumarTelefon TEXT, Email TEXT)";
+            string queryOrders = "CREATE TABLE Comenzi (IDComanda INTEGER PRIMARY KEY AUTOINCREMENT, NumarComanda TEXT, Produse TEXT, ValoareCuTVA REAL, FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor)";
+            string queryInvoices = "CREATE TABLE Facturi (IDFactura INTEGER PRIMARY KEY AUTOINCREMENT, NumarFactura TEXT, FOREIGN KEY (IDComanda) REFERENCES Comenzi(IDComanda), FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor))";
+            
             using (SQLiteConnection con = new SQLiteConnection(conString))
-            using (SQLiteCommand command = new SQLiteCommand(queryAnimals, con))   
+            using (SQLiteCommand command = new SQLiteCommand(queryAnimals, con))
             using (SQLiteCommand appointmentsCommand = new SQLiteCommand(queryAppointments, con))
+            using (SQLiteCommand supplierCommand = new SQLiteCommand(querySupplier, con))
+            using (SQLiteCommand ordersCommand = new SQLiteCommand(queryOrders, con))
+            using (SQLiteCommand invoicesCommand = new SQLiteCommand(queryInvoices, con))
             {
                 con.Open();
                 if (!CheckForTable("Animale", con))
                     command.ExecuteNonQuery();
                 if (!CheckForTable("Programari", con))
                     appointmentsCommand.ExecuteNonQuery();
+                if (!CheckForTable("Furnizori", con))
+                    supplierCommand.ExecuteNonQuery();
+                if (!CheckForTable("Comenzi", con))
+                    ordersCommand.ExecuteNonQuery();
+                if (!CheckForTable("Facturi", con))
+                    invoicesCommand.ExecuteNonQuery();
             }
         }
 

@@ -10,6 +10,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
         FormEditareCatalog formEditareCatalog;
         FormVizualizareCatalog formVizualizareCatalog;
+        GestiuneMedicala formGestiuneMedicala;
+        GestiuneAprovizionare formGestiuneAprovizionare;
         DateStatistice dateStatistice;
         //bool hasReset;
         public MainMenuForm()
@@ -19,7 +21,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
             TopMost = true;
             formEditareCatalog = new FormEditareCatalog(this);
             formVizualizareCatalog = new FormVizualizareCatalog(this);
-            
+            formGestiuneMedicala = new GestiuneMedicala(this);
+            formGestiuneAprovizionare = new GestiuneAprovizionare(this);
+
         }
         public void NewButton(Rectangle bounds)
         {
@@ -60,7 +64,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
         {
             this.WindowState = FormWindowState.Maximized;
         }
-        
+
         private void MainMenuForm_ResizeBegin(object sender, EventArgs e)
         {
             //vizualizareCatalog.Location = new Point((this.ClientSize.Width - this.ClientSize.Width / 2) / 2, vizualizareCatalog.Location.Y);
@@ -71,6 +75,18 @@ namespace Aplicatie_de_gestiune_a_animalelor
             vizualizareCatalog.Location = new Point((this.ClientSize.Width - vizualizareCatalog.Width) / 2, vizualizareCatalog.Location.Y);
             editareCatalog.Location = new Point((this.ClientSize.Width - editareCatalog.Width) / 2, editareCatalog.Location.Y);
 
+        }
+
+        private void buttonGestiuneMedicala_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            formGestiuneMedicala.Show();
+        }
+
+        private void buttonGestiuneHrana_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            formGestiuneAprovizionare.Show();
         }
     }
 }

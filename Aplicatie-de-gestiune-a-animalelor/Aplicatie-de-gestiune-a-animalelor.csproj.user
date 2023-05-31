@@ -7,10 +7,22 @@
     <Compile Update="DateStatistice.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FisaMedicala.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormEditareCatalog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormInstructiuniGestiuneAprovizionare.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormVizualizareCatalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GestiuneAprovizionare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GestiuneMedicala.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MainMenuForm.cs">
