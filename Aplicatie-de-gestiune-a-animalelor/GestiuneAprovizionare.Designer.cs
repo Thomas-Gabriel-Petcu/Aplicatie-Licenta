@@ -53,7 +53,7 @@
             labelCUIFurnizor = new Label();
             textBoxCUIFurnizor = new TextBox();
             labelAdresaFurnizor = new Label();
-            textBox1 = new TextBox();
+            textBoxAdresaFurnizor = new TextBox();
             panel3 = new Panel();
             label4 = new Label();
             label5 = new Label();
@@ -63,9 +63,9 @@
             labelTelefonFurnizor = new Label();
             textBoxTelefonFurnizor = new TextBox();
             panelControlsComenzi = new Panel();
-            this.textBoxValCuTVA = new TextBox();
+            textBoxValCuTVA = new TextBox();
+            textBoxProduse = new TextBox();
             labelValoareCuTVA = new Label();
-            this.textBoxProduseComanda = new TextBox();
             labelProduse = new Label();
             labelNumarComanda = new Label();
             textBoxNumarComanda = new TextBox();
@@ -377,13 +377,13 @@
             labelAdresaFurnizor.TabIndex = 76;
             labelAdresaFurnizor.Text = "Adresa";
             // 
-            // textBox1
+            // textBoxAdresaFurnizor
             // 
-            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox1.Location = new Point(162, 93);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(236, 23);
-            textBox1.TabIndex = 77;
+            textBoxAdresaFurnizor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxAdresaFurnizor.Location = new Point(162, 93);
+            textBoxAdresaFurnizor.Name = "textBoxAdresaFurnizor";
+            textBoxAdresaFurnizor.Size = new Size(236, 23);
+            textBoxAdresaFurnizor.TabIndex = 77;
             // 
             // panel3
             // 
@@ -431,7 +431,7 @@
             panelControlsFurnizor.Controls.Add(buttonStergeFurnizor);
             panelControlsFurnizor.Controls.Add(labelNumeFurnizor);
             panelControlsFurnizor.Controls.Add(labelCUIFurnizor);
-            panelControlsFurnizor.Controls.Add(textBox1);
+            panelControlsFurnizor.Controls.Add(textBoxAdresaFurnizor);
             panelControlsFurnizor.Controls.Add(textBoxCUIFurnizor);
             panelControlsFurnizor.Controls.Add(labelAdresaFurnizor);
             panelControlsFurnizor.Location = new Point(7, 266);
@@ -480,9 +480,9 @@
             // panelControlsComenzi
             // 
             panelControlsComenzi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panelControlsComenzi.Controls.Add(this.textBoxValCuTVA);
+            panelControlsComenzi.Controls.Add(textBoxValCuTVA);
+            panelControlsComenzi.Controls.Add(textBoxProduse);
             panelControlsComenzi.Controls.Add(labelValoareCuTVA);
-            panelControlsComenzi.Controls.Add(this.textBoxProduseComanda);
             panelControlsComenzi.Controls.Add(labelProduse);
             panelControlsComenzi.Controls.Add(labelNumarComanda);
             panelControlsComenzi.Controls.Add(textBoxNumarComanda);
@@ -496,11 +496,19 @@
             // 
             // textBoxValCuTVA
             // 
-            this.textBoxValCuTVA.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            this.textBoxValCuTVA.Location = new Point(164, 97);
-            this.textBoxValCuTVA.Name = "textBoxValCuTVA";
-            this.textBoxValCuTVA.Size = new Size(236, 23);
-            this.textBoxValCuTVA.TabIndex = 88;
+            textBoxValCuTVA.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxValCuTVA.Location = new Point(160, 95);
+            textBoxValCuTVA.Name = "textBoxValCuTVA";
+            textBoxValCuTVA.Size = new Size(236, 23);
+            textBoxValCuTVA.TabIndex = 89;
+            // 
+            // textBoxProduse
+            // 
+            textBoxProduse.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxProduse.Location = new Point(160, 57);
+            textBoxProduse.Name = "textBoxProduse";
+            textBoxProduse.Size = new Size(236, 23);
+            textBoxProduse.TabIndex = 88;
             // 
             // labelValoareCuTVA
             // 
@@ -512,14 +520,6 @@
             labelValoareCuTVA.Size = new Size(113, 21);
             labelValoareCuTVA.TabIndex = 87;
             labelValoareCuTVA.Text = "Valoare cu TVA";
-            // 
-            // textBoxProduseComanda
-            // 
-            this.textBoxProduseComanda.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            this.textBoxProduseComanda.Location = new Point(160, 57);
-            this.textBoxProduseComanda.Name = "textBoxProduseComanda";
-            this.textBoxProduseComanda.Size = new Size(236, 23);
-            this.textBoxProduseComanda.TabIndex = 84;
             // 
             // labelProduse
             // 
@@ -691,7 +691,7 @@
         private Label labelCUIFurnizor;
         private TextBox textBoxCUIFurnizor;
         private Label labelAdresaFurnizor;
-        private TextBox textBox1;
+        private TextBox textBoxAdresaFurnizor;
         private Panel panel3;
         private Label label4;
         private Label label5;
@@ -715,5 +715,7 @@
         private TextBox textBoxNumarComanda;
         private Label labelNumarFactura;
         private TextBox textBoxNumarFactura;
+        private TextBox textBoxValCuTVA;
+        private TextBox textBoxProduse;
     }
 }

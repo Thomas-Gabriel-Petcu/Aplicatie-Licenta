@@ -78,7 +78,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             this.Hide();
             menu.Show();
         }
-
         private void buttonInstructiuni_Click(object sender, EventArgs e)
         {
             if (instructiuni.IsDisposed)
@@ -88,6 +87,73 @@ namespace Aplicatie_de_gestiune_a_animalelor
             instructiuni.Show();
             instructiuni.TopMost = true;
         }
+        private bool ValidateSupplierInputs()
+        {
+            if (textBoxNumeFurnizor.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat numele furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (textBoxCUIFurnizor.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat codul unic de identificare al furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (textBoxAdresaFurnizor.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat adresa furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (textBoxTelefonFurnizor.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat telefonul furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (textBoxEmailFurnizor.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat eMail-ul furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+        private bool ValidateOrderInputs()
+        {
+            if (textBoxNumarComanda.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat numarul comenzii!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (textBoxProduse.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat produsele!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (textBoxValCuTVA.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat valoarea comenzii!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!double.TryParse(textBoxValCuTVA.Text, out double val))
+            {
+                if(val <= 0)
+                {
+                    MessageBox.Show($"Valoarea comenzii nu poate fi {textBoxValCuTVA.Text}. Doar valori numerice pozitive", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool ValidateInvoiceInputs()
+        {
+            if (textBoxNumarFactura.Text == "")
+            {
+                MessageBox.Show("Nu ati specificat numarul facturii!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
 
         private void buttonAdaugaComanda_Click(object sender, EventArgs e)
         {
