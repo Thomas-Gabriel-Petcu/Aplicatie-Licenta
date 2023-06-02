@@ -110,6 +110,16 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati specificat telefonul furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            if (textBoxTelefonFurnizor.Text.Length < 10)
+            {
+                MessageBox.Show("Numarul de telefon trebuie sa fie format din 10 cifre", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!int.TryParse(textBoxTelefonFurnizor.Text, out int phone))
+            {
+                MessageBox.Show($"Numarul de telefon nu poate fi {textBoxTelefonFurnizor.Text}, doar cifre", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             if (textBoxEmailFurnizor.Text == "")
             {
                 MessageBox.Show("Nu ati specificat eMail-ul furnizorului!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -136,7 +146,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             if (!double.TryParse(textBoxValCuTVA.Text, out double val))
             {
-                if(val <= 0)
+                if (val <= 0)
                 {
                     MessageBox.Show($"Valoarea comenzii nu poate fi {textBoxValCuTVA.Text}. Doar valori numerice pozitive", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
@@ -156,6 +166,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
 
         private void buttonAdaugaComanda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAdaugaFurnizor_Click(object sender, EventArgs e)
         {
 
         }

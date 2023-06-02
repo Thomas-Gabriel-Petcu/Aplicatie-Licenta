@@ -28,11 +28,11 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
             //DeleteDatabase(); //REMOVE LATER!!!!!!!!!!!!!
             CreateDatabase(dataBaseFile);
             conString = GetConnectionString(dataBaseFile);
-            string queryAnimals = "CREATE TABLE Animale ( IDAnimal INTEGER PRIMARY KEY AUTOINCREMENT, Specie TEXT, Rasa TEXT, Nume TEXT, Varsta INTEGER, Sex TEXT, Greutate REAL, Vaccinat TEXT, Sterilizat TEXT, PathPoza TEXT);";
-            string queryAppointments = "CREATE TABLE Programari (IDProgramare INTEGER PRIMARY KEY AUTOINCREMENT, IDAnimal INTEGER, DataProgramarii DATETIME, Detalii TEXT, FOREIGN KEY (IDAnimal) REFERENCES Animale(IDAnimal) ON DELETE CASCADE);";
-            string querySupplier = "CREATE TABLE Furnizori (IDFurnizor INTEGER PRIMARY KEY AUTOINCREMENT, NumeFurnizor TEXT, CUI TEXT, Adresa TEXT, NumarTelefon TEXT, Email TEXT)";
-            string queryOrders = "CREATE TABLE Comenzi (IDComanda INTEGER PRIMARY KEY AUTOINCREMENT, NumarComanda TEXT, Produse TEXT, ValoareCuTVA REAL, FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor)";
-            string queryInvoices = "CREATE TABLE Facturi (IDFactura INTEGER PRIMARY KEY AUTOINCREMENT, NumarFactura TEXT, FOREIGN KEY (IDComanda) REFERENCES Comenzi(IDComanda), FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor))";
+            string queryAnimals = "CREATE TABLE IF NOT EXISTS Animale ( IDAnimal INTEGER PRIMARY KEY AUTOINCREMENT, Specie TEXT, Rasa TEXT, Nume TEXT, Varsta INTEGER, Sex TEXT, Greutate REAL, Vaccinat TEXT, Sterilizat TEXT, PathPoza TEXT);";
+            string queryAppointments = "CREATE TABLE IF NOT EXISTS Programari (IDProgramare INTEGER PRIMARY KEY AUTOINCREMENT, IDAnimal INTEGER, DataProgramarii DATETIME, Detalii TEXT, FOREIGN KEY (IDAnimal) REFERENCES Animale(IDAnimal) ON DELETE CASCADE);";
+            string querySupplier = "CREATE TABLE IF NOT EXISTS Furnizori (IDFurnizor INTEGER PRIMARY KEY AUTOINCREMENT, NumeFurnizor TEXT, CUI TEXT, Adresa TEXT, NumarTelefon TEXT, Email TEXT);";
+            string queryOrders = "CREATE TABLE IF NOT EXISTS Comenzi (IDComanda INTEGER PRIMARY KEY AUTOINCREMENT, IDFurnizor INTEGER, NumarComanda TEXT, Produse TEXT, ValoareCuTVA REAL, FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
+            string queryInvoices = "CREATE TABLE IF NOT EXISTS Facturi (IDFactura INTEGER PRIMARY KEY AUTOINCREMENT, IDComanda INTEGER, IDFurnizor INTEGER, NumarFactura TEXT, FOREIGN KEY (IDComanda) REFERENCES Comenzi(IDComanda), FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
             
             using (SQLiteConnection con = new SQLiteConnection(conString))
             using (SQLiteCommand command = new SQLiteCommand(queryAnimals, con))
@@ -42,15 +42,10 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
             using (SQLiteCommand invoicesCommand = new SQLiteCommand(queryInvoices, con))
             {
                 con.Open();
-                if (!CheckForTable("Animale", con))
                     command.ExecuteNonQuery();
-                if (!CheckForTable("Programari", con))
                     appointmentsCommand.ExecuteNonQuery();
-                if (!CheckForTable("Furnizori", con))
                     supplierCommand.ExecuteNonQuery();
-                if (!CheckForTable("Comenzi", con))
                     ordersCommand.ExecuteNonQuery();
-                if (!CheckForTable("Facturi", con))
                     invoicesCommand.ExecuteNonQuery();
             }
         }

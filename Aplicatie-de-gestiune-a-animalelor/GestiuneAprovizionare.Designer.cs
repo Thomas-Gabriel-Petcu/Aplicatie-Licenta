@@ -311,6 +311,7 @@
             buttonAdaugaFurnizor.TabIndex = 70;
             buttonAdaugaFurnizor.Text = "Adauga Furnizor";
             buttonAdaugaFurnizor.UseVisualStyleBackColor = true;
+            buttonAdaugaFurnizor.Click += buttonAdaugaFurnizor_Click;
             // 
             // buttonModificaFurnizor
             // 
