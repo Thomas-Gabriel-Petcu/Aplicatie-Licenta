@@ -340,6 +340,7 @@
             buttonStergeFurnizor.TabIndex = 72;
             buttonStergeFurnizor.Text = "Sterge Furnizor";
             buttonStergeFurnizor.UseVisualStyleBackColor = true;
+            buttonStergeFurnizor.Click += buttonStergeFurnizor_Click;
             // 
             // labelNumeFurnizor
             // 

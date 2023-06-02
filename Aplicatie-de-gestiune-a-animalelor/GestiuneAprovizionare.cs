@@ -24,6 +24,10 @@ namespace Aplicatie_de_gestiune_a_animalelor
             InitializeComponent();
             this.menu = menu;
             RefreshSuppliers();
+
+            dataGridViewFurnizori.ClearSelection();
+            dataGridViewComenzi.ClearSelection();
+            dataGridViewFacturi.ClearSelection();
         }
 
         private void GestiuneHrana_Load(object sender, EventArgs e)
@@ -251,6 +255,29 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 command.ExecuteNonQuery();
             }
             MessageBox.Show("S-a modificat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshSuppliers();
+        }
+
+        private void buttonStergeFurnizor_Click(object sender, EventArgs e)
+        {
+            if (!(dataGridViewFurnizori.SelectedRows.Count > 0) && dataGridViewFurnizori.SelectedRows[0].Index != dataGridViewFurnizori.Rows.Count - 1)
+            {
+                MessageBox.Show("Nu ati selectat niciun furnizor pentru stergere!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DialogResult result = MessageBox.Show("Suneti sigur ca vreti sa stergeti Furnizorul?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
+            DataGridViewRow row = dataGridViewFurnizori.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["IDFurnizor"].Value);
+            string query = $"DELETE FROM FURNIZORI WHERE IDFURNIZOR = '{id}';";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a sters cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshSuppliers();
         }
     }
