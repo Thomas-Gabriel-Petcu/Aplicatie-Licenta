@@ -90,6 +90,8 @@
             // 
             // dataGridViewFurnizori
             // 
+            dataGridViewFurnizori.AllowUserToAddRows = false;
+            dataGridViewFurnizori.AllowUserToDeleteRows = false;
             dataGridViewFurnizori.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dataGridViewFurnizori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewFurnizori.BackgroundColor = SystemColors.Control;
@@ -103,6 +105,7 @@
             dataGridViewFurnizori.Size = new Size(420, 200);
             dataGridViewFurnizori.TabIndex = 2;
             dataGridViewFurnizori.CellContentClick += dataGridViewFurnizori_CellContentClick;
+            dataGridViewFurnizori.SelectionChanged += dataGridViewFurnizori_SelectionChanged;
             // 
             // dataGridViewFacturi
             // 
@@ -324,6 +327,7 @@
             buttonModificaFurnizor.TabIndex = 71;
             buttonModificaFurnizor.Text = "Modifica Furnizor";
             buttonModificaFurnizor.UseVisualStyleBackColor = true;
+            buttonModificaFurnizor.Click += buttonModificaFurnizor_Click;
             // 
             // buttonStergeFurnizor
             // 
