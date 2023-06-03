@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -230,8 +231,41 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
             }
         }
+        private void dataGridViewFiseMedicale_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewFiseMedicale.SelectedRows.Count > 0 && dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
+            {
+                dataGridViewFiseMedicale.ClearSelection();
+                return;
+            }
+            int targetID = 0;
+            if (dataGridViewFiseMedicale.SelectedRows.Count > 0 && dataGridViewFiseMedicale.SelectedRows[0].Index != dataGridViewFiseMedicale.Rows.Count - 1)
+            {
 
+                DataGridViewRow row = dataGridViewFiseMedicale.SelectedRows[0];
+                string medicalRecordNr = row.Cells["NumarFisaMedicala"].Value.ToString();
+                string diagnostic = row.Cells["Diagnostic"].Value.ToString();
+                string treatment = row.Cells["Tratament"].Value.ToString();
+                DateTime.TryParse(row.Cells["DataConsult"].Value.ToString(), out DateTime datetime);
+                dateTimePickerData.Text = datetime.Date.ToString();
+                dateTimePickerOra.Text = datetime.TimeOfDay.ToString();
+                textBoxNumarFisa.Text = medicalRecordNr;
+                textBoxDiagnostic.Text = diagnostic;
+                textBoxTratament.Text = treatment;
+                targetID = Convert.ToInt32(row.Cells["IDAnimal"].Value);
+            }
+            foreach (DataGridViewRow row in dataGridViewAnimale.Rows)
+            {
+                int currentID = Convert.ToInt32(row.Cells["IDAnimal"].Value);
+                if (currentID == targetID)
+                {
+                    row.Selected = true;
+                    dataGridViewAnimale.FirstDisplayedScrollingRowIndex = row.Index;
+                    break;
+                }
+            }
 
+        }
 
         private void checkBoxSexM_CheckedChanged(object sender, EventArgs e)
         {
@@ -331,5 +365,47 @@ namespace Aplicatie_de_gestiune_a_animalelor
             RefreshFiseMedicale();
             MessageBox.Show("S-a adaugat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private void buttonModifica_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewFiseMedicale.SelectedRows.Count > 0 && dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
+            {
+                dataGridViewFiseMedicale.ClearSelection();
+                return;
+            }
+            if (!(dataGridViewFiseMedicale.SelectedRows.Count > 0))
+            {
+                MessageBox.Show("Nu ati selectat niciun rand pentru modificare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+                if (!ValidateAnimalInputs())
+                return;
+            DataGridViewRow row = dataGridViewFiseMedicale.SelectedRows[0];
+            int idAnimal = Convert.ToInt32(row.Cells["IDAnimal"].Value);
+            int idMedicalRecord = Convert.ToInt32(row.Cells["IDFisaMedicala"].Value);
+            string sex = checkBoxSexM.Checked ? "M" : "F";
+            string vacc = checkBoxVaccinatDa.Checked ? "DA" : "NU";
+            string ster = checkBoxSterDa.Checked ? "DA" : "NU";
+            float greutate = float.Parse(textBoxGreutate.Text);
+            string path = imagePath;
+            DateTime selectedDate = dateTimePickerData.Value.Date;
+            TimeSpan selectedTime = dateTimePickerOra.Value.TimeOfDay;
+            DateTime dateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, selectedTime.Seconds);
+
+            string queryAnimal = $"UPDATE Animale SET Specie = '{comboBoxSpecie.SelectedItem}',Rasa = '{textBoxRasa.Text}', Nume = '{textBoxNume.Text}'," +
+            $" Varsta = '{textBoxVarsta.Text}', Sex = '{sex}', Greutate = '{greutate}', Vaccinat = '{vacc}', Sterilizat = '{ster}', PathPoza = '{path}'" +
+            $" WHERE IDAnimal = {idAnimal}";
+            string queryMedicalRecord = $"UPDATE FiseMedicale SET IDAnimal = '{idAnimal}', NumarFisaMedicala = '{textBoxNumarFisa.Text}', DataConsult = '{dateTime}', Diagnostic = '{textBoxDiagnostic.Text}', Tratament = '{textBoxTratament.Text}' WHERE IDFisaMedicala = '{idMedicalRecord}'";
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(queryAnimal, con))
+            using (SQLiteCommand commandMedicalRecord = new SQLiteCommand(queryMedicalRecord, con))
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+                commandMedicalRecord.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a modificat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshDataGridViewAnimale();
+        }
+
     }
 }

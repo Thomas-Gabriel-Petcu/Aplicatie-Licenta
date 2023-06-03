@@ -40,6 +40,8 @@
             buttonMeniu = new Button();
             dataGridViewFiseMedicale = new DataGridView();
             panel1 = new Panel();
+            textBoxNumarFisa = new TextBox();
+            labelNumarFisa = new Label();
             dateTimePickerOra = new DateTimePicker();
             labelOra = new Label();
             dateTimePickerData = new DateTimePicker();
@@ -70,8 +72,6 @@
             buttonSterge = new Button();
             buttonModifica = new Button();
             buttonAdauga = new Button();
-            labelNumarFisa = new Label();
-            textBoxNumarFisa = new TextBox();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             panel2.SuspendLayout();
@@ -210,6 +210,7 @@
             dataGridViewFiseMedicale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFiseMedicale.Size = new Size(633, 221);
             dataGridViewFiseMedicale.TabIndex = 85;
+            dataGridViewFiseMedicale.SelectionChanged += dataGridViewFiseMedicale_SelectionChanged;
             // 
             // panel1
             // 
@@ -247,6 +248,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(908, 325);
             panel1.TabIndex = 86;
+            // 
+            // textBoxNumarFisa
+            // 
+            textBoxNumarFisa.Location = new Point(210, 251);
+            textBoxNumarFisa.Name = "textBoxNumarFisa";
+            textBoxNumarFisa.Size = new Size(96, 23);
+            textBoxNumarFisa.TabIndex = 95;
+            // 
+            // labelNumarFisa
+            // 
+            labelNumarFisa.AutoSize = true;
+            labelNumarFisa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelNumarFisa.Location = new Point(93, 249);
+            labelNumarFisa.Name = "labelNumarFisa";
+            labelNumarFisa.Size = new Size(107, 25);
+            labelNumarFisa.TabIndex = 94;
+            labelNumarFisa.Text = "Numar Fisa";
             // 
             // dateTimePickerOra
             // 
@@ -533,6 +551,7 @@
             buttonModifica.TabIndex = 88;
             buttonModifica.Text = "Modifica Fisa";
             buttonModifica.UseVisualStyleBackColor = true;
+            buttonModifica.Click += buttonModifica_Click;
             // 
             // buttonAdauga
             // 
@@ -546,23 +565,6 @@
             buttonAdauga.Text = "Adauga Fisa";
             buttonAdauga.UseVisualStyleBackColor = true;
             buttonAdauga.Click += buttonAdauga_Click;
-            // 
-            // labelNumarFisa
-            // 
-            labelNumarFisa.AutoSize = true;
-            labelNumarFisa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNumarFisa.Location = new Point(93, 249);
-            labelNumarFisa.Name = "labelNumarFisa";
-            labelNumarFisa.Size = new Size(107, 25);
-            labelNumarFisa.TabIndex = 94;
-            labelNumarFisa.Text = "Numar Fisa";
-            // 
-            // textBoxNumarFisa
-            // 
-            textBoxNumarFisa.Location = new Point(210, 251);
-            textBoxNumarFisa.Name = "textBoxNumarFisa";
-            textBoxNumarFisa.Size = new Size(96, 23);
-            textBoxNumarFisa.TabIndex = 95;
             // 
             // GestiuneMedicala
             // 
