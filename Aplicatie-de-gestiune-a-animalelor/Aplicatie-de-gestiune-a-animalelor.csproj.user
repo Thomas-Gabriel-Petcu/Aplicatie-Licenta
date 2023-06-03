@@ -16,6 +16,9 @@
     <Compile Update="FormInstructiuniGestiuneAprovizionare.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormRaportIndividualFurnizor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormVizualizareCatalog.cs">
       <SubType>Form</SubType>
     </Compile>

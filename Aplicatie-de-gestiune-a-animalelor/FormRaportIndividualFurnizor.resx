@@ -57,20 +57,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>(Pentru generarea raportului individual al fiecarui
-furnizor se realizeaza dublu-click pe furnizor)
-
-Pasul 1. Inregistrati furnizorul;
-
-Pasul 2. Selectati furnizorul;
-
-Pasul 3. Completati campurile comenzii. Datele furnizorului selectat vor fi completate automat;
-
-Pasul 4. Completati campurile facturii. Datele comenzii selectate vor fi preluate automat;
-
-Pasul 5. Inregistrati comanda.
-
-Final. S-au inregistrat cu succes furnizorul, comanda si factura comenzii</value>
-  </data>
 </root>

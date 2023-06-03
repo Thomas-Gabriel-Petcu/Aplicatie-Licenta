@@ -44,7 +44,7 @@
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
-            // FormInstructiuniGestiuneHrana
+            // FormInstructiuniGestiuneAprovizionare
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -52,7 +52,7 @@
             Controls.Add(richTextBox1);
             MaximumSize = new Size(407, 619);
             MinimumSize = new Size(407, 619);
-            Name = "FormInstructiuniGestiuneHrana";
+            Name = "FormInstructiuniGestiuneAprovizionare";
             Text = "Instructiuni de utilizare";
             ResumeLayout(false);
         }

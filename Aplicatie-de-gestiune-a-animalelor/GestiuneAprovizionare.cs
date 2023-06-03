@@ -11,6 +11,9 @@ using System.Diagnostics;
 using Aplicatie_de_gestiune_a_animalelor.Classes;
 using System.Data.SQLite;
 using System.IO;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Aplicatie_de_gestiune_a_animalelor
 {
@@ -24,27 +27,18 @@ namespace Aplicatie_de_gestiune_a_animalelor
             InitializeComponent();
             this.menu = menu;
             RefreshSuppliers();
+            RefreshOrders();
+            RefreshInvoices();
 
-            dataGridViewFurnizori.ClearSelection();
-            dataGridViewComenzi.ClearSelection();
-            dataGridViewFacturi.ClearSelection();
         }
 
         private void GestiuneHrana_Load(object sender, EventArgs e)
         {
-
+            dataGridViewFurnizori.ClearSelection();
+            dataGridViewComenzi.ClearSelection();
+            dataGridViewFacturi.ClearSelection();
+            this.WindowState = FormWindowState.Maximized;
         }
-
-        private void dataGridViewFurnizori_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void GestiuneHrana_ResizeBegin(object sender, EventArgs e)
-        {
-
-        }
-
         private void GestiuneHrana_Resize(object sender, EventArgs e)
         {
             int miniWidth = this.MinimumSize.Width;
@@ -78,6 +72,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             labelComenzi.Location = new Point(dataGridViewComenzi.Location.X + dataGridViewComenzi.Width / 2 - labelComenzi.Width / 2, labelComenzi.Location.Y);
 
         }
+
 
         private void buttonMeniu_Click(object sender, EventArgs e)
         {
@@ -171,10 +166,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
 
 
-        private void buttonAdaugaComanda_Click(object sender, EventArgs e)
-        {
-
-        }
         private void RefreshSuppliers()
         {
             string query = "SELECT * FROM Furnizori";
@@ -190,6 +181,54 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 }
             }
         }
+        private void RefreshOrders()
+        {
+            string query = "SELECT * FROM Comenzi";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
+                    dataGridViewComenzi.DataSource = dataTable;
+                }
+            }
+        }
+        private void RefreshInvoices()
+        {
+            string query = "SELECT strftime('%dd.%MM.%yyyy %HH:%mm:%ss', DataFactura) AS FormattedDataFactura, *FROM Facturi";
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(query, con))
+            {
+                con.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+
+                    dataTable.Columns.Add("IDFactura");
+                    dataTable.Columns.Add("IDComanda");
+                    dataTable.Columns.Add("IDFurnizor");
+                    dataTable.Columns.Add("NumarFactura");
+                    dataTable.Columns.Add("DataFactura");
+                    while (reader.Read())
+                    {
+                        int idFactura = reader.GetInt32(reader.GetOrdinal("IDFactura"));
+                        int idComanda = reader.GetInt32(reader.GetOrdinal("IDFactura"));
+                        int idFurnizor = reader.GetInt32(reader.GetOrdinal("IDFactura"));
+                        string numarFactura = reader.GetString(reader.GetOrdinal("NumarFactura"));
+                        string dateTimeStr = reader.GetString(reader.GetOrdinal("DataFactura"));
+
+                        DateTime dateTime = DateTime.ParseExact(dateTimeStr, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        dataTable.Rows.Add(reader["IDFactura"], idComanda, idFurnizor, numarFactura, dateTime);
+                    }
+                    dataGridViewFacturi.DataSource = dataTable;
+                    //dataGridViewFacturi.CellFormatting += dataGridViewFacturi_CellFormatting;
+                }
+            }
+        }
+
         private void buttonAdaugaFurnizor_Click(object sender, EventArgs e)
         {
             if (!ValidateSupplierInputs())
@@ -209,9 +248,90 @@ namespace Aplicatie_de_gestiune_a_animalelor
             MessageBox.Show("S-a inregistrat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshSuppliers();
         }
+        private void buttonAdaugaComanda_Click(object sender, EventArgs e)
+        {
+            if (!ValidateOrderInputs())
+                return;
 
+            if (!(dataGridViewFurnizori.SelectedRows.Count > 0))
+            {
+                MessageBox.Show("Selectati furnizorul caruia ii este asociata comanda!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataGridViewRow row = dataGridViewFurnizori.SelectedRows[0];
+            int idSupplier = Convert.ToInt32(row.Cells["IDFurnizor"].Value);
+            string orderNr = textBoxNumarComanda.Text;
+            string products = textBoxProduse.Text;
+            float value = float.Parse(textBoxValCuTVA.Text);
+
+            string query = $"INSERT INTO COMENZI (IDFurnizor, NumarComanda, Produse, ValoareCuTVA) VALUES('{idSupplier}','{orderNr}','{products}','{value}')";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a inregistrat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshOrders();
+        }
+        private void buttonAdaugaFactura_Click(object sender, EventArgs e)
+        {
+            textBoxNumarFactura.Text.Replace(" ", "");
+            if (!ValidateInvoiceInputs())
+                return;
+            if (dataGridViewComenzi.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selectati comanda careia ii este asociata factura!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataGridViewRow row = dataGridViewComenzi.SelectedRows[0];
+            int idOrder = Convert.ToInt32(row.Cells["IDComanda"].Value);
+            int idSupplier = Convert.ToInt32(row.Cells["IDFurnizor"].Value);
+            string invoiceNr = textBoxNumarFactura.Text;
+
+            DateTime selectedDate = dateTimePicker1.Value.Date;
+            TimeSpan selectedTime = dateTimePicker1.Value.TimeOfDay;
+            DateTime selectedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, 0);
+
+            string query = $"INSERT INTO Facturi (IDComanda, IDFurnizor, NumarFactura, DataFactura) VALUES('{idOrder}','{idSupplier}','{invoiceNr}','{selectedDateTime}')";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a inregistrat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshInvoices();
+        }
+
+
+
+        private void dataGridViewFacturi_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewFacturi.SelectedRows.Count > 0 && dataGridViewFacturi.SelectedRows[0].Index == dataGridViewFacturi.Rows.Count - 1)
+            {
+                //MessageBox.Show("null row");
+                dataGridViewFacturi.ClearSelection();
+                return;
+            }
+            if (dataGridViewFacturi.SelectedRows.Count > 0 && dataGridViewFacturi.SelectedRows[0].Index != dataGridViewFacturi.Rows.Count - 1)
+            {
+                DataGridViewRow row = dataGridViewFacturi.SelectedRows[0];
+                int id = Convert.ToInt32(row.Cells["IDFactura"].Value);
+                string invoiceNr = row.Cells["NumarFactura"].Value.ToString();
+                DateTime.TryParse(row.Cells["DataFactura"].Value.ToString(), out DateTime datetime);
+                dateTimePicker1.Text = datetime.Date.ToString();
+                textBoxNumarFactura.Text = invoiceNr.ToString();
+            }
+        }
         private void dataGridViewFurnizori_SelectionChanged(object sender, EventArgs e)
         {
+            if (dataGridViewFurnizori.SelectedRows.Count > 0 && dataGridViewFurnizori.SelectedRows[0].Index == dataGridViewFurnizori.Rows.Count - 1)
+            {
+                //MessageBox.Show("null row");
+                dataGridViewFurnizori.ClearSelection();
+                return;
+            }
             if (dataGridViewFurnizori.SelectedRows.Count > 0 && dataGridViewFurnizori.SelectedRows[0].Index != dataGridViewFurnizori.Rows.Count - 1)
             {
                 DataGridViewRow row = dataGridViewFurnizori.SelectedRows[0];
@@ -229,10 +349,30 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 textBoxEmailFurnizor.Text = email;
             }
         }
+        private void dataGridViewComenzi_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewComenzi.SelectedRows.Count > 0 && dataGridViewComenzi.SelectedRows[0].Index == dataGridViewComenzi.Rows.Count - 1)
+            {
+                //MessageBox.Show("null row");
+                dataGridViewComenzi.ClearSelection();
+                return;
+            }
+            if (dataGridViewComenzi.SelectedRows.Count > 0 && dataGridViewComenzi.SelectedRows[0].Index != dataGridViewComenzi.Rows.Count - 1)
+            {
+                DataGridViewRow row = dataGridViewComenzi.SelectedRows[0];
+                string orderNr = row.Cells["NumarComanda"].Value.ToString();
+                string products = row.Cells["Produse"].Value.ToString();
+                double value = Convert.ToDouble(row.Cells["ValoareCuTVA"].Value);
+
+                textBoxNumarComanda.Text = orderNr;
+                textBoxProduse.Text = products;
+                textBoxValCuTVA.Text = value.ToString();
+            }
+        }
 
         private void buttonModificaFurnizor_Click(object sender, EventArgs e)
         {
-            if (!(dataGridViewFurnizori.SelectedRows.Count > 0) && dataGridViewFurnizori.SelectedRows[0].Index != dataGridViewFurnizori.Rows.Count - 1)
+            if (!(dataGridViewFurnizori.SelectedRows.Count > 0))
             {
                 MessageBox.Show("Nu ati selectat niciun furnizor pentru modificare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -257,10 +397,61 @@ namespace Aplicatie_de_gestiune_a_animalelor
             MessageBox.Show("S-a modificat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshSuppliers();
         }
+        private void buttonModificaFactura_Click(object sender, EventArgs e)
+        {
+            if (!(dataGridViewFacturi.SelectedRows.Count > 0))
+            {
+                MessageBox.Show("Nu ati selectat factura pentru modificare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!ValidateInvoiceInputs())
+                return;
+            DataGridViewRow row = dataGridViewFacturi.SelectedRows[0];
+            int idInvoice = Convert.ToInt32(row.Cells["IDFactura"].Value);
+            string invoiceNr = textBoxNumarFactura.Text;
+            DateTime selectedDate = dateTimePicker1.Value.Date;
+            TimeSpan selectedTime = dateTimePicker1.Value.TimeOfDay;
+            DateTime selectedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hours, selectedTime.Minutes, 0);
+
+            string query = $"UPDATE Facturi SET NumarFactura = '{invoiceNr}', DataFactura = '{selectedDateTime}' WHERE IDFactura = '{idInvoice}'";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a modificat cu succes", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshInvoices();
+        }
+        private void buttonModificaComanda_Click(object sender, EventArgs e)
+        {
+            if (!(dataGridViewComenzi.SelectedRows.Count > 0))
+            {
+                MessageBox.Show("Nu ati selectat comanda pentru modificare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!ValidateOrderInputs())
+                return;
+            DataGridViewRow row = dataGridViewComenzi.SelectedRows[0];
+            string orderNr = row.Cells["NumarComanda"].Value.ToString();
+            string products = row.Cells["Produse"].Value.ToString();
+            double value = Convert.ToDouble(row.Cells["ValoareCuTVA"].Value);
+
+            string query = $"UPDATE Comenzi SET NumarComanda = '{orderNr}', Produse = '{products}', ValoareCuTVA = '{value}'";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a modificat cu succes", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshOrders();
+        }
+
 
         private void buttonStergeFurnizor_Click(object sender, EventArgs e)
         {
-            if (!(dataGridViewFurnizori.SelectedRows.Count > 0) && dataGridViewFurnizori.SelectedRows[0].Index != dataGridViewFurnizori.Rows.Count - 1)
+            if (!(dataGridViewFurnizori.SelectedRows.Count > 0))
             {
                 MessageBox.Show("Nu ati selectat niciun furnizor pentru stergere!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -279,6 +470,58 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             MessageBox.Show("S-a sters cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshSuppliers();
+        }
+        private void buttonStergeComanda_Click(object sender, EventArgs e)
+        {
+            if (!(dataGridViewComenzi.SelectedRows.Count > 0))
+            {
+                MessageBox.Show("Nu ati selectat comanda pentru stergere!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DialogResult result = MessageBox.Show("Suneti sigur ca vreti sa stergeti comanda?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
+            DataGridViewRow row = dataGridViewComenzi.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["IDComanda"].Value);
+            string query = $"DELETE FROM Comenzi WHERE IDComanda = '{id}';";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a sters cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshOrders();
+        }
+        private void buttonStergeFactura_Click(object sender, EventArgs e)
+        {
+            if (!(dataGridViewFacturi.SelectedRows.Count > 0))
+            {
+                MessageBox.Show("Nu ati selectat factura pentru stergere!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DialogResult result = MessageBox.Show("Suneti sigur ca vreti sa stergeti factura?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
+            DataGridViewRow row = dataGridViewFacturi.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["IDFactura"].Value);
+            string query = $"DELETE FROM Facturi WHERE IDFactura = '{id}';";
+            using SQLiteConnection con = databaseManager.GetConnection();
+            using SQLiteCommand command = new SQLiteCommand(query, con);
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            MessageBox.Show("S-a sters cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RefreshInvoices();
+        }
+
+        private void dataGridViewFurnizori_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridViewFurnizori.SelectedRows[0];
+            int idSupplier = Convert.ToInt32(row.Cells["IDFurnizor"].Value);
+            FormRaportIndividualFurnizor raportFurnizor = new FormRaportIndividualFurnizor(idSupplier);
+            raportFurnizor.Show();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
             string queryAppointments = "CREATE TABLE IF NOT EXISTS Programari (IDProgramare INTEGER PRIMARY KEY AUTOINCREMENT, IDAnimal INTEGER, DataProgramarii DATETIME, Detalii TEXT, FOREIGN KEY (IDAnimal) REFERENCES Animale(IDAnimal) ON DELETE CASCADE);";
             string querySupplier = "CREATE TABLE IF NOT EXISTS Furnizori (IDFurnizor INTEGER PRIMARY KEY AUTOINCREMENT, NumeFurnizor TEXT, CUI TEXT, Adresa TEXT, NumarTelefon TEXT, Email TEXT);";
             string queryOrders = "CREATE TABLE IF NOT EXISTS Comenzi (IDComanda INTEGER PRIMARY KEY AUTOINCREMENT, IDFurnizor INTEGER, NumarComanda TEXT, Produse TEXT, ValoareCuTVA REAL, FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
-            string queryInvoices = "CREATE TABLE IF NOT EXISTS Facturi (IDFactura INTEGER PRIMARY KEY AUTOINCREMENT, IDComanda INTEGER, IDFurnizor INTEGER, NumarFactura TEXT, FOREIGN KEY (IDComanda) REFERENCES Comenzi(IDComanda), FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
+            string queryInvoices = "CREATE TABLE IF NOT EXISTS Facturi (IDFactura INTEGER PRIMARY KEY AUTOINCREMENT, IDComanda INTEGER, IDFurnizor INTEGER, NumarFactura TEXT, DataFactura DATETIME, FOREIGN KEY (IDComanda) REFERENCES Comenzi(IDComanda), FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
             
             using (SQLiteConnection con = new SQLiteConnection(conString))
             using (SQLiteCommand command = new SQLiteCommand(queryAnimals, con))

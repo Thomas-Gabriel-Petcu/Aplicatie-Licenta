@@ -73,7 +73,12 @@
             buttonModificaComanda = new Button();
             buttonAdaugaComanda = new Button();
             panelControlsFacturi = new Panel();
+            buttonStergeFactura = new Button();
+            buttonModificaFactura = new Button();
+            buttonAdaugaFactura = new Button();
+            labelDataFactura = new Label();
             labelNumarFactura = new Label();
+            dateTimePicker1 = new DateTimePicker();
             textBoxNumarFactura = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFurnizori).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFacturi).BeginInit();
@@ -90,7 +95,6 @@
             // 
             // dataGridViewFurnizori
             // 
-            dataGridViewFurnizori.AllowUserToAddRows = false;
             dataGridViewFurnizori.AllowUserToDeleteRows = false;
             dataGridViewFurnizori.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dataGridViewFurnizori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -104,11 +108,12 @@
             dataGridViewFurnizori.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFurnizori.Size = new Size(420, 200);
             dataGridViewFurnizori.TabIndex = 2;
-            dataGridViewFurnizori.CellContentClick += dataGridViewFurnizori_CellContentClick;
+            dataGridViewFurnizori.CellContentDoubleClick += dataGridViewFurnizori_CellContentDoubleClick;
             dataGridViewFurnizori.SelectionChanged += dataGridViewFurnizori_SelectionChanged;
             // 
             // dataGridViewFacturi
             // 
+            dataGridViewFacturi.AllowUserToDeleteRows = false;
             dataGridViewFacturi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             dataGridViewFacturi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewFacturi.BackgroundColor = SystemColors.Control;
@@ -121,9 +126,11 @@
             dataGridViewFacturi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFacturi.Size = new Size(420, 200);
             dataGridViewFacturi.TabIndex = 3;
+            dataGridViewFacturi.SelectionChanged += dataGridViewFacturi_SelectionChanged;
             // 
             // dataGridViewComenzi
             // 
+            dataGridViewComenzi.AllowUserToDeleteRows = false;
             dataGridViewComenzi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             dataGridViewComenzi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewComenzi.BackgroundColor = SystemColors.Control;
@@ -136,6 +143,7 @@
             dataGridViewComenzi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewComenzi.Size = new Size(420, 200);
             dataGridViewComenzi.TabIndex = 4;
+            dataGridViewComenzi.SelectionChanged += dataGridViewComenzi_SelectionChanged;
             // 
             // panel1
             // 
@@ -568,6 +576,7 @@
             buttonStergeComanda.TabIndex = 80;
             buttonStergeComanda.Text = "Sterge Comanda";
             buttonStergeComanda.UseVisualStyleBackColor = true;
+            buttonStergeComanda.Click += buttonStergeComanda_Click;
             // 
             // buttonModificaComanda
             // 
@@ -580,6 +589,7 @@
             buttonModificaComanda.TabIndex = 79;
             buttonModificaComanda.Text = "Modifica Comanda";
             buttonModificaComanda.UseVisualStyleBackColor = true;
+            buttonModificaComanda.Click += buttonModificaComanda_Click;
             // 
             // buttonAdaugaComanda
             // 
@@ -597,12 +607,67 @@
             // panelControlsFacturi
             // 
             panelControlsFacturi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panelControlsFacturi.Controls.Add(buttonStergeFactura);
+            panelControlsFacturi.Controls.Add(buttonModificaFactura);
+            panelControlsFacturi.Controls.Add(buttonAdaugaFactura);
+            panelControlsFacturi.Controls.Add(labelDataFactura);
             panelControlsFacturi.Controls.Add(labelNumarFactura);
+            panelControlsFacturi.Controls.Add(dateTimePicker1);
             panelControlsFacturi.Controls.Add(textBoxNumarFactura);
             panelControlsFacturi.Location = new Point(452, 266);
             panelControlsFacturi.Name = "panelControlsFacturi";
             panelControlsFacturi.Size = new Size(404, 443);
             panelControlsFacturi.TabIndex = 80;
+            // 
+            // buttonStergeFactura
+            // 
+            buttonStergeFactura.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonStergeFactura.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonStergeFactura.Image = Properties.Resources.button;
+            buttonStergeFactura.Location = new Point(213, 386);
+            buttonStergeFactura.Name = "buttonStergeFactura";
+            buttonStergeFactura.Size = new Size(188, 48);
+            buttonStergeFactura.TabIndex = 86;
+            buttonStergeFactura.Text = "Sterge Factura";
+            buttonStergeFactura.UseVisualStyleBackColor = true;
+            buttonStergeFactura.Click += buttonStergeFactura_Click;
+            // 
+            // buttonModificaFactura
+            // 
+            buttonModificaFactura.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonModificaFactura.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonModificaFactura.Image = Properties.Resources.button;
+            buttonModificaFactura.Location = new Point(213, 335);
+            buttonModificaFactura.Name = "buttonModificaFactura";
+            buttonModificaFactura.Size = new Size(191, 48);
+            buttonModificaFactura.TabIndex = 85;
+            buttonModificaFactura.Text = "Modifica Factura";
+            buttonModificaFactura.UseVisualStyleBackColor = true;
+            buttonModificaFactura.Click += buttonModificaFactura_Click;
+            // 
+            // buttonAdaugaFactura
+            // 
+            buttonAdaugaFactura.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonAdaugaFactura.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAdaugaFactura.Image = Properties.Resources.button;
+            buttonAdaugaFactura.Location = new Point(213, 281);
+            buttonAdaugaFactura.Name = "buttonAdaugaFactura";
+            buttonAdaugaFactura.Size = new Size(191, 48);
+            buttonAdaugaFactura.TabIndex = 84;
+            buttonAdaugaFactura.Text = "Adauga Factura";
+            buttonAdaugaFactura.UseVisualStyleBackColor = true;
+            buttonAdaugaFactura.Click += buttonAdaugaFactura_Click;
+            // 
+            // labelDataFactura
+            // 
+            labelDataFactura.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelDataFactura.AutoSize = true;
+            labelDataFactura.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDataFactura.Location = new Point(18, 58);
+            labelDataFactura.Name = "labelDataFactura";
+            labelDataFactura.Size = new Size(96, 21);
+            labelDataFactura.TabIndex = 83;
+            labelDataFactura.Text = "Data Factura";
             // 
             // labelNumarFactura
             // 
@@ -614,6 +679,14 @@
             labelNumarFactura.Size = new Size(113, 21);
             labelNumarFactura.TabIndex = 82;
             labelNumarFactura.Text = "Numar Factura";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            dateTimePicker1.Location = new Point(165, 57);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(236, 23);
+            dateTimePicker1.TabIndex = 82;
             // 
             // textBoxNumarFactura
             // 
@@ -646,7 +719,6 @@
             Name = "GestiuneAprovizionare";
             Text = "Gestiune Aprovizionare";
             Load += GestiuneHrana_Load;
-            ResizeBegin += GestiuneHrana_ResizeBegin;
             Resize += GestiuneHrana_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridViewFurnizori).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFacturi).EndInit();
@@ -723,5 +795,10 @@
         private TextBox textBoxNumarFactura;
         private TextBox textBoxValCuTVA;
         private TextBox textBoxProduse;
+        private Label labelDataFactura;
+        private DateTimePicker dateTimePicker1;
+        private Button buttonModificaFactura;
+        private Button buttonAdaugaFactura;
+        private Button buttonStergeFactura;
     }
 }
