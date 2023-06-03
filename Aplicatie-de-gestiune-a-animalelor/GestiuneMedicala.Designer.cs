@@ -40,7 +40,15 @@
             buttonMeniu = new Button();
             dataGridViewFiseMedicale = new DataGridView();
             panel1 = new Panel();
+            dateTimePickerOra = new DateTimePicker();
+            labelOra = new Label();
+            dateTimePickerData = new DateTimePicker();
+            labelData = new Label();
+            labelTratament = new Label();
+            textBoxTratament = new TextBox();
+            labelDiagnostic = new Label();
             textBoxRasa = new TextBox();
+            textBoxDiagnostic = new TextBox();
             labelRasa = new Label();
             buttonPoza = new Button();
             textBoxVarsta = new TextBox();
@@ -59,13 +67,11 @@
             checkBoxSexM = new CheckBox();
             labelSpecie = new Label();
             comboBoxSpecie = new ComboBox();
-            textBox1 = new TextBox();
-            labelDiagnostic = new Label();
-            textBox2 = new TextBox();
-            labelTratament = new Label();
             buttonSterge = new Button();
             buttonModifica = new Button();
             buttonAdauga = new Button();
+            labelNumarFisa = new Label();
+            textBoxNumarFisa = new TextBox();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             panel2.SuspendLayout();
@@ -132,6 +138,7 @@
             dataGridViewAnimale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewAnimale.Size = new Size(667, 221);
             dataGridViewAnimale.TabIndex = 81;
+            dataGridViewAnimale.SelectionChanged += dataGridViewAnimale_SelectionChanged;
             // 
             // labelFiltre
             // 
@@ -207,11 +214,17 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.Controls.Add(textBoxNumarFisa);
+            panel1.Controls.Add(labelNumarFisa);
+            panel1.Controls.Add(dateTimePickerOra);
+            panel1.Controls.Add(labelOra);
+            panel1.Controls.Add(dateTimePickerData);
+            panel1.Controls.Add(labelData);
             panel1.Controls.Add(labelTratament);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(textBoxTratament);
             panel1.Controls.Add(labelDiagnostic);
             panel1.Controls.Add(textBoxRasa);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(textBoxDiagnostic);
             panel1.Controls.Add(labelRasa);
             panel1.Controls.Add(buttonPoza);
             panel1.Controls.Add(textBoxVarsta);
@@ -232,23 +245,92 @@
             panel1.Controls.Add(comboBoxSpecie);
             panel1.Location = new Point(389, 365);
             panel1.Name = "panel1";
-            panel1.Size = new Size(908, 200);
+            panel1.Size = new Size(908, 325);
             panel1.TabIndex = 86;
+            // 
+            // dateTimePickerOra
+            // 
+            dateTimePickerOra.Format = DateTimePickerFormat.Time;
+            dateTimePickerOra.Location = new Point(263, 214);
+            dateTimePickerOra.Name = "dateTimePickerOra";
+            dateTimePickerOra.Size = new Size(200, 23);
+            dateTimePickerOra.TabIndex = 93;
+            // 
+            // labelOra
+            // 
+            labelOra.AutoSize = true;
+            labelOra.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelOra.Location = new Point(93, 212);
+            labelOra.Name = "labelOra";
+            labelOra.Size = new Size(144, 25);
+            labelOra.TabIndex = 92;
+            labelOra.Text = "Ora Consultului";
+            // 
+            // dateTimePickerData
+            // 
+            dateTimePickerData.Location = new Point(263, 179);
+            dateTimePickerData.Name = "dateTimePickerData";
+            dateTimePickerData.Size = new Size(200, 23);
+            dateTimePickerData.TabIndex = 91;
+            // 
+            // labelData
+            // 
+            labelData.AutoSize = true;
+            labelData.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelData.Location = new Point(93, 177);
+            labelData.Name = "labelData";
+            labelData.Size = new Size(152, 25);
+            labelData.TabIndex = 90;
+            labelData.Text = "Data Consultului";
+            // 
+            // labelTratament
+            // 
+            labelTratament.AutoSize = true;
+            labelTratament.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelTratament.Location = new Point(91, 135);
+            labelTratament.Name = "labelTratament";
+            labelTratament.Size = new Size(96, 25);
+            labelTratament.TabIndex = 89;
+            labelTratament.Text = "Tratament";
+            // 
+            // textBoxTratament
+            // 
+            textBoxTratament.Location = new Point(210, 125);
+            textBoxTratament.Multiline = true;
+            textBoxTratament.Name = "textBoxTratament";
+            textBoxTratament.Size = new Size(683, 46);
+            textBoxTratament.TabIndex = 88;
+            // 
+            // labelDiagnostic
+            // 
+            labelDiagnostic.AutoSize = true;
+            labelDiagnostic.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDiagnostic.Location = new Point(91, 81);
+            labelDiagnostic.Name = "labelDiagnostic";
+            labelDiagnostic.Size = new Size(101, 25);
+            labelDiagnostic.TabIndex = 48;
+            labelDiagnostic.Text = "Diagnostic";
             // 
             // textBoxRasa
             // 
-            textBoxRasa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxRasa.Location = new Point(169, 48);
+            textBoxRasa.Location = new Point(172, 39);
             textBoxRasa.Name = "textBoxRasa";
             textBoxRasa.Size = new Size(96, 23);
             textBoxRasa.TabIndex = 5;
             // 
+            // textBoxDiagnostic
+            // 
+            textBoxDiagnostic.Location = new Point(210, 71);
+            textBoxDiagnostic.Multiline = true;
+            textBoxDiagnostic.Name = "textBoxDiagnostic";
+            textBoxDiagnostic.Size = new Size(683, 46);
+            textBoxDiagnostic.TabIndex = 87;
+            // 
             // labelRasa
             // 
-            labelRasa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelRasa.AutoSize = true;
             labelRasa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelRasa.Location = new Point(188, 17);
+            labelRasa.Location = new Point(191, 8);
             labelRasa.Name = "labelRasa";
             labelRasa.Size = new Size(51, 25);
             labelRasa.TabIndex = 6;
@@ -259,7 +341,7 @@
             buttonPoza.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             buttonPoza.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             buttonPoza.Image = Properties.Resources.button;
-            buttonPoza.Location = new Point(906, 205);
+            buttonPoza.Location = new Point(906, 330);
             buttonPoza.Name = "buttonPoza";
             buttonPoza.Size = new Size(179, 43);
             buttonPoza.TabIndex = 47;
@@ -268,18 +350,16 @@
             // 
             // textBoxVarsta
             // 
-            textBoxVarsta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxVarsta.Location = new Point(296, 48);
+            textBoxVarsta.Location = new Point(299, 39);
             textBoxVarsta.Name = "textBoxVarsta";
             textBoxVarsta.Size = new Size(57, 23);
             textBoxVarsta.TabIndex = 10;
             // 
             // labelNume
             // 
-            labelNume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelNume.AutoSize = true;
             labelNume.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNume.Location = new Point(741, 17);
+            labelNume.Location = new Point(744, 8);
             labelNume.Name = "labelNume";
             labelNume.Size = new Size(63, 25);
             labelNume.TabIndex = 46;
@@ -287,10 +367,9 @@
             // 
             // labelVarsta
             // 
-            labelVarsta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelVarsta.AutoSize = true;
             labelVarsta.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelVarsta.Location = new Point(296, 17);
+            labelVarsta.Location = new Point(299, 8);
             labelVarsta.Name = "labelVarsta";
             labelVarsta.Size = new Size(64, 25);
             labelVarsta.TabIndex = 11;
@@ -298,38 +377,35 @@
             // 
             // textBoxNume
             // 
-            textBoxNume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxNume.Location = new Point(728, 45);
+            textBoxNume.Location = new Point(731, 36);
             textBoxNume.Name = "textBoxNume";
             textBoxNume.Size = new Size(98, 23);
             textBoxNume.TabIndex = 45;
             // 
             // textBoxGreutate
             // 
-            textBoxGreutate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxGreutate.Location = new Point(385, 48);
+            textBoxGreutate.Location = new Point(388, 39);
             textBoxGreutate.Name = "textBoxGreutate";
             textBoxGreutate.Size = new Size(57, 23);
             textBoxGreutate.TabIndex = 14;
             // 
             // checkBoxSterNu
             // 
-            checkBoxSterNu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSterNu.AutoSize = true;
             checkBoxSterNu.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxSterNu.Location = new Point(659, 42);
+            checkBoxSterNu.Location = new Point(662, 33);
             checkBoxSterNu.Name = "checkBoxSterNu";
             checkBoxSterNu.Size = new Size(58, 29);
             checkBoxSterNu.TabIndex = 44;
             checkBoxSterNu.Text = "NU";
             checkBoxSterNu.UseVisualStyleBackColor = true;
+            checkBoxSterNu.CheckedChanged += checkBoxSterNu_CheckedChanged;
             // 
             // labelGreutate
             // 
-            labelGreutate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelGreutate.AutoSize = true;
             labelGreutate.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelGreutate.Location = new Point(375, 17);
+            labelGreutate.Location = new Point(378, 8);
             labelGreutate.Name = "labelGreutate";
             labelGreutate.Size = new Size(85, 25);
             labelGreutate.TabIndex = 15;
@@ -337,22 +413,21 @@
             // 
             // checkBoxSterDa
             // 
-            checkBoxSterDa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSterDa.AutoSize = true;
             checkBoxSterDa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxSterDa.Location = new Point(597, 42);
+            checkBoxSterDa.Location = new Point(600, 33);
             checkBoxSterDa.Name = "checkBoxSterDa";
             checkBoxSterDa.Size = new Size(56, 29);
             checkBoxSterDa.TabIndex = 43;
             checkBoxSterDa.Text = "DA";
             checkBoxSterDa.UseVisualStyleBackColor = true;
+            checkBoxSterDa.CheckedChanged += checkBoxSterDa_CheckedChanged;
             // 
             // labelVaccinat
             // 
-            labelVaccinat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelVaccinat.AutoSize = true;
             labelVaccinat.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelVaccinat.Location = new Point(482, 17);
+            labelVaccinat.Location = new Point(485, 8);
             labelVaccinat.Name = "labelVaccinat";
             labelVaccinat.Size = new Size(83, 25);
             labelVaccinat.TabIndex = 18;
@@ -360,22 +435,21 @@
             // 
             // checkBoxVaccinatNu
             // 
-            checkBoxVaccinatNu.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxVaccinatNu.AutoSize = true;
             checkBoxVaccinatNu.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxVaccinatNu.Location = new Point(528, 40);
+            checkBoxVaccinatNu.Location = new Point(531, 31);
             checkBoxVaccinatNu.Name = "checkBoxVaccinatNu";
             checkBoxVaccinatNu.Size = new Size(58, 29);
             checkBoxVaccinatNu.TabIndex = 42;
             checkBoxVaccinatNu.Text = "NU";
             checkBoxVaccinatNu.UseVisualStyleBackColor = true;
+            checkBoxVaccinatNu.CheckedChanged += checkBoxVaccinatNu_CheckedChanged;
             // 
             // labelSterilizat
             // 
-            labelSterilizat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelSterilizat.AutoSize = true;
             labelSterilizat.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSterilizat.Location = new Point(607, 17);
+            labelSterilizat.Location = new Point(610, 8);
             labelSterilizat.Name = "labelSterilizat";
             labelSterilizat.Size = new Size(84, 25);
             labelSterilizat.TabIndex = 21;
@@ -383,46 +457,45 @@
             // 
             // checkBoxVaccinatDa
             // 
-            checkBoxVaccinatDa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxVaccinatDa.AutoSize = true;
             checkBoxVaccinatDa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxVaccinatDa.Location = new Point(466, 40);
+            checkBoxVaccinatDa.Location = new Point(469, 31);
             checkBoxVaccinatDa.Name = "checkBoxVaccinatDa";
             checkBoxVaccinatDa.Size = new Size(56, 29);
             checkBoxVaccinatDa.TabIndex = 41;
             checkBoxVaccinatDa.Text = "DA";
             checkBoxVaccinatDa.UseVisualStyleBackColor = true;
+            checkBoxVaccinatDa.CheckedChanged += checkBoxVaccinatDa_CheckedChanged;
             // 
             // checkBoxSexF
             // 
-            checkBoxSexF.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSexF.AutoSize = true;
             checkBoxSexF.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxSexF.Location = new Point(842, 45);
+            checkBoxSexF.Location = new Point(845, 36);
             checkBoxSexF.Name = "checkBoxSexF";
             checkBoxSexF.Size = new Size(40, 29);
             checkBoxSexF.TabIndex = 38;
             checkBoxSexF.Text = "F";
             checkBoxSexF.UseVisualStyleBackColor = true;
+            checkBoxSexF.CheckedChanged += checkBoxSexF_CheckedChanged;
             // 
             // checkBoxSexM
             // 
-            checkBoxSexM.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             checkBoxSexM.AutoSize = true;
             checkBoxSexM.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxSexM.Location = new Point(842, 16);
+            checkBoxSexM.Location = new Point(845, 7);
             checkBoxSexM.Name = "checkBoxSexM";
             checkBoxSexM.Size = new Size(48, 29);
             checkBoxSexM.TabIndex = 37;
             checkBoxSexM.Text = "M";
             checkBoxSexM.UseVisualStyleBackColor = true;
+            checkBoxSexM.CheckedChanged += checkBoxSexM_CheckedChanged;
             // 
             // labelSpecie
             // 
-            labelSpecie.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelSpecie.AutoSize = true;
             labelSpecie.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSpecie.Location = new Point(88, 17);
+            labelSpecie.Location = new Point(91, 8);
             labelSpecie.Name = "labelSpecie";
             labelSpecie.Size = new Size(67, 25);
             labelSpecie.TabIndex = 30;
@@ -430,51 +503,12 @@
             // 
             // comboBoxSpecie
             // 
-            comboBoxSpecie.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             comboBoxSpecie.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSpecie.FormattingEnabled = true;
-            comboBoxSpecie.Location = new Point(90, 48);
+            comboBoxSpecie.Location = new Point(93, 39);
             comboBoxSpecie.Name = "comboBoxSpecie";
             comboBoxSpecie.Size = new Size(65, 23);
             comboBoxSpecie.TabIndex = 29;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(207, 81);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(683, 46);
-            textBox1.TabIndex = 87;
-            // 
-            // labelDiagnostic
-            // 
-            labelDiagnostic.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            labelDiagnostic.AutoSize = true;
-            labelDiagnostic.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDiagnostic.Location = new Point(88, 90);
-            labelDiagnostic.Name = "labelDiagnostic";
-            labelDiagnostic.Size = new Size(101, 25);
-            labelDiagnostic.TabIndex = 48;
-            labelDiagnostic.Text = "Diagnostic";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(207, 133);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(683, 46);
-            textBox2.TabIndex = 88;
-            // 
-            // labelTratament
-            // 
-            labelTratament.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            labelTratament.AutoSize = true;
-            labelTratament.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTratament.Location = new Point(88, 144);
-            labelTratament.Name = "labelTratament";
-            labelTratament.Size = new Size(96, 25);
-            labelTratament.TabIndex = 89;
-            labelTratament.Text = "Tratament";
             // 
             // buttonSterge
             // 
@@ -511,6 +545,24 @@
             buttonAdauga.TabIndex = 89;
             buttonAdauga.Text = "Adauga Fisa";
             buttonAdauga.UseVisualStyleBackColor = true;
+            buttonAdauga.Click += buttonAdauga_Click;
+            // 
+            // labelNumarFisa
+            // 
+            labelNumarFisa.AutoSize = true;
+            labelNumarFisa.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            labelNumarFisa.Location = new Point(93, 249);
+            labelNumarFisa.Name = "labelNumarFisa";
+            labelNumarFisa.Size = new Size(107, 25);
+            labelNumarFisa.TabIndex = 94;
+            labelNumarFisa.Text = "Numar Fisa";
+            // 
+            // textBoxNumarFisa
+            // 
+            textBoxNumarFisa.Location = new Point(210, 251);
+            textBoxNumarFisa.Name = "textBoxNumarFisa";
+            textBoxNumarFisa.Size = new Size(96, 23);
+            textBoxNumarFisa.TabIndex = 95;
             // 
             // GestiuneMedicala
             // 
@@ -579,11 +631,17 @@
         private Label labelSpecie;
         private ComboBox comboBoxSpecie;
         private Label labelDiagnostic;
-        private TextBox textBox1;
+        private TextBox textBoxDiagnostic;
         private Label labelTratament;
-        private TextBox textBox2;
+        private TextBox textBoxTratament;
         private Button buttonSterge;
         private Button buttonModifica;
         private Button buttonAdauga;
+        private DateTimePicker dateTimePickerData;
+        private Label labelData;
+        private Label labelOra;
+        private DateTimePicker dateTimePickerOra;
+        private TextBox textBoxNumarFisa;
+        private Label labelNumarFisa;
     }
 }

@@ -33,20 +33,22 @@ namespace Aplicatie_de_gestiune_a_animalelor.Classes
             string querySupplier = "CREATE TABLE IF NOT EXISTS Furnizori (IDFurnizor INTEGER PRIMARY KEY AUTOINCREMENT, NumeFurnizor TEXT, CUI TEXT, Adresa TEXT, NumarTelefon TEXT, Email TEXT);";
             string queryOrders = "CREATE TABLE IF NOT EXISTS Comenzi (IDComanda INTEGER PRIMARY KEY AUTOINCREMENT, IDFurnizor INTEGER, NumarComanda TEXT, Produse TEXT, ValoareCuTVA REAL, FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
             string queryInvoices = "CREATE TABLE IF NOT EXISTS Facturi (IDFactura INTEGER PRIMARY KEY AUTOINCREMENT, IDComanda INTEGER, IDFurnizor INTEGER, NumarFactura TEXT, DataFactura DATETIME, FOREIGN KEY (IDComanda) REFERENCES Comenzi(IDComanda), FOREIGN KEY (IDFurnizor) REFERENCES Furnizori(IDFurnizor));";
-            
+            string queryMedicalRecords = "CREATE TABLE IF NOT EXISTS FiseMedicale (IDFisaMedicala INTEGER PRIMARY KEY AUTOINCREMENT, IDAnimal INTEGER, NumarFisaMedicala TEXT, DataConsult DATETIME , Diagnostic TEXT, Tratament TEXT, FOREIGN KEY(IDAnimal) REFERENCES Animale(IDAnimal));";
             using (SQLiteConnection con = new SQLiteConnection(conString))
             using (SQLiteCommand command = new SQLiteCommand(queryAnimals, con))
             using (SQLiteCommand appointmentsCommand = new SQLiteCommand(queryAppointments, con))
             using (SQLiteCommand supplierCommand = new SQLiteCommand(querySupplier, con))
             using (SQLiteCommand ordersCommand = new SQLiteCommand(queryOrders, con))
             using (SQLiteCommand invoicesCommand = new SQLiteCommand(queryInvoices, con))
+            using (SQLiteCommand medicalRecordsCommand = new SQLiteCommand(queryMedicalRecords, con))
             {
                 con.Open();
-                    command.ExecuteNonQuery();
-                    appointmentsCommand.ExecuteNonQuery();
-                    supplierCommand.ExecuteNonQuery();
-                    ordersCommand.ExecuteNonQuery();
-                    invoicesCommand.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+                appointmentsCommand.ExecuteNonQuery();
+                supplierCommand.ExecuteNonQuery();
+                ordersCommand.ExecuteNonQuery();
+                invoicesCommand.ExecuteNonQuery();
+                medicalRecordsCommand.ExecuteNonQuery();
             }
         }
 
