@@ -28,6 +28,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 comboBoxSpecie.Items.Add(item.Key);
             }
+
         }
 
         private void GestiuneMedicala_Load(object sender, EventArgs e)
@@ -189,11 +190,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
         private void dataGridViewAnimale_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index == dataGridViewAnimale.Rows.Count - 1)
-            {
-                dataGridViewAnimale.ClearSelection();
-                return;
-            }
             if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index != dataGridViewAnimale.Rows.Count - 1)
             {
 
@@ -233,11 +229,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
         private void dataGridViewFiseMedicale_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridViewFiseMedicale.SelectedRows.Count > 0 && dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
-            {
-                dataGridViewFiseMedicale.ClearSelection();
-                return;
-            }
             int targetID = 0;
             if (dataGridViewFiseMedicale.SelectedRows.Count > 0 && dataGridViewFiseMedicale.SelectedRows[0].Index != dataGridViewFiseMedicale.Rows.Count - 1)
             {
@@ -321,16 +312,14 @@ namespace Aplicatie_de_gestiune_a_animalelor
             if (!ValidateMedicalRecordInputs())
                 return;
 
-            if (dataGridViewAnimale.SelectedRows.Count > 0 && dataGridViewAnimale.SelectedRows[0].Index == dataGridViewAnimale.Rows.Count - 1)
-            {
-                dataGridViewAnimale.ClearSelection();
-                return;
-            }
-            if (!(dataGridViewAnimale.SelectedRows.Count > 0))
+            if (dataGridViewAnimale.SelectedRows.Count == 0 || dataGridViewAnimale.SelectedRows[0].Index == dataGridViewAnimale.Rows.Count - 1)
             {
                 MessageBox.Show("Nu ati selectat animalul prevazut de fisa!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            DialogResult result = MessageBox.Show("Sigur vreti sa adaugati?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
             DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
             int idAnimal = Convert.ToInt32(row.Cells["IDAnimal"].Value);
             string path = row.Cells["PathPoza"].Value.ToString();
@@ -367,17 +356,15 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
         private void buttonModifica_Click(object sender, EventArgs e)
         {
-            if (dataGridViewFiseMedicale.SelectedRows.Count > 0 && dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
-            {
-                dataGridViewFiseMedicale.ClearSelection();
-                return;
-            }
-            if (!(dataGridViewFiseMedicale.SelectedRows.Count > 0))
+            if (!(dataGridViewFiseMedicale.SelectedRows.Count > 0) || dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
             {
                 MessageBox.Show("Nu ati selectat niciun rand pentru modificare!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-                if (!ValidateAnimalInputs())
+            if (!ValidateAnimalInputs())
+                return;
+            DialogResult result = MessageBox.Show("Sigur vreti sa modificati?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
                 return;
             DataGridViewRow row = dataGridViewFiseMedicale.SelectedRows[0];
             int idAnimal = Convert.ToInt32(row.Cells["IDAnimal"].Value);
@@ -405,7 +392,28 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             MessageBox.Show("S-a modificat cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             RefreshDataGridViewAnimale();
+            RefreshFiseMedicale();
         }
-
+        private void buttonSterge_Click(object sender, EventArgs e)
+        {
+            if (!(dataGridViewFiseMedicale.SelectedRows.Count > 0) || dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
+            {
+                MessageBox.Show("Nu ati selectat fisa pentru stergere!", "Avertisment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DialogResult result = MessageBox.Show("Sigur vreti sa stergeti fisa de control?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
+            DataGridViewRow row = dataGridViewFiseMedicale.SelectedRows[0];
+            int idRecord = Convert.ToInt32(row.Cells["IDFisaMedicala"].Value);
+            string query = $"DELETE FROM FiseMedicale WHERE IDFisaMedicala = '{idRecord}'";
+            using (SQLiteConnection con = databaseManager.GetConnection())
+            using (SQLiteCommand command = new SQLiteCommand(query, con))
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+            }
+            RefreshFiseMedicale();
+        }
     }
 }

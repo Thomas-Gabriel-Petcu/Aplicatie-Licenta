@@ -127,6 +127,7 @@
             // 
             // dataGridViewAnimale
             // 
+            dataGridViewAnimale.AllowUserToDeleteRows = false;
             dataGridViewAnimale.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dataGridViewAnimale.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewAnimale.BackgroundColor = SystemColors.Control;
@@ -137,7 +138,7 @@
             dataGridViewAnimale.RowTemplate.Height = 25;
             dataGridViewAnimale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewAnimale.Size = new Size(667, 221);
-            dataGridViewAnimale.TabIndex = 81;
+            dataGridViewAnimale.TabIndex = 0;
             dataGridViewAnimale.SelectionChanged += dataGridViewAnimale_SelectionChanged;
             // 
             // labelFiltre
@@ -199,6 +200,7 @@
             // 
             // dataGridViewFiseMedicale
             // 
+            dataGridViewFiseMedicale.AllowUserToDeleteRows = false;
             dataGridViewFiseMedicale.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             dataGridViewFiseMedicale.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewFiseMedicale.BackgroundColor = SystemColors.Control;
@@ -209,7 +211,7 @@
             dataGridViewFiseMedicale.RowTemplate.Height = 25;
             dataGridViewFiseMedicale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFiseMedicale.Size = new Size(633, 221);
-            dataGridViewFiseMedicale.TabIndex = 85;
+            dataGridViewFiseMedicale.TabIndex = 0;
             dataGridViewFiseMedicale.SelectionChanged += dataGridViewFiseMedicale_SelectionChanged;
             // 
             // panel1
@@ -305,7 +307,7 @@
             // 
             labelTratament.AutoSize = true;
             labelTratament.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTratament.Location = new Point(91, 135);
+            labelTratament.Location = new Point(93, 136);
             labelTratament.Name = "labelTratament";
             labelTratament.Size = new Size(96, 25);
             labelTratament.TabIndex = 89;
@@ -313,17 +315,16 @@
             // 
             // textBoxTratament
             // 
-            textBoxTratament.Location = new Point(210, 125);
-            textBoxTratament.Multiline = true;
+            textBoxTratament.Location = new Point(210, 136);
             textBoxTratament.Name = "textBoxTratament";
-            textBoxTratament.Size = new Size(683, 46);
+            textBoxTratament.Size = new Size(683, 23);
             textBoxTratament.TabIndex = 88;
             // 
             // labelDiagnostic
             // 
             labelDiagnostic.AutoSize = true;
             labelDiagnostic.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDiagnostic.Location = new Point(91, 81);
+            labelDiagnostic.Location = new Point(91, 100);
             labelDiagnostic.Name = "labelDiagnostic";
             labelDiagnostic.Size = new Size(101, 25);
             labelDiagnostic.TabIndex = 48;
@@ -338,10 +339,9 @@
             // 
             // textBoxDiagnostic
             // 
-            textBoxDiagnostic.Location = new Point(210, 71);
-            textBoxDiagnostic.Multiline = true;
+            textBoxDiagnostic.Location = new Point(210, 100);
             textBoxDiagnostic.Name = "textBoxDiagnostic";
-            textBoxDiagnostic.Size = new Size(683, 46);
+            textBoxDiagnostic.Size = new Size(683, 23);
             textBoxDiagnostic.TabIndex = 87;
             // 
             // labelRasa
@@ -539,6 +539,7 @@
             buttonSterge.TabIndex = 87;
             buttonSterge.Text = "Sterge Fisa";
             buttonSterge.UseVisualStyleBackColor = true;
+            buttonSterge.Click += buttonSterge_Click;
             // 
             // buttonModifica
             // 
