@@ -104,7 +104,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                     {
                         if (!reader.HasRows)
                         {
-                            MessageBox.Show("Nu exista fise medicale pentru acest animal.");
+                            MessageBox.Show("Nu exista fise medicale pentru acest animal.", "Informare", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         while (reader.Read())
                         {

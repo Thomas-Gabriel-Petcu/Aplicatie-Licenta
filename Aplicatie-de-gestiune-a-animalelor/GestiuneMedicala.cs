@@ -439,5 +439,10 @@ namespace Aplicatie_de_gestiune_a_animalelor
             FormIstoricMedicalAnimal istoricMedical = new FormIstoricMedicalAnimal(idAnimal);
             istoricMedical.Show();
         }
+
+        private void dataGridViewFiseMedicale_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
     }
 }

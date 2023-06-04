@@ -214,6 +214,7 @@
             dataGridViewFiseMedicale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFiseMedicale.Size = new Size(633, 221);
             dataGridViewFiseMedicale.TabIndex = 0;
+            dataGridViewFiseMedicale.CellMouseDoubleClick += dataGridViewFiseMedicale_CellMouseDoubleClick;
             dataGridViewFiseMedicale.SelectionChanged += dataGridViewFiseMedicale_SelectionChanged;
             // 
             // panel1
