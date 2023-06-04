@@ -429,7 +429,15 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void dataGridViewAnimale_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            MessageBox.Show("Clicked");
+            if (dataGridViewAnimale.SelectedRows[0].Index == dataGridViewAnimale.Rows.Count - 1)
+            {
+                MessageBox.Show("Nu se poate genera raport pentru un rand gol!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DataGridViewRow row = dataGridViewAnimale.SelectedRows[0];
+            int idAnimal = Convert.ToInt32(row.Cells["IDAnimal"].Value);
+            FormIstoricMedicalAnimal istoricMedical = new FormIstoricMedicalAnimal(idAnimal);
+            istoricMedical.Show();
         }
     }
 }
