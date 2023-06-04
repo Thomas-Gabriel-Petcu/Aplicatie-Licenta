@@ -416,6 +416,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             RefreshFiseMedicale();
         }
 
+
         private void buttonInstructiuni_Click(object sender, EventArgs e)
         {
             if (instructiuni.IsDisposed)
@@ -424,6 +425,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             instructiuni.Show();
             instructiuni.TopMost = true;
+        }
+
+        private void dataGridViewAnimale_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            MessageBox.Show("Clicked");
         }
     }
 }

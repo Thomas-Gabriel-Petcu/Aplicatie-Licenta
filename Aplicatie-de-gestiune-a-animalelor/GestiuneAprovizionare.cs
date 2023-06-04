@@ -518,6 +518,11 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void dataGridViewFurnizori_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        private void dataGridViewFurnizori_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
             DataGridViewRow row = dataGridViewFurnizori.SelectedRows[0];
             int idSupplier = Convert.ToInt32(row.Cells["IDFurnizor"].Value);
             FormRaportIndividualFurnizor raportFurnizor = new FormRaportIndividualFurnizor(idSupplier);

@@ -40,6 +40,7 @@
             buttonMeniu = new Button();
             dataGridViewFiseMedicale = new DataGridView();
             panel1 = new Panel();
+            buttonInstructiuni = new Button();
             textBoxNumarFisa = new TextBox();
             labelNumarFisa = new Label();
             dateTimePickerOra = new DateTimePicker();
@@ -72,7 +73,6 @@
             buttonSterge = new Button();
             buttonModifica = new Button();
             buttonAdauga = new Button();
-            buttonInstructiuni = new Button();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             panel2.SuspendLayout();
@@ -140,6 +140,7 @@
             dataGridViewAnimale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewAnimale.Size = new Size(667, 221);
             dataGridViewAnimale.TabIndex = 0;
+            dataGridViewAnimale.CellMouseDoubleClick += dataGridViewAnimale_CellMouseDoubleClick;
             dataGridViewAnimale.SelectionChanged += dataGridViewAnimale_SelectionChanged;
             // 
             // labelFiltre
@@ -252,6 +253,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(908, 325);
             panel1.TabIndex = 86;
+            // 
+            // buttonInstructiuni
+            // 
+            buttonInstructiuni.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonInstructiuni.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonInstructiuni.Image = Properties.Resources.button;
+            buttonInstructiuni.Location = new Point(704, 264);
+            buttonInstructiuni.Name = "buttonInstructiuni";
+            buttonInstructiuni.Size = new Size(201, 58);
+            buttonInstructiuni.TabIndex = 96;
+            buttonInstructiuni.Text = "Instructiuni";
+            buttonInstructiuni.UseVisualStyleBackColor = true;
+            buttonInstructiuni.Click += buttonInstructiuni_Click;
             // 
             // textBoxNumarFisa
             // 
@@ -568,19 +582,6 @@
             buttonAdauga.Text = "Adauga Fisa";
             buttonAdauga.UseVisualStyleBackColor = true;
             buttonAdauga.Click += buttonAdauga_Click;
-            // 
-            // buttonInstructiuni
-            // 
-            buttonInstructiuni.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonInstructiuni.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonInstructiuni.Image = Properties.Resources.button;
-            buttonInstructiuni.Location = new Point(704, 264);
-            buttonInstructiuni.Name = "buttonInstructiuni";
-            buttonInstructiuni.Size = new Size(201, 58);
-            buttonInstructiuni.TabIndex = 96;
-            buttonInstructiuni.Text = "Instructiuni";
-            buttonInstructiuni.UseVisualStyleBackColor = true;
-            buttonInstructiuni.Click += buttonInstructiuni_Click;
             // 
             // GestiuneMedicala
             // 

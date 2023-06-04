@@ -109,6 +109,7 @@
             dataGridViewFurnizori.Size = new Size(420, 200);
             dataGridViewFurnizori.TabIndex = 2;
             dataGridViewFurnizori.CellContentDoubleClick += dataGridViewFurnizori_CellContentDoubleClick;
+            dataGridViewFurnizori.CellMouseDoubleClick += dataGridViewFurnizori_CellMouseDoubleClick;
             dataGridViewFurnizori.SelectionChanged += dataGridViewFurnizori_SelectionChanged;
             // 
             // dataGridViewFacturi
