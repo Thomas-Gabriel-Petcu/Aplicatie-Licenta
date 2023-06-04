@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -40,11 +41,17 @@ namespace Aplicatie_de_gestiune_a_animalelor
             panel1.Size = new Size(this.Size.Width, this.Size.Height);
             panel1.AutoScroll = false;
             this.Controls.Add(panel1);
+            panel1.Controls.Add(labelTitlu);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(dataGridViewAnimale);
+            panel1.Controls.Add(dataGridViewConsultatii);
+            panel1.Controls.Add(labelData);
+            panel1.Location = new Point((this.Width/2) - (panel1.Width/2), panel1.Location.Y);
+            labelData.Text = DateTime.Now.ToString();
         }
-
-        private void FormIstoricMedicalAnimal_Load(object sender, EventArgs e)
+        private void PopulateAnimalDetails()
         {
-            this.WindowState = FormWindowState.Maximized;
             string query = $"SELECT Specie, Rasa, Nume, Varsta, Sex, Greutate, Vaccinat, Sterilizat FROM Animale WHERE IDAnimal = '{idAnimal}'";
             using (SQLiteConnection con = databaseManager.GetConnection())
             using (SQLiteCommand command = new SQLiteCommand(query, con))
@@ -78,8 +85,47 @@ namespace Aplicatie_de_gestiune_a_animalelor
                     dataGridViewAnimale.DataSource = dataTable;
                 }
             }
+        }
+        private void PopulateMedicalRecords()
+        {
+            string query = $"SELECT NumarFisaMedicala, DataConsult, Diagnostic, Tratament FROM FiseMedicale WHERE IDAnimal = {idAnimal}";
 
+            using (SQLiteConnection connection = databaseManager.GetConnection())
+            {
+                DataTable table = new DataTable();
+                table.Columns.Add("Numar Fisa Medicala");
+                table.Columns.Add("Data consultului");
+                table.Columns.Add("Diagnostic");
+                table.Columns.Add("Tratament");
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (!reader.HasRows)
+                        {
+                            MessageBox.Show("Nu exista fise medicale pentru acest animal.");
+                        }
+                        while (reader.Read())
+                        {
+                            string numarFisa = reader.GetString(reader.GetOrdinal("NumarFisaMedicala"));
+                            string dateTimeStr = reader.GetString(reader.GetOrdinal("DataConsult"));
+                            DateTime dateTime = DateTime.ParseExact(dateTimeStr, "dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                            string diagnostic = reader.GetString(reader.GetOrdinal("Diagnostic"));
+                            string tratament = reader.GetString(reader.GetOrdinal("Tratament"));
+                            table.Rows.Add(numarFisa, dateTime, diagnostic, tratament);
+                        }
+                        dataGridViewConsultatii.DataSource = table;
+                    }
+                }
+            }
 
+        }
+        private void FormIstoricMedicalAnimal_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            PopulateAnimalDetails();
+            PopulateMedicalRecords();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -98,6 +144,18 @@ namespace Aplicatie_de_gestiune_a_animalelor
         private void dataGridViewAnimale_SelectionChanged(object sender, EventArgs e)
         {
             dataGridViewAnimale.ClearSelection();
+        }
+
+        private void FormIstoricMedicalAnimal_Resize(object sender, EventArgs e)
+        {
+            int padding = 20;
+            int dif = this.Height - this.MinimumSize.Height;
+            dataGridViewConsultatii.Height = dataGridViewConsultatii.MinimumSize.Height + dif - padding;
+        }
+
+        private void dataGridViewConsultatii_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridViewConsultatii.ClearSelection();
         }
     }
 }

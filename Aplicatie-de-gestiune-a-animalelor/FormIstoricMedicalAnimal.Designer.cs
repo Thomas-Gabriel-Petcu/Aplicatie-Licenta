@@ -34,6 +34,7 @@
             label1 = new Label();
             label2 = new Label();
             dataGridViewConsultatii = new DataGridView();
+            labelData = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewConsultatii).BeginInit();
             SuspendLayout();
@@ -100,14 +101,33 @@
             // 
             // dataGridViewConsultatii
             // 
-            dataGridViewConsultatii.BackgroundColor = SystemColors.Control;
+            dataGridViewConsultatii.AllowUserToAddRows = false;
+            dataGridViewConsultatii.AllowUserToDeleteRows = false;
+            dataGridViewConsultatii.AllowUserToResizeColumns = false;
+            dataGridViewConsultatii.AllowUserToResizeRows = false;
+            dataGridViewConsultatii.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewConsultatii.BackgroundColor = Color.White;
             dataGridViewConsultatii.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewConsultatii.GridColor = SystemColors.Control;
             dataGridViewConsultatii.Location = new Point(12, 259);
+            dataGridViewConsultatii.MinimumSize = new Size(741, 486);
+            dataGridViewConsultatii.MultiSelect = false;
             dataGridViewConsultatii.Name = "dataGridViewConsultatii";
+            dataGridViewConsultatii.ReadOnly = true;
             dataGridViewConsultatii.RowTemplate.Height = 25;
             dataGridViewConsultatii.Size = new Size(741, 486);
             dataGridViewConsultatii.TabIndex = 10;
+            dataGridViewConsultatii.SelectionChanged += dataGridViewConsultatii_SelectionChanged;
+            // 
+            // labelData
+            // 
+            labelData.AutoSize = true;
+            labelData.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelData.Location = new Point(554, 42);
+            labelData.Name = "labelData";
+            labelData.Size = new Size(89, 25);
+            labelData.TabIndex = 11;
+            labelData.Text = "data..........";
             // 
             // FormIstoricMedicalAnimal
             // 
@@ -115,6 +135,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(765, 771);
+            Controls.Add(labelData);
             Controls.Add(dataGridViewConsultatii);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -125,6 +146,7 @@
             Name = "FormIstoricMedicalAnimal";
             Text = "FormIstoricMedicalAnimal";
             Load += FormIstoricMedicalAnimal_Load;
+            Resize += FormIstoricMedicalAnimal_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewConsultatii).EndInit();
             ResumeLayout(false);
@@ -139,5 +161,6 @@
         private Label label1;
         private Label label2;
         private DataGridView dataGridViewConsultatii;
+        private Label labelData;
     }
 }
