@@ -442,7 +442,15 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void dataGridViewFiseMedicale_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            if (dataGridViewFiseMedicale.SelectedRows[0].Index == dataGridViewFiseMedicale.Rows.Count - 1)
+            {
+                MessageBox.Show("Nu se poate genera raport pentru un rand gol!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DataGridViewRow row = dataGridViewFiseMedicale.SelectedRows[0];
+            int idAnimal = Convert.ToInt32(row.Cells["IDAnimal"].Value);
+            FormFisaMedicala fisaMedicala = new FormFisaMedicala(idAnimal);
+            fisaMedicala.Show();
         }
     }
 }

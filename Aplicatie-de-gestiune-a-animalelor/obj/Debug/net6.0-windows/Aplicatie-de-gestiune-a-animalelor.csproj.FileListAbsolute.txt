@@ -43,3 +43,4 @@ C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animal
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormRaportIndividualFurnizor.resources
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormInstructiuniGestiuneMedicala.resources
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormIstoricMedicalAnimal.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormFisaMedicala.resources
