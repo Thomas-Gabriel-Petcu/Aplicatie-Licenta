@@ -18,6 +18,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
     public partial class GestiuneMedicala : Form
     {
         string imagePath = "";
+        FormInstructiuniGestiuneMedicala instructiuni = new FormInstructiuniGestiuneMedicala();
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
         MainMenuForm menu;
         public GestiuneMedicala(MainMenuForm menu)
@@ -28,7 +29,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 comboBoxSpecie.Items.Add(item.Key);
             }
-
         }
 
         private void GestiuneMedicala_Load(object sender, EventArgs e)
@@ -414,6 +414,16 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 command.ExecuteNonQuery();
             }
             RefreshFiseMedicale();
+        }
+
+        private void buttonInstructiuni_Click(object sender, EventArgs e)
+        {
+            if (instructiuni.IsDisposed)
+            {
+                instructiuni = new FormInstructiuniGestiuneMedicala();
+            }
+            instructiuni.Show();
+            instructiuni.TopMost = true;
         }
     }
 }

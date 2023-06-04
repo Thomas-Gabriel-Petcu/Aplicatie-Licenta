@@ -1,6 +1,6 @@
 ﻿namespace Aplicatie_de_gestiune_a_animalelor
 {
-    partial class FormInstructiuniGestiuneAprovizionare
+    partial class FormInstructiuniGestiuneMedicala
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInstructiuniGestiuneAprovizionare));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInstructiuniGestiuneMedicala));
             richTextBox1 = new RichTextBox();
             SuspendLayout();
             // 
@@ -37,14 +37,14 @@
             richTextBox1.BackColor = Color.FromArgb(255, 255, 214);
             richTextBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             richTextBox1.ForeColor = SystemColors.WindowText;
-            richTextBox1.Location = new Point(12, 12);
+            richTextBox1.Location = new Point(11, 12);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(369, 556);
-            richTextBox1.TabIndex = 0;
+            richTextBox1.TabIndex = 1;
             richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
-            // FormInstructiuniGestiuneAprovizionare
+            // FormInstructiuniGestiuneMedicala
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -52,9 +52,8 @@
             Controls.Add(richTextBox1);
             MaximumSize = new Size(407, 619);
             MinimumSize = new Size(407, 619);
-            Name = "FormInstructiuniGestiuneAprovizionare";
-            Text = "Instructiuni de utilizare";
-            Load += FormInstructiuniGestiuneAprovizionare_Load;
+            Name = "FormInstructiuniGestiuneMedicala";
+            Text = "FormInstructiuniGestiuneMedicala";
             ResumeLayout(false);
         }
 

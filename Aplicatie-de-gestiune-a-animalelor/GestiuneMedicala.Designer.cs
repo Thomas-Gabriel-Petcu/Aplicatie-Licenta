@@ -72,6 +72,7 @@
             buttonSterge = new Button();
             buttonModifica = new Button();
             buttonAdauga = new Button();
+            buttonInstructiuni = new Button();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAnimale).BeginInit();
             panel2.SuspendLayout();
@@ -99,9 +100,9 @@
             labelFise.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             labelFise.Location = new Point(969, 10);
             labelFise.Name = "labelFise";
-            labelFise.Size = new Size(190, 37);
+            labelFise.Size = new Size(176, 37);
             labelFise.TabIndex = 5;
-            labelFise.Text = "Fise de control";
+            labelFise.Text = "Fise medicale";
             // 
             // labelAnimale
             // 
@@ -170,9 +171,9 @@
             labelPrelucrari.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             labelPrelucrari.Location = new Point(539, 4);
             labelPrelucrari.Name = "labelPrelucrari";
-            labelPrelucrari.Size = new Size(303, 37);
+            labelPrelucrari.Size = new Size(289, 37);
             labelPrelucrari.TabIndex = 3;
-            labelPrelucrari.Text = "Prelucrari fisa de control";
+            labelPrelucrari.Text = "Prelucrari fisa medicala";
             // 
             // pictureBox1
             // 
@@ -217,6 +218,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.Controls.Add(buttonInstructiuni);
             panel1.Controls.Add(textBoxNumarFisa);
             panel1.Controls.Add(labelNumarFisa);
             panel1.Controls.Add(dateTimePickerOra);
@@ -567,6 +569,19 @@
             buttonAdauga.UseVisualStyleBackColor = true;
             buttonAdauga.Click += buttonAdauga_Click;
             // 
+            // buttonInstructiuni
+            // 
+            buttonInstructiuni.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonInstructiuni.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonInstructiuni.Image = Properties.Resources.button;
+            buttonInstructiuni.Location = new Point(704, 264);
+            buttonInstructiuni.Name = "buttonInstructiuni";
+            buttonInstructiuni.Size = new Size(201, 58);
+            buttonInstructiuni.TabIndex = 96;
+            buttonInstructiuni.Text = "Instructiuni";
+            buttonInstructiuni.UseVisualStyleBackColor = true;
+            buttonInstructiuni.Click += buttonInstructiuni_Click;
+            // 
             // GestiuneMedicala
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -646,5 +661,6 @@
         private DateTimePicker dateTimePickerOra;
         private TextBox textBoxNumarFisa;
         private Label labelNumarFisa;
+        private Button buttonInstructiuni;
     }
 }

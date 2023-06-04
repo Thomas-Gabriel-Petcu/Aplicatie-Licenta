@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Aplicatie_de_gestiune_a_animalelor
 {
-    public partial class FormInstructiuniGestiuneAprovizionare : Form
+    public partial class FormInstructiuniGestiuneMedicala : Form
     {
-        public FormInstructiuniGestiuneAprovizionare()
+        public FormInstructiuniGestiuneMedicala()
         {
             InitializeComponent();
-        }
-
-        private void FormInstructiuniGestiuneAprovizionare_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

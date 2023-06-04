@@ -41,3 +41,4 @@ C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animal
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormInstructiuniGestiuneAprovizionare.resources
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.GestiuneAprovizionare.resources
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormRaportIndividualFurnizor.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Debug\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormInstructiuniGestiuneMedicala.resources
