@@ -32,44 +32,33 @@
             labelData = new Label();
             label1 = new Label();
             labelNume = new Label();
-            label2 = new Label();
             label4 = new Label();
-            label3 = new Label();
             labelSpecie = new Label();
             label5 = new Label();
             labelRasa = new Label();
-            label6 = new Label();
             label7 = new Label();
-            label8 = new Label();
             labelVarsta = new Label();
             label9 = new Label();
             label10 = new Label();
             labelSex = new Label();
-            label12 = new Label();
             label13 = new Label();
-            label14 = new Label();
             labelGreutate = new Label();
             label11 = new Label();
             label15 = new Label();
-            label16 = new Label();
             labelVaccinat = new Label();
             label18 = new Label();
-            label17 = new Label();
             labelSterilizat = new Label();
             label19 = new Label();
-            label20 = new Label();
             label21 = new Label();
-            label22 = new Label();
             labelDiagnostic = new Label();
             label23 = new Label();
-            label24 = new Label();
             labelTratament = new Label();
             btnPrint = new Button();
             label25 = new Label();
             label26 = new Label();
             labelNumarFisa = new Label();
-            label28 = new Label();
             label27 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // labelTitlu
@@ -85,8 +74,9 @@
             // labelData
             // 
             labelData.AutoSize = true;
+            labelData.BackColor = SystemColors.Control;
             labelData.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelData.Location = new Point(224, 362);
+            labelData.Location = new Point(210, 424);
             labelData.Name = "labelData";
             labelData.Size = new Size(161, 30);
             labelData.TabIndex = 8;
@@ -105,22 +95,13 @@
             // labelNume
             // 
             labelNume.AutoSize = true;
+            labelNume.BackColor = SystemColors.Control;
             labelNume.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNume.Location = new Point(232, 233);
+            labelNume.Location = new Point(232, 237);
             labelNume.Name = "labelNume";
             labelNume.Size = new Size(184, 30);
             labelNume.TabIndex = 10;
             labelNume.Text = "numele animalului";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(232, 237);
-            label2.Name = "label2";
-            label2.Size = new Size(184, 30);
-            label2.TabIndex = 11;
-            label2.Text = "___________________";
             // 
             // label4
             // 
@@ -132,21 +113,12 @@
             label4.TabIndex = 12;
             label4.Text = ", specia";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(510, 237);
-            label3.Name = "label3";
-            label3.Size = new Size(103, 30);
-            label3.TabIndex = 13;
-            label3.Text = "__________";
-            // 
             // labelSpecie
             // 
             labelSpecie.AutoSize = true;
+            labelSpecie.BackColor = SystemColors.Control;
             labelSpecie.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSpecie.Location = new Point(519, 233);
+            labelSpecie.Location = new Point(510, 237);
             labelSpecie.Name = "labelSpecie";
             labelSpecie.Size = new Size(71, 30);
             labelSpecie.TabIndex = 14;
@@ -156,7 +128,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(613, 233);
+            label5.Location = new Point(624, 237);
             label5.Name = "label5";
             label5.Size = new Size(62, 30);
             label5.TabIndex = 15;
@@ -165,22 +137,13 @@
             // labelRasa
             // 
             labelRasa.AutoSize = true;
+            labelRasa.BackColor = SystemColors.Control;
             labelRasa.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelRasa.Location = new Point(46, 272);
+            labelRasa.Location = new Point(40, 279);
             labelRasa.Name = "labelRasa";
             labelRasa.Size = new Size(153, 30);
             labelRasa.TabIndex = 16;
             labelRasa.Text = "rasa animalului";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(37, 279);
-            label6.Name = "label6";
-            label6.Size = new Size(184, 30);
-            label6.TabIndex = 17;
-            label6.Text = "___________________";
             // 
             // label7
             // 
@@ -192,21 +155,12 @@
             label7.TabIndex = 18;
             label7.Text = ", cu varsta de";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(360, 279);
-            label8.Name = "label8";
-            label8.Size = new Size(67, 30);
-            label8.TabIndex = 19;
-            label8.Text = "______";
-            // 
             // labelVarsta
             // 
             labelVarsta.AutoSize = true;
+            labelVarsta.BackColor = SystemColors.Control;
             labelVarsta.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelVarsta.Location = new Point(360, 273);
+            labelVarsta.Location = new Point(353, 279);
             labelVarsta.Name = "labelVarsta";
             labelVarsta.Size = new Size(63, 30);
             labelVarsta.TabIndex = 20;
@@ -235,22 +189,13 @@
             // labelSex
             // 
             labelSex.AutoSize = true;
+            labelSex.BackColor = SystemColors.Control;
             labelSex.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSex.Location = new Point(570, 274);
+            labelSex.Location = new Point(564, 279);
             labelSex.Name = "labelSex";
             labelSex.Size = new Size(50, 30);
             labelSex.TabIndex = 23;
             labelSex.Text = "M/F";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(564, 279);
-            label12.Name = "label12";
-            label12.Size = new Size(67, 30);
-            label12.TabIndex = 24;
-            label12.Text = "______";
             // 
             // label13
             // 
@@ -262,21 +207,12 @@
             label13.TabIndex = 25;
             label13.Text = ", cu greutatea";
             // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(184, 320);
-            label14.Name = "label14";
-            label14.Size = new Size(67, 30);
-            label14.TabIndex = 26;
-            label14.Text = "______";
-            // 
             // labelGreutate
             // 
             labelGreutate.AutoSize = true;
+            labelGreutate.BackColor = SystemColors.Control;
             labelGreutate.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelGreutate.Location = new Point(193, 315);
+            labelGreutate.Location = new Point(184, 320);
             labelGreutate.Name = "labelGreutate";
             labelGreutate.Size = new Size(40, 30);
             labelGreutate.TabIndex = 27;
@@ -302,21 +238,12 @@
             label15.TabIndex = 29;
             label15.Text = ", vaccinat";
             // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(380, 320);
-            label16.Name = "label16";
-            label16.Size = new Size(67, 30);
-            label16.TabIndex = 30;
-            label16.Text = "______";
-            // 
             // labelVaccinat
             // 
             labelVaccinat.AutoSize = true;
+            labelVaccinat.BackColor = SystemColors.Control;
             labelVaccinat.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelVaccinat.Location = new Point(389, 314);
+            labelVaccinat.Location = new Point(388, 320);
             labelVaccinat.Name = "labelVaccinat";
             labelVaccinat.Size = new Size(49, 30);
             labelVaccinat.TabIndex = 31;
@@ -332,21 +259,12 @@
             label18.TabIndex = 32;
             label18.Text = ", sterilizat";
             // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(546, 320);
-            label17.Name = "label17";
-            label17.Size = new Size(67, 30);
-            label17.TabIndex = 33;
-            label17.Text = "______";
-            // 
             // labelSterilizat
             // 
             labelSterilizat.AutoSize = true;
+            labelSterilizat.BackColor = SystemColors.Control;
             labelSterilizat.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSterilizat.Location = new Point(551, 314);
+            labelSterilizat.Location = new Point(551, 320);
             labelSterilizat.Name = "labelSterilizat";
             labelSterilizat.Size = new Size(49, 30);
             labelSterilizat.TabIndex = 34;
@@ -356,48 +274,29 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(37, 368);
+            label19.Location = new Point(37, 424);
             label19.Name = "label19";
             label19.Size = new Size(167, 30);
             label19.TabIndex = 35;
             label19.Text = "consultat la data";
             // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label20.Location = new Point(218, 368);
-            label20.Name = "label20";
-            label20.Size = new Size(184, 30);
-            label20.TabIndex = 36;
-            label20.Text = "___________________";
-            // 
             // label21
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.Location = new Point(37, 415);
+            label21.Location = new Point(37, 471);
             label21.Name = "label21";
             label21.Size = new Size(113, 30);
             label21.TabIndex = 37;
             label21.Text = "diagnostic:";
             label21.Click += label21_Click;
             // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.Location = new Point(156, 415);
-            label22.Name = "label22";
-            label22.Size = new Size(517, 30);
-            label22.TabIndex = 38;
-            label22.Text = "________________________________________________________";
-            // 
             // labelDiagnostic
             // 
             labelDiagnostic.AutoSize = true;
+            labelDiagnostic.BackColor = SystemColors.Control;
             labelDiagnostic.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDiagnostic.Location = new Point(161, 409);
+            labelDiagnostic.Location = new Point(156, 471);
             labelDiagnostic.Name = "labelDiagnostic";
             labelDiagnostic.Size = new Size(108, 30);
             labelDiagnostic.TabIndex = 39;
@@ -407,27 +306,18 @@
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.Location = new Point(37, 465);
+            label23.Location = new Point(37, 521);
             label23.Name = "label23";
             label23.Size = new Size(111, 30);
             label23.TabIndex = 40;
             label23.Text = "Tratament:";
             // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.Location = new Point(154, 465);
-            label24.Name = "label24";
-            label24.Size = new Size(517, 30);
-            label24.TabIndex = 41;
-            label24.Text = "________________________________________________________";
-            // 
             // labelTratament
             // 
             labelTratament.AutoSize = true;
+            labelTratament.BackColor = SystemColors.Control;
             labelTratament.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTratament.Location = new Point(159, 458);
+            labelTratament.Location = new Point(156, 521);
             labelTratament.Name = "labelTratament";
             labelTratament.Size = new Size(104, 30);
             labelTratament.TabIndex = 42;
@@ -468,32 +358,33 @@
             // labelNumarFisa
             // 
             labelNumarFisa.AutoSize = true;
+            labelNumarFisa.BackColor = SystemColors.Control;
             labelNumarFisa.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNumarFisa.Location = new Point(304, 162);
+            labelNumarFisa.Location = new Point(294, 171);
             labelNumarFisa.Name = "labelNumarFisa";
             labelNumarFisa.Size = new Size(42, 30);
             labelNumarFisa.TabIndex = 46;
             labelNumarFisa.Text = "NR";
             // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label28.Location = new Point(285, 171);
-            label28.Name = "label28";
-            label28.Size = new Size(112, 30);
-            label28.TabIndex = 47;
-            label28.Text = "___________";
-            // 
             // label27
             // 
             label27.AutoSize = true;
             label27.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label27.Location = new Point(403, 171);
+            label27.Location = new Point(388, 171);
             label27.Name = "label27";
             label27.Size = new Size(138, 30);
             label27.TabIndex = 48;
             label27.Text = "are in vedere:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(-16, 370);
+            label2.Name = "label2";
+            label2.Size = new Size(796, 30);
+            label2.TabIndex = 49;
+            label2.Text = "_______________________________________________________________________________________";
             // 
             // FormFisaMedicala
             // 
@@ -501,46 +392,35 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(765, 771);
+            Controls.Add(label2);
             Controls.Add(label27);
             Controls.Add(labelNumarFisa);
-            Controls.Add(label28);
             Controls.Add(label26);
             Controls.Add(label25);
             Controls.Add(btnPrint);
             Controls.Add(labelTratament);
-            Controls.Add(label24);
             Controls.Add(label23);
             Controls.Add(labelDiagnostic);
-            Controls.Add(label22);
             Controls.Add(label21);
             Controls.Add(labelData);
-            Controls.Add(label20);
             Controls.Add(label19);
             Controls.Add(labelSterilizat);
-            Controls.Add(label17);
             Controls.Add(label18);
             Controls.Add(labelVaccinat);
-            Controls.Add(label16);
             Controls.Add(label15);
             Controls.Add(label11);
             Controls.Add(labelGreutate);
-            Controls.Add(label14);
             Controls.Add(label13);
             Controls.Add(labelSex);
-            Controls.Add(label12);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(labelVarsta);
-            Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(labelRasa);
-            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(labelSpecie);
-            Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(labelNume);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(labelTitlu);
             MinimumSize = new Size(781, 810);
@@ -557,43 +437,32 @@
         private Label labelData;
         private Label label1;
         private Label labelNume;
-        private Label label2;
         private Label label4;
-        private Label label3;
         private Label labelSpecie;
         private Label label5;
         private Label labelRasa;
-        private Label label6;
         private Label label7;
-        private Label label8;
         private Label labelVarsta;
         private Label label9;
         private Label label10;
         private Label labelSex;
-        private Label label12;
         private Label label13;
-        private Label label14;
         private Label labelGreutate;
         private Label label11;
         private Label label15;
-        private Label label16;
         private Label labelVaccinat;
         private Label label18;
-        private Label label17;
         private Label labelSterilizat;
         private Label label19;
-        private Label label20;
         private Label label21;
-        private Label label22;
         private Label labelDiagnostic;
         private Label label23;
-        private Label label24;
         private Label labelTratament;
         private Button btnPrint;
         private Label label25;
         private Label label26;
         private Label labelNumarFisa;
-        private Label label28;
         private Label label27;
+        private Label label2;
     }
 }

@@ -41,6 +41,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             panel1.Size = new Size(this.Size.Width, this.Size.Height);
             panel1.AutoScroll = false;
             this.Controls.Add(panel1);
+            PopulatePanel();
             //panel1.Controls.Add();
             //labelData.Text = DateTime.Now.ToString();
         }
@@ -48,12 +49,12 @@ namespace Aplicatie_de_gestiune_a_animalelor
         private void FormFisaMedicala_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            PopulatePanel();
             PopulateAnimalDetails();
             PopulateMedicalRecords();
         }
         private void PopulatePanel()
         {
+            panel1.Controls.Add(labelTitlu);
             panel1.Controls.Add(labelNume);
             panel1.Controls.Add(labelNumarFisa);
             panel1.Controls.Add(labelDiagnostic);
@@ -68,34 +69,34 @@ namespace Aplicatie_de_gestiune_a_animalelor
             panel1.Controls.Add(labelSex);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(label6);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label11);
-            panel1.Controls.Add(label12);
             panel1.Controls.Add(label13);
-            panel1.Controls.Add(label14);
             panel1.Controls.Add(label15);
-            panel1.Controls.Add(label16);
-            panel1.Controls.Add(label17);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label19);
-            panel1.Controls.Add(label20);
             panel1.Controls.Add(label21);
-            panel1.Controls.Add(label22);
             panel1.Controls.Add(label23);
-            panel1.Controls.Add(label24);
             panel1.Controls.Add(label25);
             panel1.Controls.Add(label26);
             panel1.Controls.Add(label27);
-            panel1.Controls.Add(label28);
-            
-
+            labelTitlu.BringToFront();
+            labelNume.BringToFront();
+            labelNumarFisa.BringToFront();
+            labelDiagnostic.BringToFront();
+            labelTratament.BringToFront();
+            labelData.BringToFront();
+            labelGreutate.BringToFront();
+            labelVaccinat.BringToFront();
+            labelSterilizat.BringToFront();
+            labelSpecie.BringToFront();
+            labelRasa.BringToFront();
+            labelVarsta.BringToFront();
+            labelSex.BringToFront();
         }
         private void PopulateAnimalDetails()
         {
@@ -164,6 +165,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+
             PrintDocument pd = new PrintDocument();
             pd.PrintPage += new PrintPageEventHandler(PrintPage);
             pd.Print();
