@@ -18,12 +18,14 @@ namespace Aplicatie_de_gestiune_a_animalelor
     public partial class FormFisaMedicala : Form
     {
         int idAnimal = 0;
+        int idRecord = 0;
         Panel panel1;
         DatabaseManager databaseManager = DatabaseManager.GetInstance();
-        public FormFisaMedicala(int idAnimal)
+        public FormFisaMedicala(int idAnimal, int idRecord)
         {
             InitializeComponent();
             this.idAnimal = idAnimal;
+            this.idRecord = idRecord;
             float dpiX, dpiY;
             using (Graphics graphics = this.CreateGraphics())
             {
@@ -131,7 +133,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
         }
         private void PopulateMedicalRecords()
         {
-            string query = $"SELECT NumarFisaMedicala, DataConsult, Diagnostic, Tratament FROM FiseMedicale WHERE IDAnimal = {idAnimal}";
+            string query = $"SELECT NumarFisaMedicala, DataConsult, Diagnostic, Tratament FROM FiseMedicale WHERE IDFisaMedicala = {idRecord}";
 
             using (SQLiteConnection connection = databaseManager.GetConnection())
             {

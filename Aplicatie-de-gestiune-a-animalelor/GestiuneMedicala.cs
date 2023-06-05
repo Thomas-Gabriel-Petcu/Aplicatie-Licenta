@@ -446,7 +446,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
             }
             DataGridViewRow row = dataGridViewFiseMedicale.SelectedRows[0];
             int idAnimal = Convert.ToInt32(row.Cells["IDAnimal"].Value);
-            FormFisaMedicala fisaMedicala = new FormFisaMedicala(idAnimal);
+            int idRecord = Convert.ToInt32(row.Cells["IDFisaMedicala"].Value);
+            FormFisaMedicala fisaMedicala = new FormFisaMedicala(idAnimal, idRecord);
             fisaMedicala.Show();
         }
     }
