@@ -130,7 +130,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
                 double percentOfOrders = ((double)nrSupplierOrders / (double)nrTotalOrders) * 100;
                 labelProcentNumar.Text = $"{percentOfOrders}%";
-                double percentOfPayment = ((double)supplierTotalValue/(double)ordersTotalValue) * 100;
+                double percentOfPayment = ((double)supplierTotalValue / (double)ordersTotalValue) * 100;
                 labelProcentPlatit.Text = $"{percentOfPayment}%";
             }
 
@@ -161,7 +161,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 point.Font = new Font("Arial", 14);
             }
             TextAnnotation totalOrderNumbers = new TextAnnotation();
-            totalOrderNumbers.Text = $"Total animale: {nrTotalOrders}";
+            totalOrderNumbers.Text = $"Total comenzi: {nrTotalOrders}";
             totalOrderNumbers.Font = new Font("Arial", 12);
             totalOrderNumbers.ForeColor = Color.Black;
             totalOrderNumbers.X = 50;
@@ -196,7 +196,13 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 point.Font = new Font("Arial", 14);
             }
-            
+            TextAnnotation totalOrderValue = new TextAnnotation();
+            totalOrderValue.Text = $"Total: {ordersTotalValue}";
+            totalOrderValue.Font = new Font("Arial", 12);
+            totalOrderValue.ForeColor = Color.Black;
+            totalOrderValue.X = 50;
+            totalOrderValue.Y = chart.Height - 210;
+            chart.Annotations.Add(totalOrderValue);
             panel1.Controls.Add(chart);
             #endregion
 

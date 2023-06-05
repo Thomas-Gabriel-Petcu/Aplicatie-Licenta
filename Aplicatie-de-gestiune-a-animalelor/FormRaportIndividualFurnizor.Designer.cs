@@ -59,6 +59,7 @@
             // labelNumeFurnizor
             // 
             labelNumeFurnizor.AutoSize = true;
+            labelNumeFurnizor.BackColor = SystemColors.Control;
             labelNumeFurnizor.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             labelNumeFurnizor.Location = new Point(63, 157);
             labelNumeFurnizor.Name = "labelNumeFurnizor";
@@ -89,6 +90,7 @@
             // labelCUI
             // 
             labelCUI.AutoSize = true;
+            labelCUI.BackColor = SystemColors.Control;
             labelCUI.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             labelCUI.Location = new Point(63, 199);
             labelCUI.Name = "labelCUI";
@@ -99,6 +101,7 @@
             // labelAdresa
             // 
             labelAdresa.AutoSize = true;
+            labelAdresa.BackColor = SystemColors.Control;
             labelAdresa.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             labelAdresa.Location = new Point(63, 239);
             labelAdresa.Name = "labelAdresa";
@@ -129,6 +132,7 @@
             // labelProcentNumar
             // 
             labelProcentNumar.AutoSize = true;
+            labelProcentNumar.BackColor = SystemColors.Control;
             labelProcentNumar.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             labelProcentNumar.Location = new Point(457, 334);
             labelProcentNumar.Name = "labelProcentNumar";
@@ -149,6 +153,7 @@
             // labelNumar
             // 
             labelNumar.AutoSize = true;
+            labelNumar.BackColor = SystemColors.Control;
             labelNumar.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             labelNumar.Location = new Point(612, 334);
             labelNumar.Name = "labelNumar";
@@ -179,6 +184,7 @@
             // labelProcentPlatit
             // 
             labelProcentPlatit.AutoSize = true;
+            labelProcentPlatit.BackColor = SystemColors.Control;
             labelProcentPlatit.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             labelProcentPlatit.Location = new Point(595, 427);
             labelProcentPlatit.Name = "labelProcentPlatit";
@@ -190,7 +196,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 255, 214);
+            BackColor = Color.White;
             ClientSize = new Size(765, 771);
             Controls.Add(labelProcentPlatit);
             Controls.Add(label5);
