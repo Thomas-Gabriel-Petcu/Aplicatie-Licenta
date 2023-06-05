@@ -215,8 +215,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                     while (reader.Read())
                     {
                         int idFactura = reader.GetInt32(reader.GetOrdinal("IDFactura"));
-                        int idComanda = reader.GetInt32(reader.GetOrdinal("IDFactura"));
-                        int idFurnizor = reader.GetInt32(reader.GetOrdinal("IDFactura"));
+                        int idComanda = reader.GetInt32(reader.GetOrdinal("IDComanda"));
+                        int idFurnizor = reader.GetInt32(reader.GetOrdinal("IDFurnizor"));
                         string numarFactura = reader.GetString(reader.GetOrdinal("NumarFactura"));
                         string dateTimeStr = reader.GetString(reader.GetOrdinal("DataFactura"));
 
@@ -433,11 +433,12 @@ namespace Aplicatie_de_gestiune_a_animalelor
             if (!ValidateOrderInputs())
                 return;
             DataGridViewRow row = dataGridViewComenzi.SelectedRows[0];
+            int idOrder = Convert.ToInt32(row.Cells["IDComanda"].Value);
             string orderNr = row.Cells["NumarComanda"].Value.ToString();
             string products = row.Cells["Produse"].Value.ToString();
             double value = Convert.ToDouble(row.Cells["ValoareCuTVA"].Value);
 
-            string query = $"UPDATE Comenzi SET NumarComanda = '{orderNr}', Produse = '{products}', ValoareCuTVA = '{value}'";
+            string query = $"UPDATE Comenzi SET NumarComanda = '{orderNr}', Produse = '{products}', ValoareCuTVA = '{value}' WHERE IDComanda = '{idOrder}'";
             using SQLiteConnection con = databaseManager.GetConnection();
             using SQLiteCommand command = new SQLiteCommand(query, con);
             {

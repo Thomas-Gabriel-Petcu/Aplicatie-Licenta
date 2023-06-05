@@ -145,7 +145,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             distSeries.ChartType = SeriesChartType.Pie;
 
             distSeries.Points.AddXY("Comenzi furnizor", nrSupplierOrders);
-            distSeries.Points.AddXY("Total comenzi", nrTotalOrders);
+            distSeries.Points.AddXY("Rest", nrTotalOrders - nrSupplierOrders);
 
             distChart.Series[0].IsValueShownAsLabel = true;
             distChart.Series[0].Palette = ChartColorPalette.BrightPastel;
@@ -160,6 +160,13 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 point.Font = new Font("Arial", 14);
             }
+            TextAnnotation totalOrderNumbers = new TextAnnotation();
+            totalOrderNumbers.Text = $"Total animale: {nrTotalOrders}";
+            totalOrderNumbers.Font = new Font("Arial", 12);
+            totalOrderNumbers.ForeColor = Color.Black;
+            totalOrderNumbers.X = 50;
+            totalOrderNumbers.Y = distChart.Height - 210;
+            distChart.Annotations.Add(totalOrderNumbers);
             panel1.Controls.Add(distChart);
             #endregion
 
@@ -174,7 +181,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             charSeries.ChartType = SeriesChartType.Pie;
 
             charSeries.Points.AddXY("valoare comenzi furnizor", supplierTotalValue);
-            charSeries.Points.AddXY("valoare totala comenzi", ordersTotalValue);
+            charSeries.Points.AddXY("valoare rest", ordersTotalValue - supplierTotalValue);
 
             chart.Series[0].IsValueShownAsLabel = true;
             chart.Series[0].Palette = ChartColorPalette.Fire;
@@ -189,6 +196,7 @@ namespace Aplicatie_de_gestiune_a_animalelor
             {
                 point.Font = new Font("Arial", 14);
             }
+            
             panel1.Controls.Add(chart);
             #endregion
 

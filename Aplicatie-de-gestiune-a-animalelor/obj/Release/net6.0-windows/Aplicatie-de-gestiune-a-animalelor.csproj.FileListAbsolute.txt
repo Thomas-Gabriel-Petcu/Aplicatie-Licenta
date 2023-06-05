@@ -36,3 +36,11 @@ C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animal
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie-de-gestiune-a-animalelor.pdb
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie-de-gestiune-a-animalelor.genruntimeconfig.cache
 C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\ref\Aplicatie-de-gestiune-a-animalelor.dll
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FisaMedicala.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormFisaMedicala.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormInstructiuniGestiuneAprovizionare.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormInstructiuniGestiuneMedicala.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormIstoricMedicalAnimal.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.FormRaportIndividualFurnizor.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.GestiuneAprovizionare.resources
+C:\Users\thoma\Documents\GitHub\Aplicatie-Licenta\Aplicatie-de-gestiune-a-animalelor\obj\Release\net6.0-windows\Aplicatie_de_gestiune_a_animalelor.GestiuneMedicala.resources

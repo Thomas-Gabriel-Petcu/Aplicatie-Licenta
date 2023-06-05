@@ -152,11 +152,6 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 MessageBox.Show("Nu ati specificat numele!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (imagePath == "")
-            {
-                MessageBox.Show("Nu ati specificat poza!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
             if (!int.TryParse(textBoxVarsta.Text, out int l_age) || l_age <= 0)
             {
                 MessageBox.Show($"Varsta nu poate fi \"{textBoxVarsta.Text}\". Doar numere intregi!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -362,6 +357,8 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 return;
             }
             if (!ValidateAnimalInputs())
+                return;
+            if (!ValidateMedicalRecordInputs())
                 return;
             DialogResult result = MessageBox.Show("Sigur vreti sa modificati?", "Confirmare", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes)
