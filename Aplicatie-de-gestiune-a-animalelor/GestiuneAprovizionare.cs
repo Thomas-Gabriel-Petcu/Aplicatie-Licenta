@@ -434,9 +434,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 return;
             DataGridViewRow row = dataGridViewComenzi.SelectedRows[0];
             int idOrder = Convert.ToInt32(row.Cells["IDComanda"].Value);
-            string orderNr = row.Cells["NumarComanda"].Value.ToString();
-            string products = row.Cells["Produse"].Value.ToString();
-            double value = Convert.ToDouble(row.Cells["ValoareCuTVA"].Value);
+            string orderNr = textBoxNumarComanda.Text;
+            string products = textBoxProduse.Text;
+            double value = double.Parse(textBoxValCuTVA.Text);
 
             string query = $"UPDATE Comenzi SET NumarComanda = '{orderNr}', Produse = '{products}', ValoareCuTVA = '{value}' WHERE IDComanda = '{idOrder}'";
             using SQLiteConnection con = databaseManager.GetConnection();
@@ -524,6 +524,15 @@ namespace Aplicatie_de_gestiune_a_animalelor
 
         private void dataGridViewFurnizori_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (!(dataGridViewFurnizori.SelectedRows.Count > 0))
+            {
+                return;
+            }
+            if (dataGridViewFurnizori.SelectedRows[0].Index == dataGridViewFurnizori.Rows.Count - 1)
+            {
+                MessageBox.Show("Nu se poate genera raport pentru un rand gol!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DataGridViewRow row = dataGridViewFurnizori.SelectedRows[0];
             int idSupplier = Convert.ToInt32(row.Cells["IDFurnizor"].Value);
             FormRaportIndividualFurnizor raportFurnizor = new FormRaportIndividualFurnizor(idSupplier);

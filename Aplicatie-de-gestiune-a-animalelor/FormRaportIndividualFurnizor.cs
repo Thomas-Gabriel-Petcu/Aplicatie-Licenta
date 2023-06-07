@@ -129,9 +129,9 @@ namespace Aplicatie_de_gestiune_a_animalelor
                 #endregion
 
                 double percentOfOrders = ((double)nrSupplierOrders / (double)nrTotalOrders) * 100;
-                labelProcentNumar.Text = $"{percentOfOrders}%";
+                labelProcentNumar.Text = $"{percentOfOrders.ToString("N2")}%";
                 double percentOfPayment = ((double)supplierTotalValue / (double)ordersTotalValue) * 100;
-                labelProcentPlatit.Text = $"{percentOfPayment}%";
+                labelProcentPlatit.Text = $"{percentOfPayment.ToString("N2")}%";
             }
 
             #region Char_order_distribution_by_number
